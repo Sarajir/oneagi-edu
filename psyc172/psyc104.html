@@ -132,7 +132,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
   <div class="nav-section">备考工具</div>
   <button class="nav-item" onclick="goPage('midterm1',this)"><span class="icon">🎯</span>期中一复习</button>
   <button class="nav-item" onclick="goPage('m1fc',this)"><span class="icon">🃏</span>期中一闪卡（35张）</button>
-  <button class="nav-item" onclick="goPage('m1quiz',this)"><span class="icon">✅</span>期中一测验（25题）</button>
+  <button class="nav-item" onclick="goPage('m1quiz',this)"><span class="icon">✅</span>期中一测验（30题）</button>
   <button class="nav-item" onclick="goPage('flashcards',this)"><span class="icon">🗂️</span>全课闪卡</button>
   <button class="nav-item" onclick="goPage('quiz',this)"><span class="icon">📝</span>全课测验</button>
   <button class="nav-item" onclick="goPage('glossary',this)"><span class="icon">📖</span>术语表</button>
@@ -707,431 +707,783 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 <div class="page" id="page-midterm1">
   <div class="page-header">
     <h1>🎯 期中一复习</h1>
-    <p>Week 1–4 · Lectures 1–8 · 基于 Study Guide + Lecture Slides 的全面备考答案</p>
+    <p>完整 Study Guide 答案 · Week 1–4 · 共 50 题 · 按原题顺序</p>
     <div class="tag-row">
-      <span class="tag">进化与社会生活</span>
-      <span class="tag">研究方法</span>
-      <span class="tag">自然与教养</span>
-      <span class="tag">自我认知</span>
-      <span class="tag">自我控制</span>
+      <span class="tag">Week 1: 进化基础</span>
+      <span class="tag">Week 2: 研究方法</span>
+      <span class="tag">Week 3: 自我 &amp; 自我控制</span>
+      <span class="tag">Week 4: 社会认知</span>
     </div>
   </div>
 
-  <div class="section-title">📌 PART 1 — 社会心理学导论 &amp; 进化基础（Lec 1–3）</div>
+  <!-- ── WEEK 1 ── -->
+  <div class="section-title">🧬 WEEK 1 — 进化与社会生活（共13题）</div>
 
   <div class="card">
-    <h3>Q: 什么是社会心理学？它与其他心理学分支有什么不同？</h3>
-    <p><strong>定义：</strong>社会心理学研究个体的思想、感受和行为如何受到他人（真实的、想象的或隐含的）存在的影响。</p>
+    <h3>W1-Q1 自然选择的三个条件是什么？</h3>
     <ul>
-      <li>关注<strong>情境力量</strong>（situational forces）对行为的影响，而非仅关注个人特质</li>
-      <li>vs 人格心理学：人格关注稳定的个体差异；社会心理学关注情境如何改变行为</li>
-      <li>vs 社会学：社会学研究群体和社会结构；社会心理学聚焦个体的心理过程</li>
-      <li>核心主张：情境的力量往往比我们预期的更强大（Milgram, Zimbardo等实验）</li>
+      <li><strong>变异（Variation）</strong>：同物种个体在特征上存在差异</li>
+      <li><strong>遗传性（Heritability）</strong>：这些特征可以从父母传给后代</li>
+      <li><strong>差异繁殖成功（Differential Reproductive Success）</strong>：某些特征变体比其他的能产生更多存活后代</li>
+    </ul>
+    <div class="study-box"><p>💡 记忆口诀：变异 + 遗传 + 筛选 = 自然选择。三个条件缺一不可。</p></div>
+  </div>
+
+  <div class="card">
+    <h3>W1-Q2 自然选择如何塑造大脑系统来解决持续性社会问题？</h3>
+    <ul>
+      <li>我们的祖先面临反复出现的社会性适应问题（如检测欺骗者、吸引配偶、养育后代、建立联盟）</li>
+      <li>解决这些问题更好的神经机制 → 更多后代 → 这些大脑系统在种群中传播</li>
+      <li>结果：大脑不是通用计算机，而是由许多<strong>专用模块</strong>组成，每个模块针对特定适应性问题进化</li>
+      <li>例：欺骗者检测模块、面部表情识别、亲属识别系统、合作与惩罚机制</li>
+    </ul>
+    <div class="highlight-box"><p>📌 关键思想：进化塑造的是<em>心理机制</em>（信息处理规则），不是固定行为。同样的机制在不同环境下产生不同行为。</p></div>
+  </div>
+
+  <div class="card">
+    <h3>W1-Q3 Charles Darwin 是谁？他对科学的主要贡献是什么？</h3>
+    <ul>
+      <li>英国博物学家（1809–1882），在加拉帕戈斯群岛观察中发展了进化思想</li>
+      <li><strong>《物种起源》（1859）</strong>：提出自然选择是进化的机制，解释了生物多样性和适应</li>
+      <li><strong>《人类的由来》（1871）</strong>：将进化论应用于人类行为和社会生活</li>
+      <li>主要贡献：提供了一个<strong>机制性、自然主义的解释</strong>来说明生命的多样性和适应，无需诉诸神圣设计</li>
     </ul>
   </div>
 
   <div class="card">
-    <h3>Q: 解释自然选择（Natural Selection）如何解释社会行为？</h3>
+    <h3>W1-Q4 二战如何塑造了社会心理学今天研究的主题？</h3>
     <ul>
-      <li><strong>自然选择</strong>：有助于生存和繁殖的特征在种群中频率增加</li>
-      <li>行为特征也受自然选择塑造——有适应意义的社会行为（如合作、利他）更容易被保留</li>
-      <li><strong>适应性（Adaptation）</strong>：对环境压力进化出的解决方案</li>
-      <li><strong>包容适应性（Inclusive Fitness）</strong>：不仅考虑个体繁殖成功，还包括帮助亲属传递共同基因的贡献</li>
-      <li>关键：进化选择的是<em>基因</em>，不是个体或物种</li>
-    </ul>
-    <div class="highlight-box"><p>⚠️ <strong>常考误区：</strong>"进化决定 = 无法改变"是错误的！进化产生的是<em>倾向</em>，不是固定行为。文化和学习可以修改、压制或增强这些倾向。</p></div>
-  </div>
-
-  <div class="card">
-    <h3>Q: 什么是亲属选择（Kin Selection）？Hamilton's Rule是什么？</h3>
-    <ul>
-      <li><strong>亲属选择</strong>：通过帮助带有相同基因的亲属来间接传播自身基因的机制（Hamilton, 1964）</li>
-      <li><strong>Hamilton's Rule：rb &gt; c</strong>
+      <li>二战提出了迫切问题：普通德国人如何服从纳粹命令？宣传为何有效？士气如何影响战斗力？</li>
+      <li>直接催生的研究领域：
         <ul>
-          <li><strong>r</strong> = 亲缘系数（relatedness）：同卵双胞胎=1.0；亲兄弟姐妹=0.5；表亲=0.125</li>
-          <li><strong>b</strong> = 利他行为对受益者的收益（benefit）</li>
-          <li><strong>c</strong> = 利他者付出的成本（cost）</li>
-          <li>当 r×b &gt; c 时，利他行为会进化</li>
+          <li><strong>服从权威</strong>（Milgram, 1963）：研究大屠杀的心理机制</li>
+          <li><strong>从众</strong>（Asch, 1951）：群体压力对个体判断的影响</li>
+          <li><strong>偏见与歧视</strong>（Allport等）：研究反犹主义的心理根源</li>
+          <li><strong>态度改变与说服</strong>：战时宣传与反宣传的研究</li>
         </ul>
       </li>
-      <li>解释：为什么人们愿意为兄弟姐妹牺牲，而不愿为陌生人同等牺牲</li>
-      <li>名言：Haldane——"我愿意为两个兄弟或八个表亲牺牲自己"</li>
+      <li>Kurt Lewin（"社会心理学之父"）逃离纳粹德国后在美国创建群体动力学研究</li>
+      <li>核心启示：<strong>情境力量</strong>可以让普通人做出极端行为</li>
     </ul>
   </div>
 
   <div class="card">
-    <h3>Q: 什么是互惠利他（Reciprocal Altruism）？与亲属选择有何不同？</h3>
+    <h3>W1-Q5 Auguste Comte 是谁？他的主要贡献是什么？</h3>
     <ul>
-      <li><strong>互惠利他</strong>：帮助非亲属，期待日后获得同等回报（Trivers, 1971）</li>
-      <li>条件：双方再次相遇概率高；能识别欺骗者；能记住过去的互动</li>
-      <li><strong>vs 亲属选择</strong>：亲属选择依赖基因共享（血缘）；互惠利他依赖未来回报（交换）</li>
-      <li>现实例子：朋友互相帮忙搬家、动物间的互相梳毛（grooming）</li>
-      <li><strong>欺骗者检测（Cheater Detection）</strong>：进化出对违反社会契约者高度敏感的认知机制</li>
+      <li>法国哲学家（1798–1857），实证主义（Positivism）和社会学的创始人</li>
+      <li>主要贡献：提出"<strong>科学层级</strong>"——从最普遍（数学、物理）到最特殊（社会学）的科学排列</li>
+      <li>心理学位于生物学和社会学之间</li>
+      <li>核心主张：社会现象应该用<strong>科学方法（实证方法）</strong>研究，而不仅仅是哲学推理</li>
+      <li>Comte创造了"sociology"这个词，认为社会科学应该和自然科学一样严谨</li>
     </ul>
   </div>
 
   <div class="card">
-    <h3>Q: 什么是"Just-So Stories"问题？进化心理学如何应对批评？</h3>
+    <h3>W1-Q6 灵长类睾丸大小如何揭示其交配系统和繁殖竞争？</h3>
     <ul>
-      <li><strong>Just-So Stories</strong>：事后为任何行为编造一个"进化故事"，但无法证伪的问题</li>
-      <li>批评：进化解释往往是后见之明，缺乏预测性和可验证性</li>
-      <li>进化心理学的回应：
-        <ul>
-          <li>跨文化一致性（cross-cultural universals）作为证据</li>
-          <li>与其他物种的比较研究</li>
-          <li>基因证据（行为遗传学）</li>
-          <li>可检验的预测（如配偶嫉妒的性别差异）</li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-
-  <div class="section-title">📌 PART 2 — 研究方法、因果性与复制危机（Lec 4–5）</div>
-
-  <div class="card">
-    <h3>Q: 实验法（Experimental）vs 相关法（Correlational）的核心区别？</h3>
-    <ul>
-      <li><strong>实验法</strong>：
-        <ul>
-          <li>研究者操控<strong>自变量（IV）</strong>，测量<strong>因变量（DV）</strong></li>
-          <li><strong>随机分配（Random Assignment）</strong>：参与者随机分入不同条件，控制混淆变量</li>
-          <li>可以建立<strong>因果关系（causality）</strong></li>
-          <li>内部效度高，外部效度可能受限</li>
-        </ul>
-      </li>
-      <li><strong>相关法</strong>：
-        <ul>
-          <li>测量两个变量间的关联程度（相关系数 -1 到 +1）</li>
-          <li>只能建立<strong>关联</strong>，不能证明因果</li>
-          <li>第三变量问题（confound）：可能有第三因素同时影响两个变量</li>
-          <li>外部效度通常更高（生态效度）</li>
-        </ul>
-      </li>
-    </ul>
-    <div class="highlight-box"><p>📌 <strong>经典例子：</strong>冰淇淋销量与溺水死亡率正相关 → 不是冰淇淋导致溺水，而是"天气热"（第三变量）同时导致两者增加。</p></div>
-  </div>
-
-  <div class="card">
-    <h3>Q: 内部效度（Internal Validity）vs 外部效度（External Validity）？</h3>
-    <ul>
-      <li><strong>内部效度</strong>：研究能在多大程度上确立 IV→DV 的因果关系
-        <ul>
-          <li>威胁：选择偏差、历史事件、测量工具误差、实验者偏差</li>
-          <li>提高方法：随机分配、双盲设计、安慰剂对照</li>
-        </ul>
-      </li>
-      <li><strong>外部效度</strong>：研究结果能在多大程度上推广到其他人、情境、时间
-        <ul>
-          <li>威胁：WEIRD样本（Western, Educated, Industrialized, Rich, Democratic）</li>
-          <li>实验室情境与真实生活的差异</li>
-          <li>提高方法：田野实验、多样化样本、复制研究</li>
-        </ul>
-      </li>
-      <li><strong>两者通常存在权衡（trade-off）</strong>：实验室控制好→内部效度高→外部效度可能低</li>
+      <li>睾丸大小（相对体重）是<strong>精子竞争</strong>强度的指标</li>
+      <li><strong>多雄多雌系统</strong>（如黑猩猩）：雌性与多个雄性交配 → 强烈精子竞争 → 相对体重最大的睾丸</li>
+      <li><strong>一夫一妻系统</strong>（如长臂猿）：几乎无精子竞争 → 小睾丸</li>
+      <li><strong>一夫多妻系统</strong>（如大猩猩）：雄性控制后宫，独占交配权 → 几乎无精子竞争 → 尽管体型庞大，但睾丸相对小</li>
+      <li><strong>人类</strong>：睾丸大小居中 → 提示祖先存在<em>一定程度</em>的精子竞争，但不如黑猩猩激烈 → 暗示<strong>温和多配偶制</strong>的祖先交配系统</li>
     </ul>
   </div>
 
   <div class="card">
-    <h3>Q: 什么是复制危机（Replication Crisis）？主要原因是什么？</h3>
+    <h3>W1-Q7 三种交配系统的定义？祖先人类最可能是哪种？</h3>
     <ul>
-      <li><strong>复制危机</strong>：大量已发表的心理学研究无法被独立研究者重复验证</li>
-      <li><strong>里程碑事件</strong>：Open Science Collaboration (2015)——重复100项社会/认知心理学研究，仅约39%获得显著复制结果</li>
-      <li><strong>主要原因</strong>：
+      <li><strong>一夫一妻制（Monogamous）</strong>：一雄一雌配对，共同养育后代（长臂猿、许多鸟类）</li>
+      <li><strong>一夫多妻制（Polygynous）</strong>：一雄与多雌交配，雄性体型通常远大于雌性（大猩猩）</li>
+      <li><strong>多雄多雌制（Multimale-Multifemale）</strong>：多个雄性和雌性相互交配（黑猩猩、倭黑猩猩）</li>
+      <li><strong>祖先人类最可能是</strong>：<em>温和的一夫多妻制</em>（mildly polygynous），或介于一夫一妻与一夫多妻之间
         <ul>
-          <li><strong>P-hacking</strong>：反复分析数据直到 p＜0.05（也称"数据捏合"）</li>
-          <li><strong>HARKing</strong>：Hypothesizing After Results are Known——结果出来后再编假设</li>
-          <li><strong>发表偏见（Publication Bias）</strong>：期刊偏向发表阳性结果，负面结果入抽屉</li>
-          <li><strong>样本量不足</strong>：统计效力低，偶然显著结果被误判为真实发现</li>
-          <li><strong>灵活的数据分析</strong>：Researcher degrees of freedom——可选择的分析方式太多</li>
-        </ul>
-      </li>
-      <li><strong>解决方案（开放科学运动）</strong>：预注册、开放数据、大样本多实验室复制、注册报告</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h3>Q: 什么是被试内 vs 被试间设计？各有什么优缺点？</h3>
-    <ul>
-      <li><strong>被试间设计（Between-subjects）</strong>：
-        <ul>
-          <li>不同参与者在不同条件下测试</li>
-          <li>优点：避免顺序效应、练习效应</li>
-          <li>缺点：需要更多参与者；个体差异成为误差</li>
-        </ul>
-      </li>
-      <li><strong>被试内设计（Within-subjects）</strong>：
-        <ul>
-          <li>同一参与者参与所有实验条件</li>
-          <li>优点：控制个体差异；需要更少参与者</li>
-          <li>缺点：顺序效应（carryover effects）；参与者可能猜出实验目的</li>
-          <li>解决顺序效应：<strong>平衡（counterbalancing）</strong></li>
+          <li>证据：男性比女性体型稍大（体型二态性存在但不极端）</li>
+          <li>睾丸大小居中（有一定精子竞争）</li>
+          <li>跨文化数据：大多数传统社会允许一夫多妻，但实际多数男性只有一个配偶</li>
         </ul>
       </li>
     </ul>
   </div>
 
   <div class="card">
-    <h3>Q: 什么是欺骗（Deception）？在心理学研究中的伦理考量？</h3>
+    <h3>W1-Q8 现代家庭与祖先家庭有何不同？</h3>
     <ul>
-      <li>许多社会心理学实验需要欺骗参与者（不告知真实目的），否则行为会改变</li>
-      <li><strong>伦理要求（APA准则）</strong>：
+      <li><strong>祖先家庭</strong>：生活在小型群体（游群）中，扩展亲属网络是主要社会单元；共同育儿（alloparenting）普遍；祖母积极参与抚育；父亲参与度高（灵长类中罕见）</li>
+      <li><strong>现代家庭</strong>：
         <ul>
-          <li>知情同意（Informed Consent）：告知研究大致性质</li>
-          <li>欺骗须有科学必要性，且无其他替代方案</li>
-          <li>事后揭密（Debriefing）：实验结束后告知真实目的，消除可能的心理伤害</li>
-          <li>参与者有权随时退出</li>
+          <li>核心家庭（父母+孩子）更为孤立，与扩展亲属地理分离</li>
+          <li>机构（学校、日托、养老院）替代亲属网络</li>
+          <li>寿命更长，家庭规模更小，生育间隔更长</li>
+          <li>独居现象（无亲属支持）在人类历史中史无前例</li>
         </ul>
       </li>
-      <li>Milgram实验是最著名的伦理争议案例——欺骗程度深，参与者经历极度压力</li>
-    </ul>
-  </div>
-
-  <div class="section-title">📌 PART 3 — 自然与教养（Lec 6）</div>
-
-  <div class="card">
-    <h3>Q: 什么是遗传率（Heritability）？三大常见误解是什么？</h3>
-    <ul>
-      <li><strong>遗传率</strong>：在特定人群中，某一特征的<em>变异</em>有多少比例可归因于基因差异（0%–100%）</li>
-      <li><strong>误解一</strong>：遗传率高 = 基因决定，无法改变 ❌
-        <ul><li>身高遗传率约80%，但营养改善可显著增加身高</li></ul>
-      </li>
-      <li><strong>误解二</strong>：遗传率是关于个体的统计数字 ❌
-        <ul><li>遗传率描述的是<em>群体中变异的来源</em>，不能用来预测某一个体的特征</li></ul>
-      </li>
-      <li><strong>误解三</strong>：遗传率是固定不变的 ❌
-        <ul><li>遗传率会随环境变化——当环境差异减少时，遗传率上升</li></ul>
-      </li>
+      <li>含义：现代人在祖先从未面对的环境（孤立、孤独、核心家庭压力）中挣扎</li>
     </ul>
   </div>
 
   <div class="card">
-    <h3>Q: 双胞胎研究如何帮助我们理解基因与环境的作用？</h3>
+    <h3>W1-Q9 控制生育社会（Controlled-fertility）vs 自然生育社会（Natural-fertility）的区别？</h3>
     <ul>
-      <li><strong>同卵双胞胎（MZ）</strong>：共享100%基因；<strong>异卵双胞胎（DZ）</strong>：共享约50%基因</li>
-      <li>逻辑：若MZ比DZ更相似，则超出部分归因于基因</li>
-      <li><strong>分离抚养的双胞胎（Twins Reared Apart）</strong>：消除共同环境影响，更纯粹地测量遗传影响</li>
-      <li>Minnesota Twin Study发现：分离抚养的MZ在人格、智力、兴趣等方面仍高度相似</li>
-      <li><strong>共享环境（Shared Environment）</strong>：家庭环境；<strong>非共享环境（Non-shared）</strong>：个体独特经历</li>
+      <li><strong>自然生育社会</strong>：不使用人工避孕，生育由生物因素（母乳喂养、营养、健康、哺乳期闭经）调节；女性一生生育更多孩子，但婴儿死亡率高</li>
+      <li><strong>控制生育社会</strong>：现代社会使用避孕手段有意限制生育；家庭规模小，每个孩子的资源投入更多</li>
+      <li>重要意义：研究祖先生育模式需要参考自然生育社会数据（如！Kung、Hadza等狩猎采集者），而非现代数据</li>
     </ul>
   </div>
 
   <div class="card">
-    <h3>Q: 什么是基因-环境交互（GxE Interaction）和基因-环境相关（rGE）？</h3>
+    <h3>W1-Q10 绝经是什么？祖母假说如何解释它？</h3>
     <ul>
-      <li><strong>基因-环境交互（GxE）</strong>：基因型决定个体对特定环境的<em>敏感度</em>
-        <ul><li>例：5-HTT基因变体 × 生活压力 → 抑郁风险（Caspi等, 2003）</li></ul>
-      </li>
-      <li><strong>基因-环境相关（rGE）</strong>：基因型影响个体所处的环境
+      <li><strong>绝经（Menopause）</strong>：女性在中年（约50岁）后生育能力停止，在灵长类中近乎独特</li>
+      <li><strong>祖母假说（Grandmother Hypothesis，Hawkes等）</strong>：
         <ul>
-          <li><strong>被动型</strong>：父母同时提供基因和成长环境（音乐才能家庭）</li>
-          <li><strong>诱发型</strong>：个体的基因特征引发他人的不同对待（活泼孩子获得更多互动）</li>
-          <li><strong>主动型</strong>：个体主动选择与基因倾向匹配的环境（基因影响利基选择）</li>
+          <li>绝经进化是因为：绝经后的女性通过帮助养育孙辈，比继续生育能传递更多基因</li>
+          <li>逻辑：老年女性自身生育成功率下降（高风险妊娠），但帮助女儿养育孙辈（共享25%基因）是更高效的基因传播策略</li>
+          <li>证据：有祖母在场的家庭，孙辈生存率更高；祖母贡献与孙辈健康正相关</li>
         </ul>
       </li>
     </ul>
   </div>
 
-  <div class="section-title">📌 PART 4 — 自我认知 &amp; 印象管理（Lec 7）</div>
-
   <div class="card">
-    <h3>Q: 什么是内省错觉（Introspection Illusion）？为什么内省不可靠？</h3>
+    <h3>W1-Q11 人类生育率和生育间隔与非人类灵长类相比如何？</h3>
     <ul>
-      <li><strong>内省错觉</strong>：我们相信能通过内省准确了解自己的心理状态和行为原因，但研究表明内省经常是错误的</li>
-      <li>Wilson &amp; Nisbett (1977)：人们对自己选择的解释往往是事后建构，与实际决策过程无关</li>
-      <li>"言语遮蔽效应"（Verbal Overshadowing）：用语言描述直觉判断反而降低准确性</li>
-      <li>大量无意识过程（automatic processes）驱动行为，但我们不能直接访问这些过程</li>
-      <li><strong>启示</strong>：不能完全信任自我报告（self-report）数据；行为测量和隐性测量更可靠</li>
+      <li>人类比其他大型类人猿<strong>繁殖更快</strong>：
+        <ul>
+          <li>黑猩猩生育间隔：约5–6年；人类（自然生育社会）：约3年</li>
+          <li>大猩猩生育间隔：约4–5年</li>
+        </ul>
+      </li>
+      <li>人类婴儿出生时极度无助（altricial），需要多年照料</li>
+      <li>这一悖论（繁殖快但婴儿依赖期长）的解答：<strong>合作育儿（Cooperative Breeding / Alloparenting）</strong>
+        <ul>
+          <li>父亲、祖母、其他亲属共同分担育儿责任</li>
+          <li>"一个村子才能养育一个孩子"</li>
+        </ul>
+      </li>
+      <li>意义：人类是灵长类中少有的高度合作育儿的物种，这塑造了我们的社会性和依恋系统</li>
     </ul>
   </div>
 
   <div class="card">
-    <h3>Q: 聚光灯效应（Spotlight Effect）和透明度幻觉（Illusion of Transparency）是什么？</h3>
+    <h3>W1-Q12 "游群（Bands）"是什么？其特征是什么？</h3>
     <ul>
-      <li><strong>聚光灯效应</strong>：高估他人对自己的关注程度
+      <li><strong>游群</strong>：人类进化史上大部分时间生活的社会组织形式，通常由25–150人组成（居住游群约30–50人）</li>
+      <li><strong>主要特征</strong>：
         <ul>
-          <li>Gilovich等(2000)：穿着印有尴尬图案T恤进教室——本人认为约50%的人注意到，实际约23%</li>
-          <li>原因：我们以自己为参照中心（egocentric anchor）</li>
+          <li><strong>平等主义（Egalitarian）</strong>：无正式等级制度，无世袭领导人</li>
+          <li><strong>互惠分享</strong>：食物和资源在群体内共享</li>
+          <li><strong>共识决策</strong>：重要决定由群体讨论达成</li>
+          <li><strong>游猎采集生计</strong>：狩猎与采集为食</li>
+          <li><strong>游动性/半游动性</strong>：随食物和季节迁移</li>
+          <li><strong>高度亲属关系</strong>：大多数成员相互认识且有亲属关系</li>
         </ul>
       </li>
-      <li><strong>透明度幻觉</strong>：高估他人感知到自己内心状态（紧张、说谎、喜欢）的程度
-        <ul>
-          <li>例：演讲时感觉紧张"全场都能看出来"，其实观众几乎察觉不到</li>
-        </ul>
-      </li>
-      <li>两者共同原因：自己的感受和状态对自己高度显著，但对他人并不显著</li>
+      <li>人类99%以上的进化历史在游群中度过 → 我们的心理是为此环境设计的</li>
     </ul>
   </div>
 
   <div class="card">
-    <h3>Q: 自利偏差（Self-Serving Bias）是什么？有哪些表现形式？</h3>
+    <h3>W1-Q13 进化失配（Evolutionary Mismatch）是什么？现代环境如何触发进化偏好的"误火"？</h3>
     <ul>
-      <li><strong>自利偏差</strong>：将成功归因于内部因素（能力、努力），将失败归因于外部因素（运气、他人）</li>
-      <li><strong>高于平均效应（Better-than-Average Effect）</strong>：大多数人认为自己各方面能力高于平均水平（统计上不可能）</li>
-      <li><strong>不切实际的乐观（Unrealistic Optimism）</strong>：高估自己遇到好事、低估遇到坏事的概率</li>
-      <li><strong>自我强化式归因（Self-Enhancing Attribution）</strong>：成功"是我努力的结果"；失败"是考题太难"</li>
-      <li>功能：维护自尊、保持动力，但过度可导致自大和不从错误中学习</li>
-      <li><strong>文化差异</strong>：东亚文化中自利偏差较弱，更多自我批评（self-criticism）以维持社会关系</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h3>Q: 印象管理（Impression Management）有哪些策略？什么是自我妨碍？</h3>
-    <ul>
-      <li><strong>印象管理</strong>：个体有意识地控制他人对自己形成的印象（Goffman的戏剧模型）</li>
-      <li><strong>常见策略</strong>：
+      <li><strong>进化失配</strong>：进化出的心理机制遇到了与其设计环境不同的现代环境，产生适应不良的反应</li>
+      <li>我们的大脑是为<strong>进化适应环境（EEA）</strong>——小型游群、食物匮乏、高度社交互依赖——设计的</li>
+      <li><strong>误火例子</strong>：
         <ul>
-          <li><strong>自我推销（Self-promotion）</strong>：展示能力和成就</li>
-          <li><strong>阿谀奉承（Ingratiation）</strong>：赞美他人以获得好感</li>
-          <li><strong>恐吓（Intimidation）</strong>：展示权力让他人顺从</li>
-          <li><strong>道德宣示（Exemplification）</strong>：展现道德高尚</li>
-        </ul>
-      </li>
-      <li><strong>自我妨碍（Self-handicapping）</strong>：
-        <ul>
-          <li>提前为可能的失败设置借口（考前不睡觉、声称生病）</li>
-          <li>策略逻辑：成功→"即使有障碍还是成功了！"；失败→"因为有障碍才失败，不代表我真实水平"</li>
-          <li>保护自我形象，但代价是真实表现可能下降</li>
+          <li>渴望糖分和脂肪（祖先环境中稀缺 → 现代食物充裕 → 肥胖）</li>
+          <li>对蛇蜘蛛的恐惧（祖先威胁）但对汽车枪支不敏感（现代主要威胁）</li>
+          <li>社交媒体利用进化出的地位监控和归属感系统 → 焦虑、成瘾</li>
+          <li>对陌生人的不信任（小群体中适应性）→ 现代城市中阻碍合作</li>
         </ul>
       </li>
     </ul>
   </div>
 
-  <div class="section-title">📌 PART 5 — 自我控制（Lec 8 · Fujita 2020）</div>
+  <!-- ── WEEK 2 ── -->
+  <div class="section-title">🔬 WEEK 2 — 研究方法、伦理与行为遗传学（共11题）</div>
 
   <div class="card">
-    <h3>Q: Fujita (2020) 的自我控制理论核心是什么？高层 vs 低层解释有何区别？</h3>
+    <h3>W2-Q1 IAATOPE 代表什么？每个字母的含义？</h3>
     <ul>
-      <li>Fujita (2020) 综合了自我控制研究，提出从<strong>目标层级</strong>角度理解自我控制</li>
-      <li><strong>高层解释（High-level / Why）</strong>：关注行为的<em>意义和目的</em>
-        <ul>
-          <li>"我在锻炼，<em>因为我想保持健康、长寿</em>"</li>
-          <li>将行为与抽象价值和终极目标连接</li>
-          <li>增强自我控制：面对诱惑时更容易坚持</li>
-        </ul>
+      <li>McCullough 的实验设计框架，描述真实实验的关键特征：</li>
+      <li><strong>I</strong> = <strong>Isolated</strong>（隔离）：目标变量被从其他变量中隔离出来</li>
+      <li><strong>A</strong> = <strong>Artificially</strong>（人工地）：变量被研究者人工创造/操控</li>
+      <li><strong>A</strong> = <strong>Assigned</strong>（随机分配）：参与者被随机分配到各实验条件</li>
+      <li><strong>T</strong> = <strong>Treated</strong>（处理）：一组接受不同于另一组的处理（操控）</li>
+      <li><strong>O</strong> = <strong>Observed</strong>（观察）：结果被系统地测量和观察</li>
+      <li><strong>P</strong> = <strong>Passively</strong>（被动地）：相关研究中，研究者只是被动地观察，不操控变量</li>
+      <li><strong>E</strong> = <strong>Eliminated</strong>（排除）：通过随机分配排除竞争性解释（混淆变量）</li>
+    </ul>
+    <div class="highlight-box"><p>📌 IAATOPE区分了<em>真实实验</em>（能建立因果）和<em>相关研究</em>（只能建立关联）的关键要素。</p></div>
+  </div>
+
+  <div class="card">
+    <h3>W2-Q2 为什么相关不能证明因果？</h3>
+    <ul>
+      <li><strong>第三变量问题（Confound）</strong>：第三个变量C可能同时导致A和B相关，A与B之间并无直接因果
+        <ul><li>例：冰淇淋销量与溺水率正相关 → 原因是"热天气"（C）同时导致两者增加</li></ul>
       </li>
-      <li><strong>低层解释（Low-level / How）</strong>：关注行为的<em>具体执行方式</em>
-        <ul>
-          <li>"我在锻炼，<em>因为我要做30个俯卧撑</em>"</li>
-          <li>更注重具体步骤，缺乏与更大目标的连接</li>
-          <li>更容易被即时诱惑打断</li>
-        </ul>
+      <li><strong>方向性问题（Directionality）</strong>：即使A确实与B有因果关系，也无法从相关判断方向——是A→B还是B→A？
+        <ul><li>例：抑郁与社交孤立正相关 → 孤立导致抑郁？还是抑郁导致孤立？</li></ul>
       </li>
-      <li><strong>应用</strong>：当面临自我控制挑战时，提醒自己"为什么"比聚焦"怎么做"更有效</li>
+      <li>解决：只有通过随机分配的<strong>实验法</strong>才能建立因果关系</li>
     </ul>
   </div>
 
   <div class="card">
-    <h3>Q: Ego Depletion是什么？为什么McCullough强调要批判性看待？</h3>
-    <ul>
-      <li><strong>Ego Depletion</strong>（Baumeister et al., 1998）：意志力是有限资源，使用后会暂时耗尽
-        <ul>
-          <li>经典实验：先抵制饼干的人（高消耗），之后在困难问题上更快放弃</li>
-          <li>"葡萄糖模型"：意志力消耗等于血糖消耗</li>
-        </ul>
-      </li>
-      <li><strong>批判</strong>：
-        <ul>
-          <li>大规模复制研究（Hagger et al., 2016，多实验室）：未能复制ego depletion效应</li>
-          <li>葡萄糖模型被否定：葡萄糖水平与自我控制表现无一致关联</li>
-          <li>可能是<strong>期望效应</strong>：相信意志力有限的人表现出depletion</li>
-        </ul>
-      </li>
-      <li>McCullough课上明确：对此类未能复制的经典结果要持批判态度，这正是复制危机的体现</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h3>Q: 执行意图（Implementation Intentions）是什么？为什么有效？</h3>
-    <ul>
-      <li><strong>执行意图</strong>（Gollwitzer, 1999）："如果情境X出现，我就执行行为Y"的if-then计划</li>
-      <li><strong>例子</strong>："如果今晚有人给我倒酒，我就说谢谢，然后要一杯水"</li>
-      <li><strong>为什么有效</strong>：
-        <ul>
-          <li>将行为与具体情境线索预先绑定，减少决策负担</li>
-          <li>在关键时刻自动触发预定反应，绕过意志力消耗</li>
-          <li>将目标意图转化为自动化行为</li>
-        </ul>
-      </li>
-      <li><strong>证据</strong>：meta分析显示，加入if-then计划使目标达成率提升2–3倍（Gollwitzer &amp; Sheeran, 2006）</li>
-      <li><strong>vs 目标意图（Goal Intentions）</strong>："我打算减少饮酒" → 缺乏具体行动计划，效果较弱</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h3>Q: 预承诺（Precommitment）策略是什么？举例说明。</h3>
-    <ul>
-      <li><strong>预承诺</strong>：提前采取行动限制未来自己的选择，以避免在诱惑面前失控</li>
-      <li><strong>经典例子</strong>：Ulysses让船员把自己绑在桅杆上，这样听到海妖歌声时无法跳海</li>
-      <li><strong>现代例子</strong>：
-        <ul>
-          <li>把手机放在另一个房间再睡觉</li>
-          <li>把零食不放在家里（环境设计）</li>
-          <li>提前购买课程/健身房年卡（沉没成本驱动坚持）</li>
-          <li>Commitment device：stickK.com——完不成目标就把钱捐给讨厌的组织</li>
-        </ul>
-      </li>
-      <li>原理：现在的理性自我约束未来可能冲动的自我</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h3>Q: 习惯（Habits）如何帮助自我控制？情境设计的重要性？</h3>
-    <ul>
-      <li><strong>习惯</strong>：在特定情境线索出现时自动激活的行为模式，不需要消耗意志力</li>
-      <li>自我控制最好的策略不是"在诱惑面前更努力抵抗"，而是<strong>避免进入诱惑情境</strong></li>
-      <li><strong>情境设计（Situation Selection）</strong>：
-        <ul>
-          <li>改变环境使好行为更容易、坏行为更难</li>
-          <li>例：把水果放在显眼处，零食藏起来</li>
-          <li>研究发现：自我控制好的人不是更努力抵制诱惑，而是更少遇到诱惑</li>
-        </ul>
-      </li>
-      <li><strong>习惯形成</strong>：一致性 + 情境线索 + 奖励 → 自动化（不再消耗认知资源）</li>
-    </ul>
-    <div class="study-box"><p>💡 <strong>Fujita 2020总结口诀：</strong>Why思维增强控制力 · If-Then计划自动化 · 好习惯减少诱惑接触 · 预承诺锁住未来自己</p></div>
-  </div>
-
-  <div class="section-title">📌 重点实验速查表</div>
-  <div class="card">
-    <h3>期中一必考实验/研究</h3>
+    <h3>W2-Q3 四种实验技术的定义、优缺点？</h3>
     <table class="grade-table">
-      <thead><tr><th>实验/研究</th><th>研究者</th><th>核心发现</th><th>考点</th></tr></thead>
+      <thead><tr><th>类型</th><th>定义</th><th>优势</th><th>弱势</th></tr></thead>
       <tbody>
-        <tr><td>亲属选择 Hamilton's Rule</td><td>Hamilton (1964)</td><td>rb &gt; c 时利他行为进化</td><td>公式含义；r/b/c各代表什么</td></tr>
-        <tr><td>互惠利他</td><td>Trivers (1971)</td><td>帮助非亲属以换取未来回报</td><td>与亲属选择的区别</td></tr>
-        <tr><td>Open Science Collaboration</td><td>OSC (2015)</td><td>仅39%社会心理学研究能复制</td><td>复制危机的证据；影响</td></tr>
-        <tr><td>聚光灯效应</td><td>Gilovich et al. (2000)</td><td>高估他人对自己的关注（50%→23%）</td><td>定义；与透明度幻觉区别</td></tr>
-        <tr><td>内省错觉</td><td>Wilson &amp; Nisbett (1977)</td><td>人们对自己行为的解释往往是错误的</td><td>为何内省不可靠</td></tr>
-        <tr><td>Ego Depletion (批判)</td><td>Baumeister; Hagger et al.</td><td>提出"意志力资源有限"，但大规模复制失败</td><td>为何要批判性对待</td></tr>
-        <tr><td>执行意图</td><td>Gollwitzer (1999)</td><td>If-then计划使目标达成率提升2-3倍</td><td>定义；为何比目标意图更有效</td></tr>
-        <tr><td>自我控制目标层级</td><td>Fujita (2020)</td><td>高层Why解释优于低层How解释</td><td>应用场景；与自我控制关系</td></tr>
+        <tr><td><strong>实验室实验（Lab）</strong></td><td>在受控实验室环境中随机分配并操控变量</td><td>高内部效度；可重复；控制混淆</td><td>低外部效度（人工情境）；WEIRD样本</td></tr>
+        <tr><td><strong>田野实验（Field）</strong></td><td>在自然环境中进行，但仍有随机分配</td><td>高外部效度；自然行为；可建立因果</td><td>控制较少；参与者可能意识到实验</td></tr>
+        <tr><td><strong>自然实验（Natural）</strong></td><td>利用自然发生的事件作为"准随机"分配（如政策变化、自然灾害）</td><td>高外部效度；无法用其他方法研究的问题</td><td>研究者无控制权；可能有系统性差异</td></tr>
+        <tr><td><strong>准实验（Quasi）</strong></td><td>有比较组但无真正的随机分配（如前后比较、天然对照组）</td><td>可研究无法操控的变量；较高生态效度</td><td>无法完全排除混淆；因果推断有限</td></tr>
       </tbody>
     </table>
   </div>
 
-  <div class="section-title">📌 高频考题预测</div>
   <div class="card">
-    <h3>期中一最可能出现的题型</h3>
+    <h3>W2-Q4 随机分配在实验中为什么如此重要？</h3>
     <ul>
-      <li>给出一个研究描述 → 判断是实验法还是相关法，并说明理由</li>
-      <li>给出 r、b、c 的数值 → 判断利他行为是否会进化（Hamilton's Rule）</li>
-      <li>给出研究问题 → 指出可能的第三变量（confound）</li>
-      <li>区分内部效度 vs 外部效度的威胁因素</li>
-      <li>解释为什么ego depletion的复制失败说明了复制危机的问题</li>
-      <li>比较执行意图 vs 目标意图的效果差异</li>
-      <li>解释遗传率的三大误解中的一个</li>
-      <li>举例说明高层解释如何增强自我控制</li>
-      <li>聚光灯效应 vs 透明度幻觉：定义 + 区别 + 实验证据</li>
-      <li>什么是自我妨碍？动机是什么？举例</li>
+      <li>在操控开始前，使各实验组在<strong>已知和未知</strong>的个体差异上趋于平衡</li>
+      <li>消除（或平均分布）混淆变量 → 任何组间差异都只能归因于自变量（IV）的操控</li>
+      <li>没有随机分配，各组可能在关键特征上存在系统性差异，无法确定结果差异是IV还是这些差异造成的</li>
+      <li>随机分配是建立<strong>因果推断</strong>的必要条件（不是充分条件）</li>
+      <li>区别：随机<em>分配</em>（分组方式）vs 随机<em>抽样</em>（怎么招募参与者）——前者影响内部效度，后者影响外部效度</li>
     </ul>
   </div>
+
+  <div class="card">
+    <h3>W2-Q5 塔斯基吉、Milgram、斯坦福监狱实验如何推动伦理准则的演化？</h3>
+    <ul>
+      <li><strong>塔斯基吉梅毒研究（1932–1972）</strong>：向黑人男性参与者隐瞒梅毒诊断并拒绝治疗（即使青霉素已出现）→ 导致1974年《贝尔蒙报告》和知情同意的法定要求</li>
+      <li><strong>Milgram服从实验（1963）</strong>：参与者被欺骗相信自己在电击他人，经历极度心理压力 → 确立了必须告知研究真实性质、保护参与者心理健康、严格事后揭密的要求</li>
+      <li><strong>斯坦福监狱实验（Zimbardo, 1971）</strong>：参与者被随机分为"囚犯"和"狱卒"，虐待行为迅速升级，实验提前终止 → 加强了IRB（机构审查委员会）对研究的监督，确立了提前终止标准</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W2-Q6 保护人类受试者的三项基本原则（贝尔蒙报告）？</h3>
+    <ul>
+      <li><strong>尊重个人（Respect for Persons）</strong>：
+        <ul>
+          <li>自主性：参与者有权做出知情决策（知情同意）</li>
+          <li>对弱势群体（儿童、囚犯、认知障碍者）提供特殊保护</li>
+          <li>参与者有权随时退出，不受惩罚</li>
+        </ul>
+      </li>
+      <li><strong>受益原则（Beneficence）</strong>：
+        <ul>
+          <li>最大化研究收益，最小化伤害风险</li>
+          <li>"不伤害"（Do no harm）；合理的风险-收益比</li>
+        </ul>
+      </li>
+      <li><strong>公正原则（Justice）</strong>：
+        <ul>
+          <li>公平分配研究负担和收益</li>
+          <li>不能将弱势群体作为研究对象，让其他人享受研究成果</li>
+          <li>塔斯基吉的典型违反：黑人男性承担风险，白人社会享受医学进步</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W2-Q7 效度（Validity）的定义？什么可以具有效度？</h3>
+    <ul>
+      <li><strong>效度</strong>：某项测量或推断在多大程度上测量/反映了它<em>声称</em>要测量的东西</li>
+      <li><strong>自变量（IV）的效度（操控效度）</strong>：操控是否真正改变了目标心理状态？（操控检验verifies this）</li>
+      <li><strong>因变量（DV）的效度（构念效度）</strong>：测量工具是否真正捕捉了目标构念？</li>
+      <li><strong>IV-DV关系的效度（内部效度）</strong>：研究是否真正建立了IV→DV的因果关系？</li>
+      <li><strong>外部效度</strong>：结果是否能推广到其他人群、情境、时间点？</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W2-Q8 为什么 McCullough 特别强调可重复性？直接复制 vs 概念复制？</h3>
+    <ul>
+      <li>科学知识的基础是可重复性：一个结果只有能被独立重复才能被信任</li>
+      <li><strong>直接/精确复制（Exact/Direct Replication）</strong>：尽可能完全按原研究重复，检验原始结果是否稳定
+        <ul><li>如果失败：说明原结果可能是假阳性、机遇结果或特定于原始条件</li></ul>
+      </li>
+      <li><strong>概念/间接复制（Conceptual/Indirect Replication）</strong>：用不同方法、不同测量、不同人群检验同一底层理论
+        <ul><li>如果成功：说明效应是普遍的，不依赖于特定方法细节</li></ul>
+      </li>
+      <li>两者都重要：直接复制测试结果稳定性；概念复制测试理论普遍性</li>
+      <li>复制危机核心：OSC(2015)发现约39%社会心理学研究无法直接复制</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W2-Q9 收缩结果、不可能结果、欺诈结果、人工制造结果的区别？</h3>
+    <ul>
+      <li><strong>收缩结果（Shrinking Results）</strong>：效应量在复制研究中越来越小，但从未消失。原因：发表偏见让最初夸大的效应量被发表，复制研究回归真实较小效应</li>
+      <li><strong>不可能结果（Impossible Results）</strong>：统计上数学不可能存在的结果（如：标准差不可能为负数；所有条件的均值和标准差完全相同且均为整数）。暗示数据可能被捏造</li>
+      <li><strong>欺诈结果（Fraudulent Results）</strong>：数据完全被捏造或故意篡改。代表性案例：Diederik Stapel（荷兰社会心理学家）承认伪造数据，超50篇论文被撤稿</li>
+      <li><strong>人工制造结果（Engineered Results）</strong>：通过p-hacking、HARKing、选择性报告等技术手段获得显著结果，未公开数据处理的灵活性</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W2-Q10 双胞胎研究能告诉我们什么？A、C、E各代表什么？</h3>
+    <ul>
+      <li>双胞胎研究将表型变异分解为三个来源：</li>
+      <li><strong>A = 加性遗传效应（Additive Genetic Effects / Heritability）</strong>：
+        <ul><li>个体差异中可归因于基因差异的比例；MZ比DZ更相似的程度</li></ul>
+      </li>
+      <li><strong>C = 共同/共享环境效应（Common/Shared Environment Effects）</strong>：
+        <ul><li>来自同一家庭、同一社区等共享环境的影响；使同一家庭成员更相似</li></ul>
+      </li>
+      <li><strong>E = 独特/非共享环境效应（Unique/Unshared Environment Effects）</strong>：
+        <ul><li>每个个体独特的经历、机遇和测量误差；使同一家庭成员更不同</li></ul>
+      </li>
+      <li>典型发现：对大多数心理特征，A和E的贡献较大，C的贡献出乎意料地小</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W2-Q11 行为遗传学四大定律是什么？第四定律为什么重要？</h3>
+    <ul>
+      <li><strong>第一定律</strong>：所有人类行为特征都是可遗传的（一切都有一定遗传率）</li>
+      <li><strong>第二定律</strong>：在同一家庭中成长（共享环境）的影响，小于基因的影响</li>
+      <li><strong>第三定律</strong>：大量行为特征的变异无法由基因或共享环境解释（独特环境效应不可忽视）</li>
+      <li><strong>第四定律（McCullough重点强调）</strong>：
+        <ul>
+          <li>典型的人类行为特征与<em>许多</em>基因变体相关，每个变体的效应都<em>很小</em></li>
+          <li>→ 行为性状是<strong>多基因的（polygenic）</strong>，不是单一基因决定的</li>
+          <li>含义：基因研究中的"一个基因一个特征"模型是错误的；GWAS研究发现成千上万个小效应基因</li>
+          <li>意义：基因与性状的关系极其复杂，简单的基因决定论是错误的</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ── WEEK 3 ── -->
+  <div class="section-title">🪞 WEEK 3 — 自我认知、社会比较与自我控制（共18题）</div>
+
+  <div class="card">
+    <h3>W3-Q1 镜子自我识别测试（MSRT）是什么？它如何揭示自我意识？</h3>
+    <ul>
+      <li><strong>程序（Mark Test / Rouge Test）</strong>：趁动物麻醉时在其额头上做标记（无气味），清醒后让其照镜子。观察动物是否试图触摸自己额头上的标记（说明它认出镜中像是自己）</li>
+      <li><strong>揭示的内容</strong>：通过测试说明动物具有<em>自我意识</em>——能将自己作为独立客体来认知，区分"自我"和"他者"</li>
+      <li><strong>能通过的物种</strong>：人类（18个月后）、黑猩猩、倭黑猩猩、大猩猩（有时）、亚洲象、海豚、虎鲸、某些喜鹊</li>
+      <li>不能通过的物种：大多数其他动物（包括猫狗），会把镜中像当作另一只动物攻击或忽视</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W3-Q2 大多数儿童大约在什么年龄通过MSRT？</h3>
+    <ul>
+      <li>大多数儿童在<strong>18–24个月（约1.5–2岁）</strong>之间开始通过MSRT</li>
+      <li>18个月以前：婴儿将镜中像当作另一个婴儿，会对其微笑、挥手</li>
+      <li>18–24个月：儿童开始表现出自我定向行为（触摸额头标记、用手捂嘴等）</li>
+      <li>这与其他自我意识发展里程碑同步：使用"我"、"我的"等第一人称代词；开始表现自我意识情绪（尴尬、骄傲）</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W3-Q3 黑猩猩MSRT研究说明了什么关于"自我"的功能？</h3>
+    <ul>
+      <li>研究发现：能通过MSRT的黑猩猩往往也展现出更高级的社会能力</li>
+      <li>通过MSRT与以下能力相关：
+        <ul>
+          <li>更高的社会等级（dominance rank）</li>
+          <li>更强的<strong>心理理论</strong>（理解他者的意图和知识）</li>
+          <li>更擅长欺骗和社交操控</li>
+          <li>更好的合作能力</li>
+        </ul>
+      </li>
+      <li><strong>结论</strong>："自我"可能进化的功能是：通过建立关于自己的模型来<em>预测和操控他人的行为</em>。自我意识是社会智慧的工具，而非仅仅是内省能力</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W3-Q4 什么是图式（Schema）？自我如何作为图式被表征？</h3>
+    <ul>
+      <li><strong>图式（Schema）</strong>：关于某一类别（人、地方、事件）的<em>认知结构</em>，组织和引导对相关信息的感知、编码和提取</li>
+      <li>图式的功能：快速处理信息（走捷径）；填补信息缺口；引导预期和行为</li>
+      <li><strong>自我图式（Self-Schema）</strong>：关于自身特征、角色和关系的认知结构
+        <ul>
+          <li><strong>自我参照效应（Self-Reference Effect）</strong>：与自我相关的信息被处理得更深、记忆更好</li>
+          <li>自我图式高度组织化，影响我们注意和解释外部信息的方式</li>
+          <li>例：认为自己"独立"的人，对"独立"相关词汇的加工更快</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W3-Q5 "镜中自我（Looking-Glass Self）"是什么？如何解释自我认知的发展？</h3>
+    <ul>
+      <li>概念来源：社会学家 Charles Horton Cooley（1902）</li>
+      <li><strong>核心思想</strong>：我们的自我概念是通过想象他人如何看待我们来形成的——他人就像一面镜子</li>
+      <li><strong>三个步骤</strong>：
+        <ol>
+          <li>我们想象自己在他人眼中的样子</li>
+          <li>我们想象他人对这种样子的评价（判断）</li>
+          <li>我们根据这种感知到的评价体验自豪或羞耻</li>
+        </ol>
+      </li>
+      <li><strong>对自我认知发展的解释</strong>：自我知识不是通过纯粹的内省获得，而是通过<em>反映性评价（Reflected Appraisals）</em>——我们从他人对我们的反应中学习自己是什么样的人</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W3-Q6 社会计量器理论（Sociometer Theory）是什么？如何解释自尊的功能？</h3>
+    <ul>
+      <li>提出者：Mark Leary</li>
+      <li><strong>核心观点</strong>：自尊不是目标本身，而是一个<em>社会计量器（Sociometer）</em>——测量个体被社会接受/被群体纳入程度的内部仪表盘</li>
+      <li><strong>进化逻辑</strong>：被群体排斥对祖先来说几乎等于死亡（无法独自生存）→ 进化出监测社会接纳度的系统 → 自尊就是这个系统的主观信号</li>
+      <li><strong>预测</strong>：
+        <ul>
+          <li>威胁社会接纳的事件（被拒绝、批评）→ 降低自尊</li>
+          <li>提升社会接纳的事件（被欣赏、纳入）→ 提升自尊</li>
+        </ul>
+      </li>
+      <li>含义：自尊的高低反映的是我们感知到的社会价值，而非内在的固有价值</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W3-Q7 社会比较如何影响自我感知？向上比较和向下比较的效果？</h3>
+    <ul>
+      <li>Festinger（1954）社会比较理论：当缺乏客观标准时，人们通过与他人比较来评估自己的能力和观点</li>
+      <li><strong>向上比较（Upward Comparison）</strong>：与比自己优秀/条件更好的人比较
+        <ul>
+          <li>可以<em>激励进步</em>（"我也可以做到！"）</li>
+          <li>更常见的是<em>降低自尊</em>，引发嫉妒和自我怀疑</li>
+          <li>社交媒体中盛行向上比较 → 抑郁、焦虑</li>
+        </ul>
+      </li>
+      <li><strong>向下比较（Downward Comparison）</strong>：与比自己差/条件更差的人比较
+        <ul>
+          <li>提升自尊、产生满足感</li>
+          <li>但可能减少改进动机</li>
+          <li>威胁自尊时更倾向于向下比较（自我保护功能）</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W3-Q8 Goffman 的自我呈现理论是什么？其目标是什么？</h3>
+    <ul>
+      <li>Erving Goffman（1959）的<strong>戏剧理论（Dramaturgical Model）</strong>：社会生活如同舞台表演</li>
+      <li><strong>核心概念</strong>：
+        <ul>
+          <li><strong>前台（Front Stage）</strong>：有观众时的表演，遵守社会规范</li>
+          <li><strong>后台（Back Stage）</strong>：无观众时的真实放松状态</li>
+          <li><strong>印象管理（Impression Management）</strong>：有意识地控制他人对自己形成的印象</li>
+        </ul>
+      </li>
+      <li><strong>目标</strong>：获得社会认可；维护自己和他人的"面子（Face）"；建立有利的社会认同；实现互动目标（影响他人行为）</li>
+      <li>关键洞察：自我呈现是普遍的、大多数情况下无意识的社会行为，不仅仅是"虚伪"</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W3-Q9 什么是自我控制（Self-Control）？</h3>
+    <ul>
+      <li><strong>自我控制</strong>：克服、抑制或改变优势反应（immediate impulses/desires），以追求更高层目标的能力</li>
+      <li>包括调节：思想（抑制不想要的念头）、情绪（调节情绪反应）、冲动（抵抗即时诱惑）、行为（改变惯常行为模式）</li>
+      <li>需要三个要素：<strong>目标</strong>（要追求什么）、<strong>监控系统</strong>（追踪当前状态与目标的差距）、<strong>改变能力</strong>（能实际调整行为）</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W3-Q10 棉花糖测试（Marshmallow Test）揭示了什么？与长期结果的关系？</h3>
+    <ul>
+      <li><strong>设计</strong>（Mischel等，1970s）：给学龄前儿童一个棉花糖，告诉他们：如果能等到实验者回来（约15分钟），就能得到两个；也可以随时按铃立即得到一个</li>
+      <li><strong>能等待的策略</strong>：分心（捂眼睛、唱歌）、认知重评（把棉花糖想象成云朵而非食物）</li>
+      <li><strong>长期结果</strong>：能等待更久的孩子在青春期和成年期显示更好的：SAT成绩、学术表现、BMI、社交能力、较少物质滥用</li>
+      <li><strong>重要的后续批评</strong>：Watts等（2018）重复研究发现，控制家庭社会经济背景后，延迟满足对结果的预测力大幅减弱 → 穷人家的孩子理性地不等待（不可信赖的环境中即时获取更有利）</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W3-Q11 延迟折扣（Delay Discounting）是什么？如何影响奖励决策？</h3>
+    <ul>
+      <li><strong>延迟折扣</strong>：随着奖励延迟增加，奖励的主观价值降低的现象</li>
+      <li>"较小的即时奖励"vs"较大的延迟奖励"：大多数人偏好即时奖励（"较小但现在"&gt;"较大但以后"）</li>
+      <li><strong>双曲折扣（Hyperbolic Discounting）</strong>：近期延迟的折扣率远高于远期延迟
+        <ul><li>例：今天vs明天的折扣远大于365天vs366天的折扣，即使延迟间隔相同</li></ul>
+      </li>
+      <li>高延迟折扣 = 冲动性高，更难自我控制，更可能成瘾</li>
+      <li>延迟折扣率是成瘾、肥胖、财务问题的重要预测因子</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W3-Q12 延迟折扣在人类和动物中都存在的证据？</h3>
+    <ul>
+      <li><strong>动物证据</strong>：鸽子、大鼠、猴子、黑猩猩在选择任务中都偏好即时较小奖励
+        <ul><li>鸽子延迟折扣极其陡峭；黑猩猩相对更能等待，更接近人类</li></ul>
+      </li>
+      <li><strong>跨物种意义</strong>：延迟折扣是高度保守的进化特征，可能反映了神经奖励系统（多巴胺回路）的基本工作方式</li>
+      <li><strong>对进化的解释</strong>：在不确定和高风险的祖先环境中，"一鸟在手胜两鸟在林"——即时奖励比未来奖励更可靠，偏好即时奖励是适应性的</li>
+      <li>人类的特殊之处：语言和前额叶皮层发展使人类比其他动物更能抵制即时奖励</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W3-Q13 高自我控制与哪些重要人生结果相关？</h3>
+    <ul>
+      <li><strong>学业/职业</strong>：更高的GPA、标准化测试成绩、学历、职业地位</li>
+      <li><strong>健康</strong>：更低的BMI和肥胖率；更少吸烟/饮酒；更好的运动习惯</li>
+      <li><strong>关系</strong>：更满意的亲密关系；更少冲突；更好的友谊</li>
+      <li><strong>财务</strong>：更多储蓄、更少债务、更好的财务管理</li>
+      <li><strong>法律</strong>：更少犯罪和反社会行为（Moffitt等2011：自我控制是儿童期预测成年结果的最强指标之一）</li>
+      <li><strong>心理健康</strong>：更少焦虑、抑郁；更高幸福感</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W3-Q14 资源模型（Resource Model）对自我控制和耗竭说了什么？</h3>
+    <ul>
+      <li>提出者：Roy Baumeister等（1998），又称"Ego Depletion（自我耗竭）"模型</li>
+      <li><strong>核心主张</strong>：自我控制依赖于一种有限的心理资源（类比肌肉或燃料），用完后需要恢复</li>
+      <li><strong>机制</strong>：行使自我控制 → 消耗资源 → 后续自我控制能力下降（耗竭）</li>
+      <li><strong>经典实验</strong>：
+        <ul>
+          <li>参与者被要求抵制吃饼干（高消耗）或可以随意吃（低消耗）</li>
+          <li>随后做困难拼图任务</li>
+          <li>结果：抵制饼干组更快放弃拼图（资源被消耗）</li>
+        </ul>
+      </li>
+      <li>恢复资源的方法（理论上）：休息、正面情绪、葡萄糖补充</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W3-Q15 研究对资源模型的效度说明了什么？</h3>
+    <ul>
+      <li><strong>初期</strong>：数百项研究似乎支持Ego Depletion，理论非常流行</li>
+      <li><strong>大规模复制失败</strong>：
+        <ul>
+          <li>Hagger等（2016）：23个实验室同时重复经典Ego Depletion研究 → <em>未发现显著效应</li>
+          <li>葡萄糖补充研究：无法稳定复制</em></li>
+        </ul>
+      </li>
+      <li><strong>替代解释</strong>：
+        <ul>
+          <li>效应可能由<em>期望/信念</em>驱动：相信意志力有限的人表现出耗竭，不相信的人则没有</li>
+          <li>可能是需求特征（demand characteristics）：参与者猜测研究者期望他们疲惫</li>
+        </ul>
+      </li>
+      <li><strong>McCullough的立场</strong>：Ego Depletion是复制危机的典型案例，需要高度批判性对待</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W3-Q16 过程模型（Process Model）与资源模型有何不同？</h3>
+    <ul>
+      <li><strong>资源模型</strong>：自我控制失败因为有限"燃料"耗尽 → 被动耗竭</li>
+      <li><strong>过程模型</strong>（Inzlicht等）：自我控制失败是<em>动机和注意力的主动转移</em>
+        <ul>
+          <li>行使自我控制后，个体被<em>激励</em>去追求即时满足，而非继续追求长期目标</li>
+          <li>注意力从目标导向过程转移到诱惑导向过程</li>
+          <li>这不是能量耗尽，而是动机重新分配</li>
+        </ul>
+      </li>
+      <li><strong>关键区别</strong>：
+        <ul>
+          <li>资源模型：耗竭是<em>自动的</em>、不可避免的</li>
+          <li>过程模型：耗竭效应受<em>动机、信念和情境因素</em>调节（可以通过改变动机来克服）</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W3-Q17 改善自我控制的策略有哪些类别？</h3>
+    <ul>
+      <li><strong>情境选择（Situation Selection）</strong>：主动避免诱惑情境（不去酒吧、不把零食带进家门）</li>
+      <li><strong>情境修改（Situation Modification）</strong>：改变当前情境以减少诱惑（把手机放到另一个房间）</li>
+      <li><strong>注意力部署（Attention Deployment）</strong>：将注意力从诱惑转移到其他刺激或目标</li>
+      <li><strong>认知重评（Cognitive Reappraisal）</strong>：重新框架诱惑的意义（把糖果想象成充满化学物质而非美食）</li>
+      <li><strong>反应调制（Response Modulation）</strong>：直接抑制已经产生的冲动反应（深呼吸、数数）</li>
+      <li><strong>执行意图（Implementation Intentions）</strong>：预先制定if-then计划自动化行为</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W3-Q18 捷径策略（Shortcut Strategies）是什么？如何减少对费力自我控制的需求？</h3>
+    <ul>
+      <li><strong>核心思想</strong>：最好的自我控制策略不是在诱惑面前更努力，而是<em>不需要主动抵制</em>——让好行为自动发生</li>
+      <li><strong>主要捷径策略</strong>：
+        <ul>
+          <li><strong>习惯（Habits）</strong>：反复练习使行为自动化，不再消耗认知资源（健康的人不需要"决定"去运动）</li>
+          <li><strong>环境设计（Environmental Design）</strong>：重新设计环境使默认行为就是期望的行为（餐厅把健康食物放在眼睛水平）</li>
+          <li><strong>预承诺（Precommitment）</strong>：提前限制未来的选择（把薪水自动转入储蓄账户）</li>
+          <li><strong>执行意图</strong>：if-then计划创造自动化触发器</li>
+        </ul>
+      </li>
+      <li>高自我控制的人更少遇到诱惑情境，而非更努力地抵制诱惑</li>
+    </ul>
+  </div>
+
+  <!-- ── WEEK 4 ── -->
+  <div class="section-title">👥 WEEK 4 — 社会认知、心理理论与面孔判断（共8题）</div>
+
+  <div class="card">
+    <h3>W4-Q1 人们如何对因果性和动态性做出推断？使用什么信息？</h3>
+    <ul>
+      <li><strong>经典研究</strong>：Heider &amp; Simmel（1944）——人们观看移动的几何形状（三角形和圆形），自发地将<em>意图、目标、情感</em>归因于这些形状（"大三角形追着小三角形"）</li>
+      <li><strong>推断因果性的信息线索</strong>：
+        <ul>
+          <li><strong>协变（Covariation）</strong>：A总是在B之前出现？</li>
+          <li><strong>时间接近（Temporal Contiguity）</strong>：A和B在时间上紧密相随</li>
+          <li><strong>空间接近（Spatial Contiguity）</strong>：A和B在空间上接近</li>
+          <li><strong>机制（Mechanism）</strong>：A能如何导致B？</li>
+        </ul>
+      </li>
+      <li><strong>推断动态性（Animacy）的线索</strong>：
+        <ul>
+          <li><strong>自主运动</strong>：不依赖外力的自发运动</li>
+          <li><strong>目标导向行为</strong>：朝向某个目标移动，即使路径改变</li>
+          <li><strong>对环境的响应性</strong>：对他物行动做出反应</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W4-Q2 哪些实验证明婴儿能推断他人有目标（Goals）？</h3>
+    <ul>
+      <li><strong>Woodward（1998）目标编码实验</strong>（见Q3详述）</li>
+      <li><strong>Gergely等（1995）效率期望实验</strong>：
+        <ul>
+          <li>婴儿观看圆圈"跳过"障碍去接触另一个物体（绕道走）</li>
+          <li>移除障碍后：圆圈继续绕道 OR 直接走直线</li>
+          <li>婴儿（约12个月）对"继续绕道"（低效路径）看得更久 → 因为违反了他们的期望：有目标的代理应该走最高效的路径</li>
+          <li>结论：婴儿已理解行动者追求目标，并预期其使用最高效手段</li>
+        </ul>
+      </li>
+      <li><strong>共同注意（Joint Attention）研究</strong>：9–12个月婴儿开始跟随他人的目光/手指指向，理解他人在关注某物</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W4-Q3 Woodward（1998）实验是什么？揭示了什么？</h3>
+    <ul>
+      <li><strong>实验设计</strong>：
+        <ol>
+          <li><strong>习惯化阶段</strong>：婴儿（6个月）观看实验者的手反复伸向两个物体中的一个（如左边的泰迪熊，忽略右边的球）</li>
+          <li><strong>测试阶段（两种条件）</strong>：交换两个物体位置后：
+            <ul>
+              <li>条件A"旧目标新位置"：实验者手伸向<em>同一个物体</em>（泰迪熊，但现在在右边）</li>
+              <li>条件B"旧位置新目标"：实验者手伸向<em>同一个位置</em>（左边），但拿到的是球</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+      <li><strong>结果</strong>：婴儿对条件B（相同位置，不同物体）看得更久（违反期望）</li>
+      <li><strong>结论</strong>：婴儿编码的是实验者的<em>目标（泰迪熊）</em>，而非运动模式（向左伸手）。揭示了婴儿对<strong>意向性（Intentionality）</strong>的理解——早在6个月时，婴儿就将行动解读为目标导向的</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W4-Q4 Sally-Anne 测试是什么？它揭示了什么？</h3>
+    <ul>
+      <li><strong>测试流程</strong>（Baron-Cohen, Leslie &amp; Frith, 1985）：
+        <ol>
+          <li>Sally把弹球放进篮子里，然后离开房间</li>
+          <li>Anne把弹球从篮子移到盒子里</li>
+          <li>Sally回来了——关键问题："Sally会去哪里找弹球？"</li>
+        </ol>
+      </li>
+      <li><strong>正确答案</strong>（需要心理理论）：篮子——因为Sally以为球还在篮子里（她没有看到移动）</li>
+      <li><strong>错误答案</strong>：盒子——混淆自己知道的（真实位置）与Sally知道的（她的信念）</li>
+      <li><strong>揭示的能力</strong>：通过测试说明个体能理解<em>错误信念（False Belief）</em>——他人可以持有与现实不符的信念，且他人的行为由<em>他们的信念</em>（而非现实）驱动。这是<strong>心理理论（Theory of Mind）</strong>的核心</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W4-Q5 自闭症儿童在错误信念测试上的表现？发展有何不同？</h3>
+    <ul>
+      <li><strong>Baron-Cohen等（1985）经典发现</strong>：大多数自闭症儿童（即使言语能力正常、智力正常）<em>未能通过</em>Sally-Anne测试，说"盒子"</li>
+      <li><strong>典型发展儿童</strong>：约4岁时通过；理解他人可以有错误信念</li>
+      <li><strong>自闭症儿童的情况</strong>：
+        <ul>
+          <li>即使8–9岁仍常常失败（比典型儿童晚4–5年）</li>
+          <li>Baron-Cohen称之为"读心盲（Mindblindness）"——心理理论能力的缺陷</li>
+          <li>这解释了自闭症中社交困难的一个核心原因：难以理解他人的意图、信念和欲望</li>
+        </ul>
+      </li>
+      <li><strong>后续细化</strong>：高功能自闭症者最终可能通过，但可能使用不同认知策略；自闭症谱系中存在巨大差异</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W4-Q6 我们根据面孔判断人格时使用哪些主要维度？</h3>
+    <ul>
+      <li><strong>两个主要维度</strong>（Todorov等研究）：
+        <ul>
+          <li><strong>可信赖性/温暖（Trustworthiness / Warmth）</strong>：
+            <ul>
+              <li>最重要的维度，解释面孔判断变异的绝大部分</li>
+              <li>从"威胁性/不可信"到"温暖/可信"的连续谱</li>
+              <li>与面孔是否看起来像在微笑（颧大肌激活）强相关</li>
+            </ul>
+          </li>
+          <li><strong>支配性/能力（Dominance / Competence）</strong>：
+            <ul>
+              <li>从"顺从/软弱"到"支配/有力量"的连续谱</li>
+              <li>与面孔的角度、下颌结构、眼眉形状相关</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>这些判断在100毫秒内（甚至更短）自动发生，且在跨文化研究中具有一致性</li>
+      <li>Todorov等：仅根据候选人面孔的胜任力判断，能预测约70%的美国参议院选举结果</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W4-Q7 如果面孔不能准确预测可信度，为何我们仍基于面孔做可信度判断？</h3>
+    <ul>
+      <li><strong>原因一：情绪表情溢出假说（Emotional Overgeneralization）</strong>：
+        <ul>
+          <li>进化出识别真实情绪表情的能力（恐惧脸→威胁；微笑→友好）</li>
+          <li>静态面孔特征（嘴角弧度、眼眉形状）类似于情绪表情，触发相同判断系统</li>
+          <li>即使不是真实情绪，我们的系统仍响应这些"类似情绪"的面孔特征</li>
+        </ul>
+      </li>
+      <li><strong>原因二：成本不对称（Cost Asymmetry）</strong>：
+        <ul>
+          <li>错误地信任不可信者的代价 &gt; 错误地不信任可信者的代价</li>
+          <li>进化压力导致对"可疑"面孔偏向不信任（宁可错杀不可放过）</li>
+        </ul>
+      </li>
+      <li><strong>原因三：准确性假说（Kernel of Truth）</strong>：面孔判断可能在统计上包含<em>一点</em>真实信息（如健康状况影响面容），尽管单个案例预测力极弱</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>W4-Q8 吸引力启发（Attractiveness Heuristic）是什么？「美即好」效应？</h3>
+    <ul>
+      <li><strong>"美即好"（Beautiful is Good）</strong>：Dion, Berscheid &amp; Walster（1972）：外表有吸引力的人被假定拥有更好的人格特征、更高的社会能力、更高的智力</li>
+      <li><strong>吸引力启发</strong>：用一个人的外表吸引力作为判断其其他属性的捷径（启发式）</li>
+      <li><strong>现实影响证据</strong>：
+        <ul>
+          <li>更吸引人的求职者获得更多工作邀约和更高薪资</li>
+          <li>更吸引人的被告在法庭获得更轻的判决</li>
+          <li>更吸引人的学生获得老师更高的评价</li>
+          <li>更吸引人的政治候选人赢得更多选票</li>
+          <li>在紧急情况下，更吸引人的人获得更多帮助</li>
+        </ul>
+      </li>
+      <li><strong>为什么存在</strong>？光环效应（Halo Effect）——一个正面特征（吸引力）泛化到所有其他评价；可能也有微弱的进化根据（健康面容→健康基因）</li>
+    </ul>
+  </div>
+
 </div>
 
 <!-- MIDTERM 1 FLASHCARDS -->
 <div class="page" id="page-m1fc">
   <div class="page-header">
     <h1>🃏 期中一闪卡</h1>
-    <p>Week 1–4 全部考点 · 35张 · 点击翻转查看答案</p>
+    <p>Week 1–4 全部考点 · 35张 · 按Study Guide顺序 · 点击翻转查看答案</p>
     <div class="tag-row">
       <span class="tag">进化基础</span><span class="tag">研究方法</span><span class="tag">自然教养</span><span class="tag">自我认知</span><span class="tag">自我控制</span>
     </div>
@@ -1143,7 +1495,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 <div class="page" id="page-m1quiz">
   <div class="page-header">
     <h1>✅ 期中一模拟测验</h1>
-    <p>25道选择题 · 覆盖 Week 1–4 全部考点 · 点击选项立即查看解析</p>
+    <p>30道选择题 · 覆盖 Week 1–4 全部Study Guide考点 · 点击选项立即查看解析</p>
   </div>
   <div id="m1quiz-container"></div>
   <div class="quiz-score" id="m1quiz-score"></div>
@@ -1430,52 +1782,63 @@ renderGlossary();
 function filterGlossary(v) { renderGlossary(v); }
 
 // =============================================
-// MIDTERM 1 FLASHCARDS DATA (Week 1-4, 35 cards)
+// MIDTERM 1 FLASHCARDS DATA (Week 1-4, 35 cards — Study Guide order)
 // =============================================
 const m1Cards = [
-  // --- EVOLUTION & SOCIAL LIFE ---
-  {q:"社会心理学的核心研究问题是什么？", a:"个体的思想、感受和行为如何受到他人（真实的、想象的或隐含的）存在的影响。核心主张：情境力量往往比我们预期的更强大。"},
-  {q:"自然选择（Natural Selection）的逻辑是什么？", a:"具有有助于生存和繁殖的特征的个体，更可能将这些特征传给后代。关键：选择的单位是基因，不是个体或物种。行为特征同样受自然选择塑造。"},
-  {q:"Hamilton's Rule 是什么？r、b、c 分别代表什么？", a:"rb > c。r = 亲缘系数（同卵双胞胎=1.0，兄弟姐妹=0.5，表亲=0.125）；b = 利他行为对受益者的收益；c = 利他者付出的成本。当 rb > c 时，利他行为会进化。"},
-  {q:"亲属选择（Kin Selection）与互惠利他（Reciprocal Altruism）有何区别？", a:"亲属选择：帮助基因相似的亲属，依赖血缘（基因共享）；互惠利他：帮助非亲属期待日后回报，依赖未来交换（Trivers, 1971）。两者都能解释利他行为，但机制不同。"},
-  {q:"什么是包容适应性（Inclusive Fitness）？", a:"个体的总繁殖成功 = 自身繁殖成功 + 帮助亲属繁殖成功中归因于自己的部分。这解释了为何帮助亲属也能传播自己的基因。"},
-  {q:"什么是 Just-So Stories 问题？如何应对？", a:"批评：进化故事可以为任何行为编造，但无法证伪。应对：用跨文化一致性、比较行为学、行为遗传学、可检验的预测来支撑进化解释，而非仅凭叙事。"},
-  {q:"进化解释是否意味着行为无法改变？", a:"不是！遗传倾向不等于固定行为。进化提供的是倾向和可能性空间，文化、学习、制度可以修改、压制或增强这些倾向。这是最常见的误解。"},
+  // ══════ WEEK 1: 进化与社会生活 ══════
+  {q:"[W1-Q1] 自然选择的三个条件是什么？", a:"① 变异（Variation）：同物种个体存在特征差异；② 遗传性（Heritability）：这些特征可从父母传给后代；③ 差异繁殖成功（Differential Reproductive Success）：某些变体比其他变体产生更多存活后代。三个条件缺一不可。"},
+  {q:"[W1-Q2] 自然选择如何塑造大脑系统来解决社会问题？", a:"祖先面临反复的适应性问题（检测欺骗者、吸引配偶、养育后代、建立联盟）。解决更好的神经机制→更多后代→传播。结果：大脑是由专用模块构成，每个针对特定适应问题进化而来，而非通用计算机。"},
+  {q:"[W1-Q3] Charles Darwin 是谁？对科学的主要贡献？", a:"英国博物学家（1809–1882）。《物种起源》（1859）：提出自然选择是进化的机制；《人类的由来》（1871）：将进化应用于人类行为。贡献：提供了机制性、自然主义的解释，无需诉诸神圣设计。"},
+  {q:"[W1-Q4] 二战如何塑造了社会心理学的研究主题？", a:"二战提出迫切问题：普通人如何服从极端命令？催生了：服从权威（Milgram）、从众（Asch）、偏见研究（Allport）、态度改变与说服研究。Kurt Lewin逃离纳粹德国后创建群体动力学。核心启示：情境力量可让普通人做极端行为。"},
+  {q:"[W1-Q5] Auguste Comte 是谁？主要贡献？", a:"法国哲学家（1798–1857），实证主义和社会学创始人。贡献：提出「科学层级」（从数学到社会学）；主张社会现象应用科学方法研究而非仅凭哲学推理；创造了'sociology'一词。"},
+  {q:"[W1-Q6] 灵长类睾丸大小揭示了什么关于交配系统？", a:"睾丸大小（相对体重）是精子竞争强度指标。多雄多雌（如黑猩猩）→精子竞争激烈→睾丸最大；一夫一妻（长臂猿）→几乎无竞争→小睾丸；一夫多妻（大猩猩）→独占交配→睾丸相对小。人类居中→温和多配偶的祖先系统。"},
+  {q:"[W1-Q7] 三种交配系统的定义？祖先人类最可能是哪种？", a:"一夫一妻（Monogamous）：一雄一雌共同育后；一夫多妻（Polygynous）：一雄多雌，雄性体型更大（大猩猩）；多雄多雌（Multimale）：多雄多雌互相交配（黑猩猩）。祖先人类最可能是温和的一夫多妻制：体型二态性存在但不极端，睾丸居中。"},
+  {q:"[W1-Q8] 现代家庭与祖先家庭有何不同？", a:"祖先家庭：小型游群，扩展亲属网络，共同育儿（alloparenting），祖母积极参与；现代家庭：核心家庭与亲属地理分离，机构替代亲属网络，家庭规模更小，独居现象史无前例。含义：现代人在祖先未曾面对的孤立环境中挣扎。"},
+  {q:"[W1-Q9] 控制生育社会 vs 自然生育社会的区别？", a:"自然生育社会：不用人工避孕，生育由哺乳期闭经、营养调节；女性一生生育更多孩子，但婴儿死亡率高。控制生育社会：现代社会用避孕手段有意限制；家庭规模小，每孩资源投入更多。研究祖先生育需参考自然生育社会数据。"},
+  {q:"[W1-Q10] 绝经是什么？祖母假说如何解释它？", a:"绝经（Menopause）：女性约50岁后生育能力停止，在灵长类中近乎独特。祖母假说（Hawkes等）：停止繁殖后帮助女儿/外孙存活，反而增加了更多共享基因的后代→选择压力维持了绝经后的长寿。"},
+  {q:"[W1-Q11] 人类生育率和生育间隔与非人类灵长类相比如何？", a:"人类比其他大型类人猿繁殖更快：生育间隔约3年（黑猩猩约5年）；寿命更长；幼儿依赖期更长。原因：共同育儿（父亲+祖母帮助）分担抚育负担，使母亲可更快再次生育。人类的高合作育儿是进化独特点。"},
+  {q:"[W1-Q12] 游群（Bands）是什么？其主要特征？", a:"游群：人类进化史上大部分时间的社会组织形式，约25–150人（居住游群约30–50人）。特征：平等主义（无正式等级）、游动性（跟随食物）、亲属为核心、资源共享、集体育儿、高度相互依赖。"},
+  {q:"[W1-Q13] 进化失配（Evolutionary Mismatch）是什么？", a:"进化出的心理机制遇到与其设计环境不同的现代环境，产生适应不良的反应。大脑为EEA（进化适应环境）——食物匮乏、小型游群——设计。现代例：高糖/脂肪食物偏好→肥胖；社会媒体→过度关注他人评价。"},
 
-  // --- RESEARCH METHODS & REPLICATION CRISIS ---
-  {q:"实验法（Experimental）与相关法（Correlational）的核心区别？", a:"实验法：操控自变量 + 随机分配 → 可建立因果关系；相关法：只测量变量间的关联 → 只能建立相关，不能证明因果（因为可能有第三变量/confound）。"},
-  {q:"随机分配（Random Assignment）的作用是什么？", a:"将参与者随机分入不同实验条件，使各组在已知和未知变量上平均分布，从而排除混淆变量（confounds），让IV→DV的因果推断更可靠。"},
-  {q:"内部效度（Internal Validity）vs 外部效度（External Validity）？", a:"内部效度：研究能多大程度确立因果关系（威胁：选择偏差、实验者效应）；外部效度：结果能多大程度推广到其他人/情境（威胁：WEIRD样本、实验室设置不自然）。两者通常存在trade-off。"},
-  {q:"什么是 P-hacking？为什么是问题？", a:"研究者反复尝试不同分析方法、剔除数据或加入变量，直到获得 p＜0.05。这使得偶然显著结果被误认为真实发现，虚假阳性率大幅增加，是复制危机的主要原因之一。"},
-  {q:"复制危机（Replication Crisis）的核心证据是什么？", a:"Open Science Collaboration (2015)：重复100项社会/认知心理学研究，仅约39%获得显著复制。说明大量已发表结果可能是虚假阳性或效应被高估。"},
-  {q:"开放科学（Open Science）有哪些主要做法？", a:"① 预注册（Pre-registration）：提前公开假设和分析计划；② 开放数据和材料；③ 大样本多实验室复制；④ 注册报告（Registered Reports）：基于方法而非结果决定发表。"},
-  {q:"被试内 vs 被试间设计：各有什么缺点？", a:"被试间：需要更多参与者，个体差异增加误差；被试内：存在顺序效应/练习效应（解决方法：counterbalancing平衡顺序）。"},
-  {q:"什么是 HARKing？", a:"Hypothesizing After Results are Known——先看数据结果，再倒推编写假设，伪装成事先预测。这是一种学术不端行为，导致已发表结果无法复制。"},
+  // ══════ WEEK 2: 研究方法、伦理与行为遗传学 ══════
+  {q:"[W2-Q1] IAATOPE 代表什么？每个字母的含义？", a:"McCullough实验设计框架：I=Isolated（目标变量被隔离）；A=Artificially（人工操控）；A=Assigned（随机分配）；T=Treated（各组接受不同处理）；O=Observed（系统测量）；P=Passively（相关研究中被动观察）；E=Eliminated（通过随机分配排除混淆）。"},
+  {q:"[W2-Q2] 为什么相关不能证明因果？", a:"两大问题：① 第三变量/混淆（Confound）：第三个变量C同时导致A和B相关（冰淇淋销量↑与溺水率↑均因热天气）；② 方向性问题：无法判断是A→B还是B→A（抑郁↔孤立）。只有随机分配的实验法才能建立因果。"},
+  {q:"[W2-Q3] 四种实验技术的定义和优缺点？", a:"实验室实验（Lab）：受控环境+随机分配→高内部效度，低外部效度；田野实验（Field）：自然环境+随机分配→高外部效度，控制较少；自然实验（Natural）：利用自然事件为准随机→高生态效度，无控制；准实验（Quasi）：有比较组无真正随机分配→因果推断有限。"},
+  {q:"[W2-Q4] 随机分配在实验中为何如此重要？", a:"在操控前使各组在已知和未知个体差异上趋于平衡→消除混淆变量→任何组间差异只能归因于IV操控。没有随机分配，各组可能系统性不同，无法确立因果推断。注意区分：随机分配（影响内部效度）vs 随机抽样（影响外部效度）。"},
+  {q:"[W2-Q5] 塔斯基吉、Milgram、斯坦福监狱实验如何推动伦理演化？", a:"塔斯基吉（1932–72）：对黑人男性隐瞒梅毒诊断→导致1974年《贝尔蒙报告》和知情同意法定要求；Milgram（1963）：极度心理压力→确立揭密/保护心理健康要求；斯坦福监狱（1971）：虐待升级→强化IRB监督和提前终止标准。"},
+  {q:"[W2-Q6] 《贝尔蒙报告》的三项基本原则？", a:"① 尊重个人（Respect for Persons）：自主权+知情同意+保护弱势群体；② 受益原则（Beneficence）：最大化收益+最小化伤害；③ 公正原则（Justice）：公平分配研究负担与收益，不用弱势群体承担风险让他人享受成果。"},
+  {q:"[W2-Q7] 效度（Validity）的定义？什么可以具有效度？", a:"效度：某测量/推断在多大程度上测量了它声称要测量的东西。可以有：IV操控效度（操控是否真正改变目标心理状态？）；DV构念效度（测量工具真正捕捉目标构念？）；内部效度（因果关系？）；外部效度（可推广性？）。"},
+  {q:"[W2-Q8] 直接复制 vs 概念复制？为何可重复性重要？", a:"直接/精确复制：完全按原研究重复→测结果是否稳定；概念/间接复制：用不同方法检验同一底层理论→测效应是否普遍。两者都重要。科学知识基础是可重复性；OSC(2015)：约39%社会心理学研究无法直接复制。"},
+  {q:"[W2-Q9] 收缩/不可能/欺诈/人工制造结果的区别？", a:"收缩结果：复制研究中效应越来越小（发表偏见夸大原始效应）；不可能结果：统计数学不可能存在的数据（标准差为负、数据过于完美）；欺诈结果：数据被完全捏造（Diederik Stapel案）；人工制造结果：通过p-hacking/HARKing等技术手段获得显著结果。"},
+  {q:"[W2-Q10] 双胞胎研究的ACE各代表什么？", a:"A = Additive genetic effects（加性遗传效应/遗传率）：基因差异解释的变异比例；C = Common/Shared environment（共享环境）：同一家庭/社区的共同影响；E = Unique/Unshared environment（独特环境）：每人独特经历+测量误差。典型发现：多数心理特征A和E贡献大，C出乎意料地小。"},
+  {q:"[W2-Q11] 行为遗传学四大定律是什么？", a:"第一定律：所有人类行为特征都是可遗传的；第二定律：共享环境影响小于基因影响；第三定律：大量特征变异无法由基因或共享环境解释（独特环境不可忽视）；第四定律（McCullough重点）：典型行为特征与许多基因变体相关，每个效应极小→行为性状是多基因的（polygenic）。"},
 
-  // --- NATURE & NURTURE ---
-  {q:"遗传率（Heritability）的正确定义是什么？", a:"在特定人群中，某特征的变异中可归因于基因差异的比例（0%–100%）。注意：这是关于群体变异来源的统计量，不描述个体发展，也不意味着基因决定一切。"},
-  {q:"遗传率的三大常见误解是什么？", a:"① 遗传率高 = 无法改变（❌ 身高遗传率80%，但营养可改变身高）；② 遗传率描述个体（❌ 只描述群体变异来源）；③ 遗传率是固定常数（❌ 随环境条件变化而变化）。"},
-  {q:"双胞胎研究的逻辑是什么？MZ vs DZ？", a:"同卵双胞胎（MZ）共享100%基因；异卵双胞胎（DZ）共享约50%。若MZ比DZ在某特征上更相似，则超出部分归因于基因。分离抚养的MZ研究进一步消除共同环境影响。"},
-  {q:"基因-环境交互（GxE）与基因-环境相关（rGE）的区别？", a:"GxE：基因型决定对特定环境的敏感度（如5-HTT基因×压力→抑郁）；rGE：基因型影响个体所处的环境（被动型/诱发型/主动型）。GxE是互动，rGE是相关。"},
-  {q:"rGE 的三种类型是什么？", a:"① 被动型：父母同时给基因和环境（音乐家庭）；② 诱发型：基因特征引发他人不同对待（活泼孩子获更多互动）；③ 主动型：个体选择与基因倾向匹配的环境（基因影响利基选择）。"},
+  // ══════ WEEK 3: 自我认知、社会比较与自我控制 ══════
+  {q:"[W3-Q1] 镜子自我识别测试（MSRT）是什么？它揭示什么？", a:"程序（Rouge Test）：趁动物麻醉时在额头标记，清醒后照镜子，观察是否触摸自己的标记。通过说明具有自我意识——能将自己作为独立客体认知。能通过的物种：人类、黑猩猩、倭黑猩猩、大象、海豚、某些喜鹊。"},
+  {q:"[W3-Q2] 大多数儿童大约在什么年龄通过MSRT？", a:"大多数儿童在18–24个月（1.5–2岁）开始通过。18个月前：把镜中像当另一个婴儿；18–24个月：开始触摸额头标记（自我定向行为）。与其他里程碑同步：开始用「我」/「我的」；出现自我意识情绪（尴尬、骄傲）。"},
+  {q:"[W3-Q3] 黑猩猩MSRT研究说明了什么关于自我的功能？", a:"能通过MSRT的黑猩猩展现更高级社会能力：更高社会等级、更强心理理论、更擅长欺骗和社交操控、更好合作能力。结论：自我进化的功能是通过建立关于自身的模型来预测和操控他人行为——自我意识是社会智慧的工具。"},
+  {q:"[W3-Q4] 什么是图式（Schema）？自我如何作为图式被表征？", a:"图式：关于某类别的认知结构，组织和引导对相关信息的感知、编码和提取。自我图式（Self-Schema）：关于自身特征、角色的认知结构。自我参照效应：与自我相关的信息被处理得更深、记忆更好。高度组织化影响我们注意和解释外部信息的方式。"},
+  {q:"[W3-Q5] 镜中自我（Looking-Glass Self）是什么？", a:"Cooley（1902）：自我概念通过想象他人如何看待我们来形成。三步骤：① 想象自己在他人眼中的样子；② 想象他人的评价；③ 根据感知到的评价体验自豪或羞耻。解释：自我知识通过反映性评价（Reflected Appraisals）获得，而非纯内省。"},
+  {q:"[W3-Q6] 社会计量器理论（Sociometer Theory）如何解释自尊？", a:"Leary提出：自尊不是目标，而是社会计量器——测量个体被群体接纳程度的内部仪表盘。进化逻辑：被排斥≈死亡→进化出监测社会接纳度的系统→自尊是其主观信号。被拒绝→自尊降低；被欣赏→自尊提升。"},
+  {q:"[W3-Q7] 向上比较 vs 向下比较的效果？", a:"Festinger（1954）社会比较理论：缺乏客观标准时通过与他人比较评估自己。向上比较（与更优秀者比）：可激励进步，但更常见的是降低自尊、引发嫉妒；社交媒体盛行向上比较→抑郁焦虑。向下比较（与条件更差者比）：提升自尊、满足感，但可能减少改进动机。"},
+  {q:"[W3-Q8] Goffman 的自我呈现理论（戏剧模型）是什么？其目标？", a:"Goffman（1959）戏剧理论：社会生活如舞台表演。前台（Front Stage）：有观众时的表演；后台（Back Stage）：无观众时的放松状态；印象管理（Impression Management）：控制他人对自己的印象。目标：获得社会认可、维护面子、建立有利社会认同。"},
+  {q:"[W3-Q9] 自我控制（Self-Control）的定义？需要哪三个要素？", a:"自我控制：克服、抑制或改变优势反应（即时冲动），以追求更高层目标的能力。包括调节思想、情绪、冲动、行为。需要三要素：① 目标（要追求什么）；② 监控系统（追踪当前状态与目标的差距）；③ 改变能力（能实际调整行为）。"},
+  {q:"[W3-Q10] 棉花糖测试揭示了什么？与长期结果的关系？", a:"Mischel等（1970s）：给学前儿童一个棉花糖，等待可得两个。能等待更久的孩子后来有更好的SAT成绩、学业表现、更低BMI、较少物质滥用。重要批评（Watts等2018）：控制社会经济背景后，延迟满足预测力大幅减弱——穷人家的孩子不等待是理性的。"},
+  {q:"[W3-Q11] 延迟折扣（Delay Discounting）是什么？双曲折扣？", a:"延迟折扣：随着奖励延迟增加，奖励主观价值降低的现象。双曲折扣（Hyperbolic Discounting）：近期延迟折扣率远高于远期（今天vs明天的折扣 >> 365天vs366天）。高延迟折扣=高冲动性，是成瘾、肥胖、财务问题的重要预测因子。"},
+  {q:"[W3-Q12] 延迟折扣在人类和动物中都存在的证据？进化意义？", a:"动物证据：鸽子、大鼠、猴子、黑猩猩在选择任务中都偏好即时奖励（鸽子最陡峭，黑猩猩相对更能等待）。跨物种意义：延迟折扣是高度保守的进化特征，反映多巴胺奖励回路的基本工作方式。进化解释：祖先环境中即时奖励更可靠——一鸟在手胜两鸟在林。"},
+  {q:"[W3-Q13] 高自我控制与哪些重要人生结果相关？", a:"学业/职业：更高GPA、学历、职业地位；健康：更低BMI和肥胖率、更少吸烟饮酒、更好运动习惯；关系：更满意的亲密关系、更少冲突；财务：更多储蓄、更少债务；法律：更少犯罪（Moffitt等2011）；心理健康：更少焦虑抑郁、更高幸福感。"},
+  {q:"[W3-Q14/15] 资源模型（Ego Depletion）是什么？复制研究说明了什么？", a:"Baumeister（1998）：自我控制依赖有限心理资源，用后需恢复。大规模复制失败：Hagger等（2016）23个实验室重复经典研究→未发现显著效应；葡萄糖模型也被否定。替代解释：可能是期望/信念效应。McCullough：这是复制危机的典型案例。"},
+  {q:"[W3-Q16] 过程模型 vs 资源模型的核心区别？", a:"资源模型：有限燃料耗尽→被动耗竭，自动且不可避免。过程模型（Inzlicht等）：自我控制失败是动机和注意力的主动转移——行使自我控制后被激励去追求即时满足，注意力转向诱惑。关键区别：过程模型中耗竭效应受动机、信念、情境因素调节，可以克服。"},
+  {q:"[W3-Q17] 改善自我控制的策略有哪些类别？", a:"① 情境选择：主动避免诱惑情境；② 情境修改：改变当前情境减少诱惑；③ 注意力部署：将注意力从诱惑转移；④ 认知重评：重新框架诱惑意义；⑤ 反应调制：直接抑制冲动反应；⑥ 执行意图：if-then计划自动化行为。"},
+  {q:"[W3-Q18] 捷径策略（Shortcut Strategies）是什么？为何比意志力更有效？", a:"核心思想：最好的自我控制策略是让好行为自动发生，而非在诱惑面前努力抵制。主要捷径：习惯（反复练习自动化行为）、环境设计（改变默认行为）、预承诺（提前限制选择）、执行意图（if-then触发器）。高自我控制的人更少遇到诱惑，而非更努力抵制。"},
 
-  // --- SELF-KNOWLEDGE & IMPRESSION MANAGEMENT ---
-  {q:"内省错觉（Introspection Illusion）是什么？", a:"我们相信能通过内省准确了解自己的心理状态，但研究显示内省常常是错误的事后建构。Wilson & Nisbett (1977)：人们解释选择的理由往往与实际决策过程无关。"},
-  {q:"聚光灯效应（Spotlight Effect）是什么？经典研究？", a:"高估他人对自己的关注程度。Gilovich等(2000)：穿着印有尴尬图案T恤进教室，本人认为约50%的人注意到，实际仅约23%。原因：自己以自我为参照中心。"},
-  {q:"透明度幻觉（Illusion of Transparency）是什么？与聚光灯效应的区别？", a:"高估他人感知到自己内心状态（紧张、谎言、喜欢）的程度。聚光灯效应关注外在表现被注意；透明度幻觉关注内心状态被看穿。两者都源于自我中心偏差。"},
-  {q:"自利偏差（Self-Serving Bias）有哪些表现？", a:"成功→归因内部（能力、努力）；失败→归因外部（运气、任务难）。还包括：高于平均效应（大多数人认为自己高于平均）、不切实际的乐观。文化差异：东亚文化中自利偏差较弱。"},
-  {q:"自我妨碍（Self-handicapping）的动机和后果？", a:"动机：提前设置失败借口，保护自我形象。逻辑：失败→'因障碍才失败，不代表真实水平'；成功→'即使有障碍也成功，真厉害'。后果：保护自尊，但真实表现可能下降。"},
-  {q:"印象管理（Impression Management）的四大策略？", a:"① 自我推销（展示能力）；② 阿谀奉承（赞美他人以获好感）；③ 恐吓（展示权力）；④ 道德宣示（展现高尚）。Goffman的戏剧模型：社会生活是一场表演。"},
-
-  // --- SELF-CONTROL ---
-  {q:"Fujita (2020) 的高层 vs 低层解释如何影响自我控制？", a:"高层（Why）：关注行为意义和目的，与抽象价值连接 → 增强自我控制；低层（How）：关注具体步骤，缺乏更大意义连接 → 更易被诱惑打断。面对诱惑时问'我为什么要这样做'比'我怎么做'更有效。"},
-  {q:"Ego Depletion 是什么？为什么需要批判性看待？", a:"Baumeister提出：意志力是有限资源，使用后会耗尽。批判：Hagger等(2016)大规模多实验室复制失败；葡萄糖模型被否定；可能是期望效应。McCullough强调：这是复制危机的典型案例。"},
-  {q:"执行意图（Implementation Intentions）是什么？为什么比目标意图更有效？", a:"If-then计划：'如果X情境出现，我就做Y行为'。有效原因：将行为与具体情境线索预先绑定，在关键时刻自动触发，减少决策负担，绕过意志力消耗。meta分析：目标达成率提升2–3倍（Gollwitzer & Sheeran, 2006）。"},
-  {q:"预承诺（Precommitment）策略的原理和例子？", a:"提前采取行动限制未来自己的选择，避免在诱惑面前失控。原理：现在的理性自我约束未来的冲动自我。例子：Ulysses绑桅杆、提前删掉手机游戏、stickK.com承诺设备。"},
-  {q:"为什么情境设计（Situation Design）比意志力更有效？", a:"自我控制好的人不是在诱惑面前更努力抵抗，而是更少接触诱惑。改变环境使好行为更容易、坏行为更难（把水果放显眼处、不把零食带回家）。习惯化后行为自动触发，不消耗意志力。"},
-  {q:"什么是欺骗者检测（Cheater Detection）？在进化上有何意义？", a:"人类进化出对违反社会契约者高度敏感的认知机制。Cosmides & Tooby：人们在'找到违反者'版本的逻辑题上表现远优于纯逻辑版本。说明社会交换监测是进化适应的专用模块。"},
-  {q:"什么是 WEIRD 样本问题？为什么重要？", a:"WEIRD = Western（西方）、Educated（受教育）、Industrialized（工业化）、Rich（富裕）、Democratic（民主）。大多数心理学研究用WEIRD样本，但结论被过度推广。问题：很多'普遍'发现实际上是文化特异的。"},
-  {q:"期中一最重要的三个实验/研究是什么？", a:"① Hamilton's Rule / 亲属选择（1964）——rb>c的进化利他；② Open Science Collaboration（2015）——39%复制率，复制危机证据；③ Gollwitzer执行意图（1999）——if-then计划使目标达成率提升2-3倍。"},
+  // ══════ WEEK 4: 社会认知、心理理论与面孔判断 ══════
+  {q:"[W4-Q1] 人们如何对因果性和动态性做出推断？", a:"Heider & Simmel（1944）：人们自发地对移动几何形状归因意图和目标（大三角形追小三角形）。因果线索：协变、时间接近、空间接近、机制。动态性（Animacy）线索：自主运动、目标导向行为（路径改变仍朝目标）、对他物行动的响应性。"},
+  {q:"[W4-Q2/Q3] 婴儿目标推断实验+Woodward（1998）揭示了什么？", a:"Woodward（1998）：习惯化婴儿（6个月）看实验者伸向物体A；交换位置后测试：婴儿对'同位置新物体'（条件B）盯更久→婴儿编码的是目标（物体A）而非运动模式。揭示：早在6个月，婴儿就将行动解读为意向性的、目标导向的。"},
+  {q:"[W4-Q4] Sally-Anne 测试是什么？揭示什么能力？", a:"流程（Baron-Cohen等1985）：Sally把球放篮子里→离开→Anne把球移到盒子里→Sally回来——'Sally会去哪找球？'正确答案：篮子（Sally持有错误信念）。通过测试说明具备心理理论（Theory of Mind）：能理解他人可持有与现实不符的信念。"},
+  {q:"[W4-Q5] 自闭症儿童在错误信念测试上的表现？", a:"Baron-Cohen等（1985）：大多数自闭症儿童（即使语言/智力正常）未能通过Sally-Anne测试，说盒子（混淆自己知道的与Sally知道的）。典型儿童约4岁通过；自闭症儿童常在8–9岁仍失败。Baron-Cohen称之为「读心盲（Mindblindness）」——解释了自闭症核心社交困难。"},
+  {q:"[W4-Q6/Q7] 面孔判断的两个主要维度？为何我们仍基于面孔做判断？", a:"两个维度（Todorov等）：① 可信赖性/温暖（最重要，100ms内自动发生）；② 支配性/能力。仅据面孔能力判断预测约70%美国参议院选举。为何持续：情绪表情溢出假说（静态特征触发情绪识别系统）；成本不对称（错误信任代价更大）；微弱准确性（健康→面容）。"},
+  {q:"[W4-Q8] 吸引力启发（Attractiveness Heuristic）是什么？美即好效应？", a:"\"美即好\"（Dion等1972）：有吸引力的人被假定有更好人格、更高智力。吸引力启发：用外表作为判断其他属性的捷径。现实影响：更有吸引力的求职者获更多邀约和更高薪资；被告获更轻判决；政治候选人赢更多选票。原因：光环效应+微弱进化根据（健康面容→健康基因）。"},
 ];
 
 function initM1FC() {
@@ -1496,84 +1859,124 @@ function initM1FC() {
 initM1FC();
 
 // =============================================
-// MIDTERM 1 QUIZ DATA (25 questions)
+// MIDTERM 1 QUIZ DATA (30 questions — Study Guide W1-W4 aligned)
 // =============================================
 const m1QuizData = [
-  {q:"Hamilton's Rule rb > c 中，若一个行为的 r=0.5，b=6，c=4，这个利他行为会进化吗？",
-   opts:["会，因为 0.5×6=3 > 4","不会，因为 0.5×6=3 < 4","会，因为 b > c","无法判断，信息不足"],
-   ans:1, exp:"rb = 0.5 × 6 = 3，c = 4，rb(3) < c(4)，不满足 Hamilton's Rule，所以这个利他行为不会进化。"},
-  {q:"以下哪个是相关研究（而非实验研究）？",
-   opts:["随机将参与者分配到高压力或低压力条件，测量帮助行为","比较经常运动的人和不运动的人的抑郁水平","操控室温，观察对攻击行为的影响","给一组参与者服药，另一组服安慰剂"],
-   ans:1, exp:"选项B是相关研究——只测量了两个已存在的变量（运动习惯和抑郁水平）之间的关联，没有随机分配和操控。不能从中得出'运动导致减少抑郁'的因果结论。"},
-  {q:"Open Science Collaboration（2015）的主要发现是什么？",
-   opts:["100%的心理学研究都能被成功复制","约39%的社会心理学研究能被成功复制","复制危机不存在，只是媒体夸大","只有认知心理学研究无法复制"],
-   ans:1, exp:"OSC重复了100项社会/认知心理学研究，只有约39%获得显著复制结果。这是复制危机最重要的实证证据。"},
-  {q:"关于遗传率（Heritability），以下哪种说法是正确的？",
-   opts:["遗传率高意味着基因完全决定该特征","遗传率描述的是群体中变异有多少来自基因差异","遗传率是固定不变的常数","遗传率告诉我们某个个体的特征是由基因还是环境决定的"],
-   ans:1, exp:"遗传率是针对特定群体、特定时间的统计数字，描述该群体中个体差异有多少比例可归因于基因差异。它不预测个体，不是固定的，也不意味着无法改变。"},
-  {q:"什么是 P-hacking？",
-   opts:["修改原始数据以获得显著结果","反复尝试不同分析方式直到 p＜0.05","只发表统计显著的结果","向期刊隐瞒负面发现"],
-   ans:1, exp:"P-hacking（数据捏合）是指研究者持续尝试不同的统计检验、样本筛选方式或变量组合，直到获得 p＜0.05 的显著结果。这是科学不端行为，大幅增加虚假阳性率。"},
-  {q:"聚光灯效应（Spotlight Effect）最好的例子是？",
-   opts:["认为自己演讲时的紧张'所有人都能感受到'","认为自己的错误比别人注意到的更显眼","担心自己穿着不合适被所有人嘲笑","高估自己行为对他人情绪的影响"],
-   ans:2, exp:"聚光灯效应是高估他人对自己外在表现的关注程度（如穿了一件奇怪的衣服）。选项C最符合经典Gilovich实验的场景——高估他人注意到自己外观的比例。选项A更接近透明度幻觉（内心状态被察觉）。"},
-  {q:"透明度幻觉（Illusion of Transparency）与聚光灯效应最主要的区别是？",
-   opts:["透明度幻觉只发生在说谎时","透明度幻觉关注内心状态被察觉，聚光灯效应关注外在表现被注意","聚光灯效应是高估，透明度幻觉是低估","两者没有区别，是同一现象"],
-   ans:1, exp:"聚光灯效应：高估他人注意到自己外在行为/外貌的程度；透明度幻觉：高估他人感知到自己内心状态（紧张、喜欢某人、撒谎）的程度。两者都是高估，但对象不同。"},
-  {q:"Fujita（2020）的研究表明，面对诱惑时，哪种想法最能增强自我控制？",
-   opts:["'我现在需要做的具体步骤是什么？'","'我为什么想要实现这个目标？'","'其他人在同样情况下会怎么做？'","'这个诱惑有多大危害？'"],
-   ans:1, exp:"高层解释（Why）：关注行为的意义和目的，将行为与抽象价值连接，比聚焦'怎么做'（低层解释）更能增强自我控制。'我为什么要这样做'比'我怎么做'更有效。"},
-  {q:"以下关于 Ego Depletion 的说法，哪个是正确的？",
-   opts:["已被大量研究稳定复制，是心理学公认定论","Baumeister最初提出，但大规模复制研究未能重现该效应","葡萄糖补充被证明能有效恢复意志力","McCullough教授认为Ego Depletion是完全正确的理论"],
-   ans:1, exp:"Hagger等（2016）进行的大规模多实验室复制研究未能复制Ego Depletion效应。葡萄糖模型也被否定。McCullough在课上明确要求批判性看待这一理论，将其作为复制危机的典型案例。"},
-  {q:"执行意图（Implementation Intentions）的格式是？",
-   opts:["'我决心要实现目标X'","'如果情境X出现，我就做行为Y'","'当我完成行为Y时，我会奖励自己'","'我每天都要提醒自己目标X的重要性'"],
-   ans:1, exp:"执行意图的标准格式是if-then计划：'如果[情境线索]，那么我就[行为]'。这将目标意图转化为具体的自动化触发机制，研究显示比单纯的目标意图（'我要做X'）效果强2-3倍。"},
-  {q:"互惠利他（Reciprocal Altruism）成立的条件不包括哪个？",
-   opts:["双方基因高度相似","双方将来很可能再次相遇","能够识别欺骗者","能记住过去的互动历史"],
-   ans:0, exp:"互惠利他的条件是：再次相遇概率高、能识别欺骗者、能记住历史。它发生在非亲属之间（基因不必相似）。基因高度相似是亲属选择的条件，不是互惠利他的条件。"},
-  {q:"内省错觉（Introspection Illusion）的核心含义是？",
-   opts:["人们从不对自己的行为进行内省","内省能准确揭示行为的真实原因","人们相信内省准确，但实际上内省的解释常是事后建构","内省只在西方文化中存在"],
-   ans:2, exp:"Wilson & Nisbett（1977）：人们对自己选择原因的解释往往与实际决策过程无关，是事后建构出的合理化故事。我们无法直接访问大量驱动行为的无意识过程。"},
-  {q:"基因-环境相关（rGE）中的'主动型'（Active rGE）指的是？",
-   opts:["父母同时提供基因和成长环境","个体的基因特征引发他人的不同对待","个体主动选择与自身基因倾向相匹配的环境","基因决定个体对特定环境的敏感度"],
-   ans:2, exp:"主动型rGE：随着年龄增长，个体越来越多地主动选择和塑造自己的环境，这些选择受基因倾向影响（如外向的人主动寻找社交场合）。被动型是父母同时给基因和环境；诱发型是基因特征引发他人不同对待。"},
-  {q:"自利偏差（Self-Serving Bias）在哪种文化中通常表现更弱？",
-   opts:["美国文化","北欧文化","东亚文化（如中国、日本）","拉丁美洲文化"],
-   ans:2, exp:"东亚文化（中国、日本、韩国）中自利偏差通常较弱，更多表现出自我批评（self-criticism）。原因：东亚文化更强调集体和谐与社会关系，而非个人自尊的维护。"},
-  {q:"自我妨碍（Self-handicapping）的主要心理功能是？",
-   opts:["提升真实表现","保护自我形象，维护自尊","获得他人的同情","减少与他人的竞争"],
-   ans:1, exp:"自我妨碍通过提前设置失败借口来保护自我形象：失败时有借口（'我没准备好'），成功时自我增强（'有障碍还成功了！'）。代价是真实表现可能因此下降。"},
-  {q:"随机分配（Random Assignment）能解决的主要问题是？",
-   opts:["让所有参与者具有相同特征","消除或平衡各组间的系统性差异（混淆变量）","确保实验结果能推广到其他人群","防止参与者猜出实验目的"],
-   ans:1, exp:"随机分配使各实验组在已知和未知的个体差异上平均分布，从而消除混淆变量，让研究者能将结果差异归因于自变量（IV）的操控，而非参与者特征的差异。"},
-  {q:"被试内设计（Within-subjects design）最主要的缺点是？",
-   opts:["需要更多参与者","个体差异成为误差，统计效力低","存在顺序效应（carryover effects）","不能控制个体差异"],
-   ans:2, exp:"被试内设计的最大缺点是顺序效应：参与者参与第一个条件后，可能因练习、疲劳或策略改变影响后续条件的表现。解决方法是对顺序进行counterbalancing（平衡）。"},
-  {q:"以下哪个能最好地说明'外部效度低'的问题？",
-   opts:["实验中的随机分配有误","实验结果只适用于WEIRD样本，不能推广到其他文化","实验者知道哪个参与者在哪个条件中","测量工具的信度较低"],
-   ans:1, exp:"外部效度低意味着结果难以推广。WEIRD样本问题（Western、Educated、Industrialized、Rich、Democratic）是外部效度的典型威胁——大多数研究用大学生样本，结论被过度推广到所有人类。"},
-  {q:"预承诺（Precommitment）策略与执行意图（Implementation Intentions）最主要的区别是？",
-   opts:["预承诺只在短期有效","预承诺提前改变外部环境/选项，执行意图是提前计划心理反应","执行意图需要权威的外部监督","两者本质上是相同的策略"],
-   ans:1, exp:"预承诺：提前采取实际行动改变环境或选项（绑桅杆、不买零食），物理上限制未来选择；执行意图：提前在心理上制定if-then计划，不改变外部环境，而是改变自己的自动化反应。"},
-  {q:"McCullough 教授强调，自我控制好的人与自我控制差的人最大的区别是什么？",
-   opts:["意志力更强，在诱惑面前坚持更久","在诱惑面前更理性地分析得失","更少接触诱惑情境，而非更努力抵制诱惑","使用更多道德标准约束自己"],
-   ans:2, exp:"研究发现：高自我控制的人并不是在诱惑出现时更努力抵抗，而是通过情境设计、习惯和预承诺，让自己更少遇到需要抵制诱惑的情况。这与'意志力肌肉'模型的预测相反。"},
-  {q:"以下哪项是'基因-环境交互（GxE）'的最佳例子？",
-   opts:["外向的人倾向于选择社交型工作（基因→环境选择）","父母的基因和家庭环境同时影响孩子","携带特定基因变体的人在高压力下更容易抑郁，低压力下则无差异","音乐才能家庭的孩子接触更多音乐教育"],
-   ans:2, exp:"GxE是基因型×环境的交互：同一基因在不同环境下产生不同效果（敏感度不同）。Caspi等（2003）：5-HTT短等位基因携带者在有生活压力时抑郁风险显著增加，无压力时则无差异。选项A是主动型rGE，选项C是被动型rGE。"},
-  {q:"Gilovich（2000）的'尴尬T恤实验'中，穿着者以为约多少比例的人注意到了他们的T恤？实际比例是？",
-   opts:["以为100%，实际50%","以为约50%，实际约23%","以为约30%，实际约10%","以为约70%，实际约50%"],
-   ans:1, exp:"穿着者估计约50%的人注意到了他们的尴尬T恤，但实际只有约23%注意到。这个差距证明了聚光灯效应：我们系统性地高估他人对自己的关注程度。"},
-  {q:"在进化心理学的研究方法中，以下哪项不是有效的证据？",
-   opts:["跨文化研究发现某行为在不同文化中普遍存在","行为遗传学研究显示某行为有显著遗传率","事后为某行为编造一个'适应性故事'","与其他物种的比较行为学研究"],
-   ans:2, exp:"Just-So Stories的问题：仅仅能够为某行为编造一个听起来合理的进化故事，不构成有效的科学证据（因为无法证伪）。有效证据需要可检验的预测、跨文化一致性、比较研究等。"},
-  {q:"知情同意（Informed Consent）和事后揭密（Debriefing）是APA伦理准则要求的。使用欺骗的研究必须满足什么条件？",
-   opts:["欺骗必须绝对保密，不能向参与者揭露","欺骗须有科学必要性且无其他替代方案，实验后必须进行揭密","只要IRB批准，欺骗没有任何限制","欺骗研究不能使用随机分配"],
-   ans:1, exp:"APA伦理要求：① 欺骗须有充分科学理由且无其他方法可替代；② 欺骗不能造成严重伤害；③ 实验结束后必须进行Debriefing——告知真实目的、消除误解、处理任何心理影响。"},
-  {q:"为什么 Gollwitzer 的执行意图研究如此重要？",
-   opts:["它证明了意志力是有限资源","它表明仅仅设定目标就足以实现目标","If-then计划使目标达成率显著提升（约2-3倍），且机制明确可复制","它推翻了所有关于自我控制的进化解释"],
-   ans:2, exp:"执行意图研究的重要性：① 效果量大且稳定（meta分析显示2-3倍提升）；② 机制明确（自动化触发减少决策负担）；③ 可复制性强（这正是好科学应有的特征，与Ego Depletion的不可复制形成对比）。"},
+  // ── WEEK 1 ──
+  {q:"[W1] 自然选择的三个必要条件是什么组合？",
+   opts:["变异、智力、繁殖率","变异、遗传性、差异繁殖成功","突变、适应、进化","基因、环境、行为"],
+   ans:1, exp:"自然选择三条件：变异（Variation）——同物种个体特征有差异；遗传性（Heritability）——特征可传代；差异繁殖成功（Differential Reproductive Success）——某些变体后代更多。三个条件缺一不可。"},
+  {q:"[W1] 自然选择塑造大脑系统的核心逻辑是？",
+   opts:["自然选择只塑造身体结构，不影响大脑","解决重复性社会问题更好的神经机制→更多后代→在种群中扩散","大脑是通用计算机，可以学习任何事","进化只对有意识的行为发生作用"],
+   ans:1, exp:"祖先反复面临社会性适应问题（欺骗者检测、吸引配偶、建立联盟等），能更好解决这些问题的神经机制→繁殖成功→传播。结果：大脑由专用模块组成，而非通用计算机。"},
+  {q:"[W1] 以下关于 Charles Darwin 的说法，哪个是正确的？",
+   opts:["Darwin提出了遗传学定律（豌豆实验）","Darwin的《物种起源》（1859）提出自然选择是进化机制","Darwin认为人类行为不受进化影响","Darwin在20世纪才提出进化论"],
+   ans:1, exp:"Darwin（1809–1882）的《物种起源》（1859）提出自然选择机制；《人类的由来》（1871）将进化应用于人类行为。遗传学定律是孟德尔（Mendel）提出的。"},
+  {q:"[W1] 二战对社会心理学的最重要影响是？",
+   opts:["让社会心理学家全部转行研究战争","催生了服从、从众、偏见等研究领域，强调情境力量","证明了社会心理学无法解释极端行为","使社会心理学成为独立于心理学的学科"],
+   ans:1, exp:"二战提出迫切问题：普通人如何服从极端命令？催生了Milgram的服从研究、Asch的从众研究、Allport的偏见研究。Kurt Lewin创建群体动力学。核心启示：情境力量可让普通人做极端行为。"},
+  {q:"[W1] 灵长类睾丸大小与交配系统的对应关系，以下哪项正确？",
+   opts:["大猩猩（一夫多妻）→睾丸最大；黑猩猩（多雄多雌）→睾丸最小","黑猩猩（多雄多雌）→精子竞争最激烈→睾丸相对最大","长臂猿（一夫一妻）→精子竞争激烈→睾丸最大","人类睾丸最大，因为人类繁殖最成功"],
+   ans:1, exp:"多雄多雌系统（如黑猩猩）精子竞争最激烈→睾丸相对体重最大；一夫一妻（长臂猿）几乎无精子竞争→最小；一夫多妻（大猩猩）独占交配→尽管体型庞大，睾丸相对小。人类居中。"},
+  {q:"[W1] 祖先人类最可能是以下哪种交配系统？证据？",
+   opts:["完全的一夫一妻制，因为人类配对键合","严格的多雄多雌制，因为黑猩猩是我们最近的亲属","温和的一夫多妻制——体型二态性存在但不极端，睾丸居中","完全的一夫多妻制，因为男性体型远大于女性"],
+   ans:2, exp:"祖先人类最可能是温和的一夫多妻制（或介于一夫一妻与一夫多妻之间）：男性比女性体型稍大（二态性存在但不极端）；睾丸大小居中（有一定精子竞争但不如黑猩猩激烈）。"},
+  {q:"[W1] 祖母假说（Grandmother Hypothesis）最好地解释了什么现象？",
+   opts:["为什么人类祖母比其他灵长类更长寿且停止繁殖","为什么男性比女性寿命短","为什么人类婴儿依赖期最长","为什么人类有最大的大脑"],
+   ans:0, exp:"祖母假说（Hawkes等）：女性绝经后停止繁殖，帮助女儿和外孙存活，反而增加更多共享基因的后代。选择压力维持了绝经后的长寿——停止繁殖+帮助亲属繁殖比继续自己繁殖更划算。"},
+  {q:"[W1] 进化失配（Evolutionary Mismatch）的最佳例子是？",
+   opts:["现代人使用工具（工具是进化适应环境的产物）","对高糖/高脂食物的偏好导致现代肥胖流行（在食物匮乏的EEA是适应性的，在现代过剩环境中适应不良）","人类比黑猩猩更聪明（这是正向进化，不是失配）","现代人仍然生活在小型游群中"],
+   ans:1, exp:"进化失配：进化出的机制在现代环境中触发不适应的反应。高糖/高脂食物偏好在食物匮乏的EEA（进化适应环境）中是适应性的；现代食物过剩使同样的偏好导致肥胖。"},
+
+  // ── WEEK 2 ──
+  {q:"[W2] IAATOPE中的'随机分配'对应哪个字母？其作用是？",
+   opts:["I（Isolated）——隔离目标变量","A（Assigned）——通过随机分配排除混淆变量","E（Eliminated）——消除竞争性解释","T（Treated）——不同条件的不同处理"],
+   ans:1, exp:"IAATOPE中：A（Assigned）= 参与者被随机分配到各实验条件。E（Eliminated）= 通过随机分配排除竞争性解释（混淆变量）。两个字母共同描述随机分配的过程和目的。"},
+  {q:"[W2] 为什么'抑郁的人社交活动更少'这一相关发现无法确定因果？",
+   opts:["样本量太小，无法得出结论","存在方向性问题（孤立→抑郁？还是抑郁→孤立？）和第三变量问题，需要实验法","相关系数不够高","没有进行跨文化验证"],
+   ans:1, exp:"相关不能证明因果的两大原因：① 方向性问题——无法判断谁导致谁（孤立→抑郁？还是抑郁→孤立？）；② 第三变量问题——可能有第三个变量（如负面生活事件）同时导致两者。只有随机分配的实验才能建立因果。"},
+  {q:"[W2] 以下哪种研究设计能最好地建立因果推断？",
+   opts:["调查500名大学生的睡眠和GPA之间的相关","随机将学生分配到'8小时睡眠'或'5小时睡眠'条件，测量考试成绩","追踪同一批学生10年观察睡眠变化与GPA变化","比较不同国家学生的睡眠习惯和学业成就"],
+   ans:1, exp:"只有随机分配到不同条件（实验法）才能建立因果推断。选项A是相关研究；选项C是纵向研究（仍为相关）；选项D是跨文化比较（仍为相关）。只有B通过随机分配控制了混淆变量。"},
+  {q:"[W2] 塔斯基吉研究最严重违反了贝尔蒙报告的哪个原则？",
+   opts:["受益原则（Beneficence）——研究没有任何科学价值","公正原则（Justice）——让弱势群体承担风险，让其他人享受成果","尊重个人（Respect for Persons）——完全违反，没有任何问题","只违反了APA伦理准则，没有违反贝尔蒙原则"],
+   ans:1, exp:"塔斯基吉同时严重违反多项原则，但最典型的是公正原则（Justice）：黑人男性承担极大风险（被故意隐瞒诊断、拒绝治疗），而其他人（特别是白人社会）享受医学进步成果。这是不公正的研究负担分配。"},
+  {q:"[W2] 效度（Validity）的定义是？以下哪项不是效度的类型？",
+   opts:["某测量在多大程度上测量了它声称要测量的东西；'受欢迎度效度'不是效度类型","测量结果的一致性；'内部效度'不是效度类型","测量结果的稳定性；'外部效度'不是效度类型","某推断的可信度；'统计效度'不是效度类型"],
+   ans:0, exp:"效度定义：某测量/推断在多大程度上测量了它声称要测量的东西。效度类型包括：IV操控效度、DV构念效度、内部效度、外部效度。'受欢迎度效度'不是心理学研究方法中的效度类型。'信度'（Reliability）是测量结果的一致性，不同于效度。"},
+  {q:"[W2] Open Science Collaboration（2015）的主要发现是什么？",
+   opts:["100%的心理学研究都能成功复制","约39%的社会/认知心理学研究能被成功复制","复制危机只是媒体夸大，实际影响很小","只有认知心理学研究无法复制，社会心理学研究完全可复制"],
+   ans:1, exp:"OSC（2015）重复了100项社会/认知心理学研究，只有约39%获得显著复制结果。这是复制危机最重要的实证证据，说明大量已发表结果可能是虚假阳性或效应被高估。"},
+  {q:"[W2] 以下哪种情况最符合'欺诈结果（Fraudulent Results）'的定义？",
+   opts:["复制研究发现原始效应量比原始研究小","研究者在数据允许的范围内选择报告最显著的分析","Diederik Stapel承认捏造了实验数据，超50篇论文被撤稿","研究者使用了不合适的统计方法"],
+   ans:2, exp:"欺诈结果：数据被完全捏造或故意篡改。Diederik Stapel是典型案例——他承认系统性地捏造数据，超过50篇论文被撤稿，是复制危机中最著名的欺诈案例。选项A是收缩结果，选项B类似人工制造结果。"},
+  {q:"[W2] 双胞胎研究中ACE框架里，'C'代表什么？典型发现是？",
+   opts:["C = Cognitive ability（认知能力），遗传率高","C = Common/Shared environment（共享环境），对大多数心理特征影响出乎意料地小","C = Chromosomal effects（染色体效应），决定性格","C = Cultural influences（文化影响），影响最大"],
+   ans:1, exp:"ACE框架中C = Common/Shared Environment（共享/共同环境效应）：来自同一家庭、社区的共同影响。典型发现：对大多数心理特征，C的贡献出乎意料地小——同一家庭长大的兄弟姐妹差异主要来自A（基因）和E（独特环境）。"},
+  {q:"[W2] 行为遗传学第四定律（McCullough特别强调）的含义是？",
+   opts:["所有人类行为特征都是完全由基因决定的","典型行为特征与许多基因变体相关，每个效应极小→行为性状是多基因的","共享环境对行为的影响比基因更大","行为特征完全由单一基因决定（一基因一性状）"],
+   ans:1, exp:"第四定律（Turkheimer）：典型人类行为特征与许多基因变体相关，每个变体的效应都很小→行为性状是多基因的（polygenic）。意义：'一个基因一个特征'模型是错误的；GWAS研究发现成千上万个小效应基因，行为遗传学远比我们想象的复杂。"},
+
+  // ── WEEK 3 ──
+  {q:"[W3] 镜子自我识别测试（MSRT/Rouge Test）的程序是？能通过的物种？",
+   opts:["让动物看另一只同类，观察其是否认出；所有哺乳类都能通过","趁麻醉时在额头标记→清醒后照镜子→观察是否触摸自己的标记；人类、黑猩猩、大象、海豚等可通过","让婴儿选择镜中像或真实玩具；所有灵长类都能通过","给动物两面镜子，观察其能否从不同角度认出自己；只有人类能通过"],
+   ans:1, exp:"MSRT程序：在动物麻醉时于额头做标记（无气味），清醒后照镜子，观察是否触摸自己的标记（说明认出是自己）。能通过：人类（18月+）、黑猩猩、倭黑猩猩、大象、海豚、虎鲸、某些喜鹊。不能通过：猫狗等大多数动物。"},
+  {q:"[W3] 大多数儿童大约在什么年龄通过MSRT？这与什么里程碑同步？",
+   opts:["6–12个月；与爬行能力发展同步","18–24个月；与使用第一人称代词、出现自我意识情绪同步","3–4岁；与错误信念理解能力同步","出生即可；这是天生的自我识别能力"],
+   ans:1, exp:"大多数儿童在18–24个月（1.5–2岁）通过MSRT。与其他自我意识里程碑同步：开始用'我'/'我的'等第一人称代词；出现自我意识情绪（尴尬、骄傲、羞愧）。18个月前婴儿把镜中像当作另一个婴儿。"},
+  {q:"[W3] 黑猩猩MSRT研究说明了'自我'进化的功能是？",
+   opts:["自我进化是为了感受美的能力","自我意识是社会智慧的工具——通过建立关于自身的模型来预测和操控他人行为","自我是为了向神圣存在祈祷而进化的","自我意识只在有语言的物种中存在"],
+   ans:1, exp:"通过MSRT的黑猩猩展现更高社会能力：更高社会等级、更强心理理论、更擅长欺骗和社交操控。结论：'自我'进化的功能是通过建立关于自身的模型来预测和操控他人——自我意识是社会智慧的工具，而非仅仅是内省能力。"},
+  {q:"[W3] 自我参照效应（Self-Reference Effect）说明了什么？",
+   opts:["人们总是把自己作为所有事情的参照，因此判断不准确","与自我相关的信息被处理得更深、记忆更好——反映自我图式对信息处理的影响","自我参照会降低记忆效果，因为引入了个人偏见","只有高自尊的人才有自我参照效应"],
+   ans:1, exp:"自我参照效应：与自我相关的信息被处理得更深（更深层的加工）、记忆更好。这反映了自我图式（Self-Schema）的作用：自我相关信息与已有的丰富自我知识结构连接，产生更深层的编码和更强的记忆痕迹。"},
+  {q:"[W3] Cooley 的'镜中自我（Looking-Glass Self）'的核心主张是？",
+   opts:["我们的自我形象主要通过照镜子发现","自我概念通过想象他人如何看待我们来形成，他人是我们的镜子","自我概念完全由遗传基因决定","自我是通过反复内省逐渐形成的"],
+   ans:1, exp:"Cooley（1902）镜中自我：① 想象自己在他人眼中的样子；② 想象他人的评价；③ 根据感知到的评价体验自豪或羞耻。核心：自我知识通过反映性评价（Reflected Appraisals）获得，而非通过纯粹内省——他人反应是我们了解自己的主要来源。"},
+  {q:"[W3] 社会计量器理论（Sociometer Theory）对自尊的解释是？",
+   opts:["自尊是我们客观评估自身价值的精确工具","自尊是监测被社会接纳程度的内部仪表盘——进化出的信号系统","自尊高低完全由遗传决定，无法通过社会互动改变","自尊越高表示越有道德，越低表示越不道德"],
+   ans:1, exp:"Leary的社会计量器理论：自尊不是目标本身，而是进化出的内部仪表盘，测量个体被群体接纳的程度。进化逻辑：被排斥在祖先环境中几乎等于死亡→进化出高度敏感的社会接纳监测系统→自尊是其主观信号。"},
+  {q:"[W3] 向上社会比较（Upward Social Comparison）通常的心理后果是？",
+   opts:["总是激励进步，是最好的比较方式","总是降低自尊，产生嫉妒，对心理健康有害","可能激励进步，但更常见的是降低自尊和引发嫉妒；社交媒体上的盛行与抑郁相关","对自尊没有影响，因为比较对象与自己不同"],
+   ans:2, exp:"向上比较（与更优秀者比）：有时激励进步（'我也可以做到！'），但更常见的是降低自尊、引发嫉妒和自我怀疑。社交媒体创造了持续的向上比较环境→与更高的抑郁和焦虑率相关。"},
+  {q:"[W3] Goffman 戏剧模型中的'前台'和'后台'分别指什么？",
+   opts:["前台=前额叶皮层（理性）；后台=边缘系统（情绪）","前台=有观众时的表演/社会呈现；后台=无观众时的放松真实状态","前台=对外表现的积极面；后台=隐藏的消极面","前台=意识层面的自我；后台=无意识的自我"],
+   ans:1, exp:"Goffman（1959）戏剧理论：社会生活如舞台表演。前台（Front Stage）：有观众时遵守社会规范的表演；后台（Back Stage）：无观众时的放松状态，不需要维持表演。印象管理是前台的核心活动。"},
+  {q:"[W3] 棉花糖测试（Marshmallow Test）的最重要研究结论+批评是？",
+   opts:["延迟满足能力完全由基因决定，与社会经济因素无关","等待更久的孩子后来有更好的人生结果；但Watts等（2018）发现控制SES后预测力大幅减弱——穷人家的孩子不等待是理性的","棉花糖测试完全无效，已被完全否定","只有在美国文化中有效，在其他文化中不同"],
+   ans:1, exp:"Mischel等（1970s）：等待更久→更好的SAT成绩、学业、健康、更少物质滥用。重要批评（Watts等2018）：控制家庭SES（社会经济背景）后，延迟满足的预测力大幅减弱——穷人家的孩子不等待是理性策略（不可靠环境中即时获取更有利）。"},
+  {q:"[W3] 延迟折扣（Delay Discounting）与自我控制失败的关系是？",
+   opts:["高延迟折扣（偏好即时奖励）与高度自我控制相关","低延迟折扣与成瘾和冲动行为相关","高延迟折扣（急于得到奖励，主观价值随等待迅速下降）=高冲动性，是成瘾、肥胖、财务问题的重要预测因子","延迟折扣只在动物中存在，人类已进化出克服它的能力"],
+   ans:2, exp:"延迟折扣：随着奖励延迟增加，奖励主观价值降低。高延迟折扣=即时奖励比延迟奖励价值高得多=高冲动性。这是成瘾（宁要即时的药物快感）、肥胖（宁要即时的美食）、财务问题（宁要即时消费）的重要预测因子。"},
+  {q:"[W3] 资源模型（Ego Depletion）的复制失败说明了什么？",
+   opts:["意志力确实是有限资源，但只在特定条件下耗竭","Hagger等（2016）23个实验室多实验室复制失败——表明该效应可能是虚假阳性或期望效应；是复制危机的典型案例","意志力是无限的，人可以无限期地自我控制","Ego Depletion效应只在美国被复制，在其他国家有效"],
+   ans:1, exp:"Hagger等（2016）大规模多实验室复制（N=2141）：未发现显著的Ego Depletion效应。葡萄糖模型也被否定。替代解释：效应可能由期望/信念驱动（相信意志力有限的人表现出耗竭）。McCullough将其作为复制危机典型案例讲授。"},
+  {q:"[W3] 过程模型（Process Model）如何解释自我控制失败？与资源模型的关键区别？",
+   opts:["自我控制失败=能量耗尽，与资源模型相同","自我控制失败是动机和注意力的主动转移（而非燃料耗尽）；关键区别：过程模型中效应受动机/信念调节，可克服","自我控制从不失败，失败只是外部借口","过程模型完全否认自我控制能力的存在"],
+   ans:1, exp:"过程模型（Inzlicht等）：自我控制失败是动机和注意力的主动转移——行使自我控制后被激励追求即时满足，注意力转向诱惑。关键区别：资源模型=被动的不可避免的耗竭；过程模型=受动机、信念、情境因素调节，可以通过改变动机克服。"},
+  {q:"[W3] 以下哪种自我控制策略属于'捷径策略（Shortcut Strategies）'？",
+   opts:["面对诱惑时用更强的意志力抵制","把薪水自动转入储蓄账户（预承诺）、建立健康饮食习惯（习惯化）、把零食放在看不到的地方（环境设计）","每当想吃糖时数数到100","做更多力量训练来增强'意志力肌肉'"],
+   ans:1, exp:"捷径策略：让好行为自动发生，而非在诱惑面前努力抵制。包括：预承诺（提前限制选择）、习惯（反复练习自动化行为）、环境设计（改变默认行为环境）、执行意图（if-then触发器）。高自我控制的人更少遇到诱惑，而非更努力抵制。"},
+
+  // ── WEEK 4 ──
+  {q:"[W4] Heider & Simmel（1944）的几何形状动画研究说明了什么？",
+   opts:["人类需要至少5秒才能推断他人的意图","人们自发地对移动形状归因意图和目标，即使知道它们只是几何形状","婴儿不能推断他人的意图","因果推断只在社会互动中发生，不适用于非社会刺激"],
+   ans:1, exp:"Heider & Simmel（1944）：人们观看移动的几何形状（三角形和圆形），自发地将意图、目标、情感归因于这些形状（'大三角形追着小三角形'）。说明：人类有非常强的自动化因果推断和意图归因倾向，即使对无生命物体也如此。"},
+  {q:"[W4] Woodward（1998）实验的关键发现是？",
+   opts:["6个月婴儿无法区分目标和运动路径","6个月婴儿对'旧位置新目标'看更久，说明婴儿编码的是目标（物体）而非运动模式","婴儿需要18个月才能理解他人的目标","婴儿只能理解简单的物体运动，无法推断意图"],
+   ans:1, exp:"Woodward（1998）：婴儿（6个月）习惯化于'手伸向物体A'后，测试时对'同位置新物体'（条件B）看更久（违反期望），但对'新位置旧物体'（条件A）不太惊讶。结论：婴儿编码的是目标（物体A）而非运动路径，早在6个月就理解行动的意向性。"},
+  {q:"[W4] Sally-Anne测试中，通过测试的关键能力是？",
+   opts:["能记住物体的位置","能理解错误信念（False Belief）——他人可以持有与现实不符的信念，其行为由他们的信念而非现实驱动","能快速找到隐藏的物体","能与陌生人合作"],
+   ans:1, exp:"Sally-Anne测试（Baron-Cohen等1985）：Sally把球放篮子里后离开→Anne移球到盒子→Sally回来。正确答案（篮子）要求理解Sally持有错误信念——她以为球还在篮子里。通过测试说明具备Theory of Mind（心理理论）的核心能力：理解错误信念。"},
+  {q:"[W4] 自闭症儿童在Sally-Anne测试上的表现，Baron-Cohen称之为什么？",
+   opts:["选择性注意障碍（Selective Attention Disorder）","读心盲（Mindblindness）——心理理论能力缺陷，导致无法理解他人信念、意图和欲望","镜像神经元缺失综合症","感知过载（Perceptual Overload）"],
+   ans:1, exp:"Baron-Cohen（1985）发现：大多数自闭症儿童（即使语言/智力正常）未能通过Sally-Anne测试，说'盒子'。他称之为'读心盲（Mindblindness）'——心理理论能力的缺陷。这解释了自闭症中社交困难的核心原因：难以理解他人的意图、信念和欲望。"},
+  {q:"[W4] 根据Todorov等研究，面孔判断的两个最主要维度是什么？",
+   opts:["年龄和性别","可信赖性/温暖（最重要，100ms内自动发生）和支配性/能力","智力和吸引力","种族和健康状况"],
+   ans:1, exp:"Todorov等研究：面孔判断的两个主要维度：① 可信赖性/温暖（Trustworthiness/Warmth）——最重要，解释判断变异的绝大部分，100毫秒内自动发生；② 支配性/能力（Dominance/Competence）——与面孔角度、下颌结构相关。仅据能力判断可预测约70%美国参议院选举结果。"},
+  {q:"[W4] '美即好'效应（Beautiful is Good）是什么？'吸引力启发'的现实影响？",
+   opts:["有吸引力的人实际上在各方面都更好，这是进化真实反映","外表吸引力被用作判断其他无关特征的捷径（光环效应）；影响：求职、法庭判决、政治选举、教师评分等都对吸引力者有利","吸引力只影响约会中的判断，不影响职业领域","'美即好'效应只在女性对男性的判断中存在"],
+   ans:1, exp:"'美即好'（Dion等1972）：有吸引力的人被假定拥有更好人格、更高智力。吸引力启发（Attractiveness Heuristic）：用外表作为判断其他属性的捷径（光环效应）。现实影响：吸引力更高的求职者获更多邀约和更高薪资；被告获更轻判决；政治候选人赢更多选票。"},
 ];
 
 function initM1Quiz() {
