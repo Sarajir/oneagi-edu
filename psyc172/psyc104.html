@@ -131,8 +131,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 
   <div class="nav-section">备考工具</div>
   <button class="nav-item" onclick="goPage('midterm1',this)"><span class="icon">🎯</span>期中一复习</button>
-  <button class="nav-item" onclick="goPage('flashcards',this)"><span class="icon">🃏</span>闪卡记忆</button>
-  <button class="nav-item" onclick="goPage('quiz',this)"><span class="icon">✅</span>模拟测验</button>
+  <button class="nav-item" onclick="goPage('m1fc',this)"><span class="icon">🃏</span>期中一闪卡（35张）</button>
+  <button class="nav-item" onclick="goPage('m1quiz',this)"><span class="icon">✅</span>期中一测验（25题）</button>
+  <button class="nav-item" onclick="goPage('flashcards',this)"><span class="icon">🗂️</span>全课闪卡</button>
+  <button class="nav-item" onclick="goPage('quiz',this)"><span class="icon">📝</span>全课测验</button>
   <button class="nav-item" onclick="goPage('glossary',this)"><span class="icon">📖</span>术语表</button>
 </nav>
 
@@ -1125,6 +1127,28 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
   </div>
 </div>
 
+<!-- MIDTERM 1 FLASHCARDS -->
+<div class="page" id="page-m1fc">
+  <div class="page-header">
+    <h1>🃏 期中一闪卡</h1>
+    <p>Week 1–4 全部考点 · 35张 · 点击翻转查看答案</p>
+    <div class="tag-row">
+      <span class="tag">进化基础</span><span class="tag">研究方法</span><span class="tag">自然教养</span><span class="tag">自我认知</span><span class="tag">自我控制</span>
+    </div>
+  </div>
+  <div class="flashcard-grid" id="m1fc-grid"></div>
+</div>
+
+<!-- MIDTERM 1 QUIZ -->
+<div class="page" id="page-m1quiz">
+  <div class="page-header">
+    <h1>✅ 期中一模拟测验</h1>
+    <p>25道选择题 · 覆盖 Week 1–4 全部考点 · 点击选项立即查看解析</p>
+  </div>
+  <div id="m1quiz-container"></div>
+  <div class="quiz-score" id="m1quiz-score"></div>
+</div>
+
 <!-- FLASHCARDS -->
 <div class="page" id="page-flashcards">
   <div class="page-header">
@@ -1404,6 +1428,193 @@ function renderGlossary(filter='') {
 }
 renderGlossary();
 function filterGlossary(v) { renderGlossary(v); }
+
+// =============================================
+// MIDTERM 1 FLASHCARDS DATA (Week 1-4, 35 cards)
+// =============================================
+const m1Cards = [
+  // --- EVOLUTION & SOCIAL LIFE ---
+  {q:"社会心理学的核心研究问题是什么？", a:"个体的思想、感受和行为如何受到他人（真实的、想象的或隐含的）存在的影响。核心主张：情境力量往往比我们预期的更强大。"},
+  {q:"自然选择（Natural Selection）的逻辑是什么？", a:"具有有助于生存和繁殖的特征的个体，更可能将这些特征传给后代。关键：选择的单位是基因，不是个体或物种。行为特征同样受自然选择塑造。"},
+  {q:"Hamilton's Rule 是什么？r、b、c 分别代表什么？", a:"rb > c。r = 亲缘系数（同卵双胞胎=1.0，兄弟姐妹=0.5，表亲=0.125）；b = 利他行为对受益者的收益；c = 利他者付出的成本。当 rb > c 时，利他行为会进化。"},
+  {q:"亲属选择（Kin Selection）与互惠利他（Reciprocal Altruism）有何区别？", a:"亲属选择：帮助基因相似的亲属，依赖血缘（基因共享）；互惠利他：帮助非亲属期待日后回报，依赖未来交换（Trivers, 1971）。两者都能解释利他行为，但机制不同。"},
+  {q:"什么是包容适应性（Inclusive Fitness）？", a:"个体的总繁殖成功 = 自身繁殖成功 + 帮助亲属繁殖成功中归因于自己的部分。这解释了为何帮助亲属也能传播自己的基因。"},
+  {q:"什么是 Just-So Stories 问题？如何应对？", a:"批评：进化故事可以为任何行为编造，但无法证伪。应对：用跨文化一致性、比较行为学、行为遗传学、可检验的预测来支撑进化解释，而非仅凭叙事。"},
+  {q:"进化解释是否意味着行为无法改变？", a:"不是！遗传倾向不等于固定行为。进化提供的是倾向和可能性空间，文化、学习、制度可以修改、压制或增强这些倾向。这是最常见的误解。"},
+
+  // --- RESEARCH METHODS & REPLICATION CRISIS ---
+  {q:"实验法（Experimental）与相关法（Correlational）的核心区别？", a:"实验法：操控自变量 + 随机分配 → 可建立因果关系；相关法：只测量变量间的关联 → 只能建立相关，不能证明因果（因为可能有第三变量/confound）。"},
+  {q:"随机分配（Random Assignment）的作用是什么？", a:"将参与者随机分入不同实验条件，使各组在已知和未知变量上平均分布，从而排除混淆变量（confounds），让IV→DV的因果推断更可靠。"},
+  {q:"内部效度（Internal Validity）vs 外部效度（External Validity）？", a:"内部效度：研究能多大程度确立因果关系（威胁：选择偏差、实验者效应）；外部效度：结果能多大程度推广到其他人/情境（威胁：WEIRD样本、实验室设置不自然）。两者通常存在trade-off。"},
+  {q:"什么是 P-hacking？为什么是问题？", a:"研究者反复尝试不同分析方法、剔除数据或加入变量，直到获得 p＜0.05。这使得偶然显著结果被误认为真实发现，虚假阳性率大幅增加，是复制危机的主要原因之一。"},
+  {q:"复制危机（Replication Crisis）的核心证据是什么？", a:"Open Science Collaboration (2015)：重复100项社会/认知心理学研究，仅约39%获得显著复制。说明大量已发表结果可能是虚假阳性或效应被高估。"},
+  {q:"开放科学（Open Science）有哪些主要做法？", a:"① 预注册（Pre-registration）：提前公开假设和分析计划；② 开放数据和材料；③ 大样本多实验室复制；④ 注册报告（Registered Reports）：基于方法而非结果决定发表。"},
+  {q:"被试内 vs 被试间设计：各有什么缺点？", a:"被试间：需要更多参与者，个体差异增加误差；被试内：存在顺序效应/练习效应（解决方法：counterbalancing平衡顺序）。"},
+  {q:"什么是 HARKing？", a:"Hypothesizing After Results are Known——先看数据结果，再倒推编写假设，伪装成事先预测。这是一种学术不端行为，导致已发表结果无法复制。"},
+
+  // --- NATURE & NURTURE ---
+  {q:"遗传率（Heritability）的正确定义是什么？", a:"在特定人群中，某特征的变异中可归因于基因差异的比例（0%–100%）。注意：这是关于群体变异来源的统计量，不描述个体发展，也不意味着基因决定一切。"},
+  {q:"遗传率的三大常见误解是什么？", a:"① 遗传率高 = 无法改变（❌ 身高遗传率80%，但营养可改变身高）；② 遗传率描述个体（❌ 只描述群体变异来源）；③ 遗传率是固定常数（❌ 随环境条件变化而变化）。"},
+  {q:"双胞胎研究的逻辑是什么？MZ vs DZ？", a:"同卵双胞胎（MZ）共享100%基因；异卵双胞胎（DZ）共享约50%。若MZ比DZ在某特征上更相似，则超出部分归因于基因。分离抚养的MZ研究进一步消除共同环境影响。"},
+  {q:"基因-环境交互（GxE）与基因-环境相关（rGE）的区别？", a:"GxE：基因型决定对特定环境的敏感度（如5-HTT基因×压力→抑郁）；rGE：基因型影响个体所处的环境（被动型/诱发型/主动型）。GxE是互动，rGE是相关。"},
+  {q:"rGE 的三种类型是什么？", a:"① 被动型：父母同时给基因和环境（音乐家庭）；② 诱发型：基因特征引发他人不同对待（活泼孩子获更多互动）；③ 主动型：个体选择与基因倾向匹配的环境（基因影响利基选择）。"},
+
+  // --- SELF-KNOWLEDGE & IMPRESSION MANAGEMENT ---
+  {q:"内省错觉（Introspection Illusion）是什么？", a:"我们相信能通过内省准确了解自己的心理状态，但研究显示内省常常是错误的事后建构。Wilson & Nisbett (1977)：人们解释选择的理由往往与实际决策过程无关。"},
+  {q:"聚光灯效应（Spotlight Effect）是什么？经典研究？", a:"高估他人对自己的关注程度。Gilovich等(2000)：穿着印有尴尬图案T恤进教室，本人认为约50%的人注意到，实际仅约23%。原因：自己以自我为参照中心。"},
+  {q:"透明度幻觉（Illusion of Transparency）是什么？与聚光灯效应的区别？", a:"高估他人感知到自己内心状态（紧张、谎言、喜欢）的程度。聚光灯效应关注外在表现被注意；透明度幻觉关注内心状态被看穿。两者都源于自我中心偏差。"},
+  {q:"自利偏差（Self-Serving Bias）有哪些表现？", a:"成功→归因内部（能力、努力）；失败→归因外部（运气、任务难）。还包括：高于平均效应（大多数人认为自己高于平均）、不切实际的乐观。文化差异：东亚文化中自利偏差较弱。"},
+  {q:"自我妨碍（Self-handicapping）的动机和后果？", a:"动机：提前设置失败借口，保护自我形象。逻辑：失败→'因障碍才失败，不代表真实水平'；成功→'即使有障碍也成功，真厉害'。后果：保护自尊，但真实表现可能下降。"},
+  {q:"印象管理（Impression Management）的四大策略？", a:"① 自我推销（展示能力）；② 阿谀奉承（赞美他人以获好感）；③ 恐吓（展示权力）；④ 道德宣示（展现高尚）。Goffman的戏剧模型：社会生活是一场表演。"},
+
+  // --- SELF-CONTROL ---
+  {q:"Fujita (2020) 的高层 vs 低层解释如何影响自我控制？", a:"高层（Why）：关注行为意义和目的，与抽象价值连接 → 增强自我控制；低层（How）：关注具体步骤，缺乏更大意义连接 → 更易被诱惑打断。面对诱惑时问'我为什么要这样做'比'我怎么做'更有效。"},
+  {q:"Ego Depletion 是什么？为什么需要批判性看待？", a:"Baumeister提出：意志力是有限资源，使用后会耗尽。批判：Hagger等(2016)大规模多实验室复制失败；葡萄糖模型被否定；可能是期望效应。McCullough强调：这是复制危机的典型案例。"},
+  {q:"执行意图（Implementation Intentions）是什么？为什么比目标意图更有效？", a:"If-then计划：'如果X情境出现，我就做Y行为'。有效原因：将行为与具体情境线索预先绑定，在关键时刻自动触发，减少决策负担，绕过意志力消耗。meta分析：目标达成率提升2–3倍（Gollwitzer & Sheeran, 2006）。"},
+  {q:"预承诺（Precommitment）策略的原理和例子？", a:"提前采取行动限制未来自己的选择，避免在诱惑面前失控。原理：现在的理性自我约束未来的冲动自我。例子：Ulysses绑桅杆、提前删掉手机游戏、stickK.com承诺设备。"},
+  {q:"为什么情境设计（Situation Design）比意志力更有效？", a:"自我控制好的人不是在诱惑面前更努力抵抗，而是更少接触诱惑。改变环境使好行为更容易、坏行为更难（把水果放显眼处、不把零食带回家）。习惯化后行为自动触发，不消耗意志力。"},
+  {q:"什么是欺骗者检测（Cheater Detection）？在进化上有何意义？", a:"人类进化出对违反社会契约者高度敏感的认知机制。Cosmides & Tooby：人们在'找到违反者'版本的逻辑题上表现远优于纯逻辑版本。说明社会交换监测是进化适应的专用模块。"},
+  {q:"什么是 WEIRD 样本问题？为什么重要？", a:"WEIRD = Western（西方）、Educated（受教育）、Industrialized（工业化）、Rich（富裕）、Democratic（民主）。大多数心理学研究用WEIRD样本，但结论被过度推广。问题：很多'普遍'发现实际上是文化特异的。"},
+  {q:"期中一最重要的三个实验/研究是什么？", a:"① Hamilton's Rule / 亲属选择（1964）——rb>c的进化利他；② Open Science Collaboration（2015）——39%复制率，复制危机证据；③ Gollwitzer执行意图（1999）——if-then计划使目标达成率提升2-3倍。"},
+];
+
+function initM1FC() {
+  const grid = document.getElementById('m1fc-grid');
+  if (!grid) return;
+  grid.innerHTML = m1Cards.map((c, i) => `
+    <div class="fc-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front">
+          <div style="font-size:10px;font-weight:800;letter-spacing:1px;color:var(--dim);margin-bottom:8px;">卡片 ${i+1} / ${m1Cards.length}</div>
+          <div class="fc-q">${c.q}</div>
+          <div class="fc-hint">点击翻转 👆</div>
+        </div>
+        <div class="fc-back"><div class="fc-a">${c.a}</div></div>
+      </div>
+    </div>`).join('');
+}
+initM1FC();
+
+// =============================================
+// MIDTERM 1 QUIZ DATA (25 questions)
+// =============================================
+const m1QuizData = [
+  {q:"Hamilton's Rule rb > c 中，若一个行为的 r=0.5，b=6，c=4，这个利他行为会进化吗？",
+   opts:["会，因为 0.5×6=3 > 4","不会，因为 0.5×6=3 < 4","会，因为 b > c","无法判断，信息不足"],
+   ans:1, exp:"rb = 0.5 × 6 = 3，c = 4，rb(3) < c(4)，不满足 Hamilton's Rule，所以这个利他行为不会进化。"},
+  {q:"以下哪个是相关研究（而非实验研究）？",
+   opts:["随机将参与者分配到高压力或低压力条件，测量帮助行为","比较经常运动的人和不运动的人的抑郁水平","操控室温，观察对攻击行为的影响","给一组参与者服药，另一组服安慰剂"],
+   ans:1, exp:"选项B是相关研究——只测量了两个已存在的变量（运动习惯和抑郁水平）之间的关联，没有随机分配和操控。不能从中得出'运动导致减少抑郁'的因果结论。"},
+  {q:"Open Science Collaboration（2015）的主要发现是什么？",
+   opts:["100%的心理学研究都能被成功复制","约39%的社会心理学研究能被成功复制","复制危机不存在，只是媒体夸大","只有认知心理学研究无法复制"],
+   ans:1, exp:"OSC重复了100项社会/认知心理学研究，只有约39%获得显著复制结果。这是复制危机最重要的实证证据。"},
+  {q:"关于遗传率（Heritability），以下哪种说法是正确的？",
+   opts:["遗传率高意味着基因完全决定该特征","遗传率描述的是群体中变异有多少来自基因差异","遗传率是固定不变的常数","遗传率告诉我们某个个体的特征是由基因还是环境决定的"],
+   ans:1, exp:"遗传率是针对特定群体、特定时间的统计数字，描述该群体中个体差异有多少比例可归因于基因差异。它不预测个体，不是固定的，也不意味着无法改变。"},
+  {q:"什么是 P-hacking？",
+   opts:["修改原始数据以获得显著结果","反复尝试不同分析方式直到 p＜0.05","只发表统计显著的结果","向期刊隐瞒负面发现"],
+   ans:1, exp:"P-hacking（数据捏合）是指研究者持续尝试不同的统计检验、样本筛选方式或变量组合，直到获得 p＜0.05 的显著结果。这是科学不端行为，大幅增加虚假阳性率。"},
+  {q:"聚光灯效应（Spotlight Effect）最好的例子是？",
+   opts:["认为自己演讲时的紧张'所有人都能感受到'","认为自己的错误比别人注意到的更显眼","担心自己穿着不合适被所有人嘲笑","高估自己行为对他人情绪的影响"],
+   ans:2, exp:"聚光灯效应是高估他人对自己外在表现的关注程度（如穿了一件奇怪的衣服）。选项C最符合经典Gilovich实验的场景——高估他人注意到自己外观的比例。选项A更接近透明度幻觉（内心状态被察觉）。"},
+  {q:"透明度幻觉（Illusion of Transparency）与聚光灯效应最主要的区别是？",
+   opts:["透明度幻觉只发生在说谎时","透明度幻觉关注内心状态被察觉，聚光灯效应关注外在表现被注意","聚光灯效应是高估，透明度幻觉是低估","两者没有区别，是同一现象"],
+   ans:1, exp:"聚光灯效应：高估他人注意到自己外在行为/外貌的程度；透明度幻觉：高估他人感知到自己内心状态（紧张、喜欢某人、撒谎）的程度。两者都是高估，但对象不同。"},
+  {q:"Fujita（2020）的研究表明，面对诱惑时，哪种想法最能增强自我控制？",
+   opts:["'我现在需要做的具体步骤是什么？'","'我为什么想要实现这个目标？'","'其他人在同样情况下会怎么做？'","'这个诱惑有多大危害？'"],
+   ans:1, exp:"高层解释（Why）：关注行为的意义和目的，将行为与抽象价值连接，比聚焦'怎么做'（低层解释）更能增强自我控制。'我为什么要这样做'比'我怎么做'更有效。"},
+  {q:"以下关于 Ego Depletion 的说法，哪个是正确的？",
+   opts:["已被大量研究稳定复制，是心理学公认定论","Baumeister最初提出，但大规模复制研究未能重现该效应","葡萄糖补充被证明能有效恢复意志力","McCullough教授认为Ego Depletion是完全正确的理论"],
+   ans:1, exp:"Hagger等（2016）进行的大规模多实验室复制研究未能复制Ego Depletion效应。葡萄糖模型也被否定。McCullough在课上明确要求批判性看待这一理论，将其作为复制危机的典型案例。"},
+  {q:"执行意图（Implementation Intentions）的格式是？",
+   opts:["'我决心要实现目标X'","'如果情境X出现，我就做行为Y'","'当我完成行为Y时，我会奖励自己'","'我每天都要提醒自己目标X的重要性'"],
+   ans:1, exp:"执行意图的标准格式是if-then计划：'如果[情境线索]，那么我就[行为]'。这将目标意图转化为具体的自动化触发机制，研究显示比单纯的目标意图（'我要做X'）效果强2-3倍。"},
+  {q:"互惠利他（Reciprocal Altruism）成立的条件不包括哪个？",
+   opts:["双方基因高度相似","双方将来很可能再次相遇","能够识别欺骗者","能记住过去的互动历史"],
+   ans:0, exp:"互惠利他的条件是：再次相遇概率高、能识别欺骗者、能记住历史。它发生在非亲属之间（基因不必相似）。基因高度相似是亲属选择的条件，不是互惠利他的条件。"},
+  {q:"内省错觉（Introspection Illusion）的核心含义是？",
+   opts:["人们从不对自己的行为进行内省","内省能准确揭示行为的真实原因","人们相信内省准确，但实际上内省的解释常是事后建构","内省只在西方文化中存在"],
+   ans:2, exp:"Wilson & Nisbett（1977）：人们对自己选择原因的解释往往与实际决策过程无关，是事后建构出的合理化故事。我们无法直接访问大量驱动行为的无意识过程。"},
+  {q:"基因-环境相关（rGE）中的'主动型'（Active rGE）指的是？",
+   opts:["父母同时提供基因和成长环境","个体的基因特征引发他人的不同对待","个体主动选择与自身基因倾向相匹配的环境","基因决定个体对特定环境的敏感度"],
+   ans:2, exp:"主动型rGE：随着年龄增长，个体越来越多地主动选择和塑造自己的环境，这些选择受基因倾向影响（如外向的人主动寻找社交场合）。被动型是父母同时给基因和环境；诱发型是基因特征引发他人不同对待。"},
+  {q:"自利偏差（Self-Serving Bias）在哪种文化中通常表现更弱？",
+   opts:["美国文化","北欧文化","东亚文化（如中国、日本）","拉丁美洲文化"],
+   ans:2, exp:"东亚文化（中国、日本、韩国）中自利偏差通常较弱，更多表现出自我批评（self-criticism）。原因：东亚文化更强调集体和谐与社会关系，而非个人自尊的维护。"},
+  {q:"自我妨碍（Self-handicapping）的主要心理功能是？",
+   opts:["提升真实表现","保护自我形象，维护自尊","获得他人的同情","减少与他人的竞争"],
+   ans:1, exp:"自我妨碍通过提前设置失败借口来保护自我形象：失败时有借口（'我没准备好'），成功时自我增强（'有障碍还成功了！'）。代价是真实表现可能因此下降。"},
+  {q:"随机分配（Random Assignment）能解决的主要问题是？",
+   opts:["让所有参与者具有相同特征","消除或平衡各组间的系统性差异（混淆变量）","确保实验结果能推广到其他人群","防止参与者猜出实验目的"],
+   ans:1, exp:"随机分配使各实验组在已知和未知的个体差异上平均分布，从而消除混淆变量，让研究者能将结果差异归因于自变量（IV）的操控，而非参与者特征的差异。"},
+  {q:"被试内设计（Within-subjects design）最主要的缺点是？",
+   opts:["需要更多参与者","个体差异成为误差，统计效力低","存在顺序效应（carryover effects）","不能控制个体差异"],
+   ans:2, exp:"被试内设计的最大缺点是顺序效应：参与者参与第一个条件后，可能因练习、疲劳或策略改变影响后续条件的表现。解决方法是对顺序进行counterbalancing（平衡）。"},
+  {q:"以下哪个能最好地说明'外部效度低'的问题？",
+   opts:["实验中的随机分配有误","实验结果只适用于WEIRD样本，不能推广到其他文化","实验者知道哪个参与者在哪个条件中","测量工具的信度较低"],
+   ans:1, exp:"外部效度低意味着结果难以推广。WEIRD样本问题（Western、Educated、Industrialized、Rich、Democratic）是外部效度的典型威胁——大多数研究用大学生样本，结论被过度推广到所有人类。"},
+  {q:"预承诺（Precommitment）策略与执行意图（Implementation Intentions）最主要的区别是？",
+   opts:["预承诺只在短期有效","预承诺提前改变外部环境/选项，执行意图是提前计划心理反应","执行意图需要权威的外部监督","两者本质上是相同的策略"],
+   ans:1, exp:"预承诺：提前采取实际行动改变环境或选项（绑桅杆、不买零食），物理上限制未来选择；执行意图：提前在心理上制定if-then计划，不改变外部环境，而是改变自己的自动化反应。"},
+  {q:"McCullough 教授强调，自我控制好的人与自我控制差的人最大的区别是什么？",
+   opts:["意志力更强，在诱惑面前坚持更久","在诱惑面前更理性地分析得失","更少接触诱惑情境，而非更努力抵制诱惑","使用更多道德标准约束自己"],
+   ans:2, exp:"研究发现：高自我控制的人并不是在诱惑出现时更努力抵抗，而是通过情境设计、习惯和预承诺，让自己更少遇到需要抵制诱惑的情况。这与'意志力肌肉'模型的预测相反。"},
+  {q:"以下哪项是'基因-环境交互（GxE）'的最佳例子？",
+   opts:["外向的人倾向于选择社交型工作（基因→环境选择）","父母的基因和家庭环境同时影响孩子","携带特定基因变体的人在高压力下更容易抑郁，低压力下则无差异","音乐才能家庭的孩子接触更多音乐教育"],
+   ans:2, exp:"GxE是基因型×环境的交互：同一基因在不同环境下产生不同效果（敏感度不同）。Caspi等（2003）：5-HTT短等位基因携带者在有生活压力时抑郁风险显著增加，无压力时则无差异。选项A是主动型rGE，选项C是被动型rGE。"},
+  {q:"Gilovich（2000）的'尴尬T恤实验'中，穿着者以为约多少比例的人注意到了他们的T恤？实际比例是？",
+   opts:["以为100%，实际50%","以为约50%，实际约23%","以为约30%，实际约10%","以为约70%，实际约50%"],
+   ans:1, exp:"穿着者估计约50%的人注意到了他们的尴尬T恤，但实际只有约23%注意到。这个差距证明了聚光灯效应：我们系统性地高估他人对自己的关注程度。"},
+  {q:"在进化心理学的研究方法中，以下哪项不是有效的证据？",
+   opts:["跨文化研究发现某行为在不同文化中普遍存在","行为遗传学研究显示某行为有显著遗传率","事后为某行为编造一个'适应性故事'","与其他物种的比较行为学研究"],
+   ans:2, exp:"Just-So Stories的问题：仅仅能够为某行为编造一个听起来合理的进化故事，不构成有效的科学证据（因为无法证伪）。有效证据需要可检验的预测、跨文化一致性、比较研究等。"},
+  {q:"知情同意（Informed Consent）和事后揭密（Debriefing）是APA伦理准则要求的。使用欺骗的研究必须满足什么条件？",
+   opts:["欺骗必须绝对保密，不能向参与者揭露","欺骗须有科学必要性且无其他替代方案，实验后必须进行揭密","只要IRB批准，欺骗没有任何限制","欺骗研究不能使用随机分配"],
+   ans:1, exp:"APA伦理要求：① 欺骗须有充分科学理由且无其他方法可替代；② 欺骗不能造成严重伤害；③ 实验结束后必须进行Debriefing——告知真实目的、消除误解、处理任何心理影响。"},
+  {q:"为什么 Gollwitzer 的执行意图研究如此重要？",
+   opts:["它证明了意志力是有限资源","它表明仅仅设定目标就足以实现目标","If-then计划使目标达成率显著提升（约2-3倍），且机制明确可复制","它推翻了所有关于自我控制的进化解释"],
+   ans:2, exp:"执行意图研究的重要性：① 效果量大且稳定（meta分析显示2-3倍提升）；② 机制明确（自动化触发减少决策负担）；③ 可复制性强（这正是好科学应有的特征，与Ego Depletion的不可复制形成对比）。"},
+];
+
+function initM1Quiz() {
+  const container = document.getElementById('m1quiz-container');
+  if (!container) return;
+  container.innerHTML = '';
+  let score = 0, answered = 0;
+  m1QuizData.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-q';
+    div.innerHTML = `<div class="q-num">期中一 · 题目 ${i+1} / ${m1QuizData.length}</div>
+      <div class="q-text">${item.q}</div>
+      <div class="options">${item.opts.map((o,j)=>`<button class="opt" data-i="${i}" data-j="${j}">${String.fromCharCode(65+j)}. ${o}</button>`).join('')}</div>
+      <div class="explanation" id="m1exp-${i}">💡 ${item.exp}</div>`;
+    container.appendChild(div);
+  });
+  container.querySelectorAll('.opt').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const qi = +this.dataset.i, oi = +this.dataset.j;
+      const parent = this.closest('.quiz-q');
+      if (parent.dataset.answered) return;
+      parent.dataset.answered = '1';
+      parent.querySelectorAll('.opt').forEach((b,k) => {
+        if (k === m1QuizData[qi].ans) b.classList.add('correct');
+        else if (k === oi) b.classList.add('wrong');
+        b.disabled = true;
+      });
+      document.getElementById('m1exp-' + qi).classList.add('show');
+      if (oi === m1QuizData[qi].ans) score++;
+      answered++;
+      if (answered === m1QuizData.length) {
+        const scoreEl = document.getElementById('m1quiz-score');
+        scoreEl.style.display = 'block';
+        const pct = Math.round(score / m1QuizData.length * 100);
+        const grade = pct >= 90 ? 'A 优秀！准备充分 🎉' : pct >= 75 ? 'B 良好，再复习薄弱点 💪' : pct >= 60 ? 'C 需要加强复习 📚' : '需要系统复习全部内容 🔄';
+        scoreEl.innerHTML = `🎯 期中一测验完成！<br>得分：${score} / ${m1QuizData.length}（${pct}%）<br><span style="font-size:14px;color:var(--muted)">${grade}</span>`;
+      }
+    });
+  });
+}
+initM1Quiz();
 </script>
 </body>
 </html>
