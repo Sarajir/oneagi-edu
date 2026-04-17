@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>PSYC 104 · Social Psychology</title>
+<style>
+:root{--bg:#0f1117;--surface:#1a1d27;--surface2:#222536;--border:#2e3250;--text:#e8eaf6;--muted:#8b8fa8;--dim:#555870;--radius:14px;--ac:#6c63ff;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;}
+/* Sidebar */
+.sidebar{width:260px;min-height:100vh;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;left:0;top:0;bottom:0;overflow-y:auto;z-index:100;}
+.sidebar-header{padding:24px 20px 16px;border-bottom:1px solid var(--border);}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);text-decoration:none;margin-bottom:12px;transition:color .2s;}
+.back-link:hover{color:var(--ac);}
+.course-badge{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--ac);margin-bottom:6px;}
+.sidebar-title{font-size:15px;font-weight:800;line-height:1.3;}
+.sidebar-sub{font-size:11px;color:var(--dim);margin-top:4px;}
+.progress-bar{background:var(--border);border-radius:999px;height:4px;margin:14px 0 4px;}
+.progress-fill{height:4px;border-radius:999px;background:var(--ac);transition:width .4s;}
+.progress-text{font-size:10px;color:var(--dim);}
+.nav-section{padding:12px 12px 4px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 16px;margin:1px 8px;border-radius:10px;cursor:pointer;font-size:13px;color:var(--muted);transition:all .18s;border:none;background:none;width:calc(100% - 16px);text-align:left;}
+.nav-item:hover{background:var(--surface2);color:var(--text);}
+.nav-item.active{background:rgba(108,99,255,.18);color:var(--ac);font-weight:700;}
+.nav-item .icon{font-size:16px;width:20px;text-align:center;}
+/* Main */
+.main{margin-left:260px;flex:1;padding:40px 48px;max-width:960px;}
+.page{display:none;}
+.page.active{display:block;}
+/* Page header */
+.page-header{margin-bottom:36px;}
+.page-header h1{font-size:32px;font-weight:900;margin-bottom:8px;}
+.page-header p{color:var(--muted);font-size:15px;line-height:1.7;}
+.tag-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+.tag{font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px;background:rgba(108,99,255,.15);color:var(--ac);border:1px solid rgba(108,99,255,.3);}
+/* Cards */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:16px;}
+.card h3{font-size:16px;font-weight:800;margin-bottom:10px;color:var(--ac);}
+.card p,.card li{font-size:14px;color:var(--muted);line-height:1.8;}
+.card ul,.card ol{padding-left:20px;}
+/* Section title */
+.section-title{font-size:13px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin:28px 0 12px;}
+/* Grade table */
+.grade-table{width:100%;border-collapse:collapse;}
+.grade-table th,.grade-table td{padding:10px 14px;text-align:left;font-size:13px;border-bottom:1px solid var(--border);}
+.grade-table th{color:var(--dim);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:1px;}
+.grade-table tr:last-child td{border-bottom:none;}
+.grade-pct{font-weight:800;color:var(--ac);}
+/* Schedule */
+.week-block{border-left:3px solid var(--border);padding:0 0 24px 20px;margin-bottom:0;position:relative;}
+.week-block.exam{border-left-color:var(--ac);}
+.week-dot{position:absolute;left:-8px;top:4px;width:13px;height:13px;border-radius:50%;background:var(--border);border:2px solid var(--bg);}
+.week-block.exam .week-dot{background:var(--ac);}
+.week-label{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin-bottom:4px;}
+.week-topic{font-size:15px;font-weight:700;margin-bottom:4px;}
+.week-detail{font-size:12px;color:var(--muted);}
+.exam-badge{display:inline-block;font-size:10px;font-weight:800;padding:2px 10px;border-radius:999px;background:rgba(108,99,255,.2);color:var(--ac);border:1px solid rgba(108,99,255,.4);margin-left:8px;vertical-align:middle;}
+/* Topic content */
+.content-block{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:14px;}
+.content-block h4{font-size:14px;font-weight:800;color:var(--text);margin-bottom:8px;}
+.content-block p,.content-block li{font-size:13px;color:var(--muted);line-height:1.8;}
+.content-block ul{padding-left:18px;}
+.highlight-box{background:rgba(108,99,255,.08);border:1px solid rgba(108,99,255,.25);border-radius:10px;padding:14px 18px;margin:12px 0;}
+.highlight-box p{font-size:13px;color:var(--text);line-height:1.7;}
+.study-box{background:rgba(0,212,170,.06);border:1px solid rgba(0,212,170,.2);border-radius:10px;padding:14px 18px;margin:12px 0;}
+.study-box p{font-size:13px;color:#00d4aa;line-height:1.7;}
+/* Flashcards */
+.flashcard-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.fc-wrap{perspective:1000px;height:170px;cursor:pointer;}
+.fc-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .5s;}
+.fc-wrap.flipped .fc-inner{transform:rotateY(180deg);}
+.fc-front,.fc-back{position:absolute;inset:0;border-radius:var(--radius);border:1px solid var(--border);padding:20px;display:flex;flex-direction:column;justify-content:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;}
+.fc-front{background:var(--surface);border-top:3px solid var(--ac);}
+.fc-back{background:var(--surface2);transform:rotateY(180deg);}
+.fc-front .fc-q{font-size:13px;font-weight:700;color:var(--text);line-height:1.5;}
+.fc-front .fc-hint{font-size:10px;color:var(--dim);margin-top:8px;}
+.fc-back .fc-a{font-size:13px;color:#a5d8ff;line-height:1.6;}
+/* Quiz */
+.quiz-q{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:16px;}
+.quiz-q .q-num{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--dim);text-transform:uppercase;margin-bottom:8px;}
+.quiz-q .q-text{font-size:15px;font-weight:700;margin-bottom:16px;line-height:1.5;}
+.options{display:flex;flex-direction:column;gap:8px;}
+.opt{padding:10px 16px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);cursor:pointer;font-size:13px;color:var(--muted);transition:all .18s;text-align:left;}
+.opt:hover{border-color:var(--ac);color:var(--text);}
+.opt.correct{border-color:#00d4aa;background:rgba(0,212,170,.1);color:#00d4aa;font-weight:700;}
+.opt.wrong{border-color:#ff6b6b;background:rgba(255,107,107,.1);color:#ff6b6b;}
+.explanation{margin-top:12px;padding:12px 16px;background:rgba(108,99,255,.08);border-radius:10px;font-size:13px;color:var(--muted);line-height:1.7;display:none;}
+.explanation.show{display:block;}
+.quiz-score{text-align:center;padding:24px;font-size:18px;font-weight:800;color:var(--ac);display:none;}
+/* Glossary */
+.gloss-search{width:100%;padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:14px;margin-bottom:20px;outline:none;transition:border .2s;}
+.gloss-search:focus{border-color:var(--ac);}
+.gloss-item{padding:14px 0;border-bottom:1px solid var(--border);display:flex;gap:16px;}
+.gloss-item:last-child{border-bottom:none;}
+.gloss-term{font-size:13px;font-weight:800;color:var(--ac);min-width:200px;}
+.gloss-def{font-size:13px;color:var(--muted);line-height:1.7;}
+/* Responsive */
+@media(max-width:768px){.sidebar{width:100%;min-height:auto;position:relative;}.main{margin-left:0;padding:20px;}}
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+  <div class="sidebar-header">
+    <a class="back-link" href="index.html">← 返回课程中心</a>
+    <div class="course-badge">PSYC 104</div>
+    <div class="sidebar-title">Social Psychology</div>
+    <div class="sidebar-sub">Prof. McCullough · MWF 9–9:50am</div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    <div class="progress-text" id="progressText">已访问 0 / 15 页</div>
+  </div>
+
+  <div class="nav-section">总览</div>
+  <button class="nav-item active" onclick="goPage('home',this)"><span class="icon">🏠</span>课程首页</button>
+  <button class="nav-item" onclick="goPage('schedule',this)"><span class="icon">📅</span>课程日程</button>
+
+  <div class="nav-section">核心主题 (Lec 1–8)</div>
+  <button class="nav-item" onclick="goPage('t1',this)"><span class="icon">🧬</span>L2-3 进化与社会生活</button>
+  <button class="nav-item" onclick="goPage('t2',this)"><span class="icon">🔬</span>L4-5 研究方法 &amp; 复制危机</button>
+  <button class="nav-item" onclick="goPage('tnat',this)"><span class="icon">🌿</span>L6 自然与教养</button>
+  <button class="nav-item" onclick="goPage('t3',this)"><span class="icon">🪞</span>L7 自我认知 &amp; 印象管理</button>
+  <button class="nav-item" onclick="goPage('t4',this)"><span class="icon">💪</span>L8 自我控制</button>
+
+  <div class="nav-section">进阶主题 (Lec 9+)</div>
+  <button class="nav-item" onclick="goPage('t5',this)"><span class="icon">👁️</span>人物感知 &amp; 归因</button>
+  <button class="nav-item" onclick="goPage('t6',this)"><span class="icon">💬</span>态度与说服</button>
+  <button class="nav-item" onclick="goPage('t7',this)"><span class="icon">⚠️</span>刻板印象 &amp; 偏见</button>
+  <button class="nav-item" onclick="goPage('t8',this)"><span class="icon">🐑</span>从众与服从</button>
+  <button class="nav-item" onclick="goPage('t9',this)"><span class="icon">👊</span>攻击行为</button>
+  <button class="nav-item" onclick="goPage('t10',this)"><span class="icon">🤝</span>亲社会行为</button>
+
+  <div class="nav-section">备考工具</div>
+  <button class="nav-item" onclick="goPage('flashcards',this)"><span class="icon">🃏</span>闪卡记忆</button>
+  <button class="nav-item" onclick="goPage('quiz',this)"><span class="icon">✅</span>模拟测验</button>
+  <button class="nav-item" onclick="goPage('glossary',this)"><span class="icon">📖</span>术语表</button>
+</nav>
+
+<main class="main">
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="page-header">
+    <div style="font-size:48px;margin-bottom:12px;">🧠</div>
+    <h1>Social Psychology</h1>
+    <p>PSYC 104 · Prof. McCullough · MWF 9:00–9:50am · Solis 107 · Spring 2026</p>
+    <div class="tag-row">
+      <span class="tag">10 核心主题</span>
+      <span class="tag">20 张闪卡</span>
+      <span class="tag">20 道测验</span>
+      <span class="tag">35 个术语</span>
+    </div>
+  </div>
+
+  <div class="section-title">课程简介</div>
+  <div class="card">
+    <p>本课程探索社会情境如何塑造人类的思维、感受与行为。我们将从进化的视角出发，深入研究自我认知、归因偏见、态度改变、偏见歧视、从众服从、攻击行为以及助人行为等核心议题。</p>
+  </div>
+
+  <div class="section-title">成绩构成</div>
+  <div class="card">
+    <table class="grade-table">
+      <thead><tr><th>考核项目</th><th>比重</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>期中考试 × 3</td><td class="grade-pct">90%</td><td>每次30%；最低分可被期末替代</td></tr>
+        <tr><td>每周多选题</td><td class="grade-pct">10%</td><td>Fridays，10题，考当周内容</td></tr>
+        <tr><td>SONA研究参与</td><td class="grade-pct">+3%</td><td>加分项，参与4小时研究</td></tr>
+        <tr><td>SET课程评估</td><td class="grade-pct">+1%</td><td>加分项，完成课程评估</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-title">考试安排</div>
+  <div class="card">
+    <table class="grade-table">
+      <thead><tr><th>考试</th><th>日期</th><th>涵盖内容</th></tr></thead>
+      <tbody>
+        <tr><td>期中一</td><td class="grade-pct">Week 4</td><td>进化、研究方法、自我认知</td></tr>
+        <tr><td>期中二</td><td class="grade-pct">Week 7</td><td>自我控制、人物感知、态度与说服</td></tr>
+        <tr><td>期中三</td><td class="grade-pct">Week 10</td><td>偏见、从众、攻击、亲社会行为</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-title">重要提示</div>
+  <div class="card">
+    <ul>
+      <li>每周五的多选题（10题）占总成绩10%，不可忽视</li>
+      <li>三次期中考试，最低分可被期末考试替代（自动取最高）</li>
+      <li>SONA加分需完成4学时研究参与（+3%）</li>
+      <li>课程使用 Perusall 和 Piazza 平台</li>
+      <li>不允许AI辅助作答考试题目</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SCHEDULE -->
+<div class="page" id="page-schedule">
+  <div class="page-header">
+    <h1>📅 课程日程</h1>
+    <p>Spring 2026 · PSYC 104 完整教学进度</p>
+  </div>
+
+  <div style="padding-left:8px;">
+    <div class="week-block">
+      <div class="week-dot"></div>
+      <div class="week-label">Week 1 · Mar 31 – Apr 4</div>
+      <div class="week-topic">课程介绍 + 进化与社会生活</div>
+      <div class="week-detail">What is social psychology? Evolutionary foundations of social behavior; natural selection; kin selection; reciprocal altruism</div>
+    </div>
+    <div class="week-block">
+      <div class="week-dot"></div>
+      <div class="week-label">Week 2 · Apr 7 – Apr 11</div>
+      <div class="week-topic">研究方法 &amp; 复制危机</div>
+      <div class="week-detail">Experimental vs. correlational methods; p-hacking; replication crisis; open science; within- vs. between-subjects design</div>
+    </div>
+    <div class="week-block">
+      <div class="week-dot"></div>
+      <div class="week-label">Week 3 · Apr 14 – Apr 18</div>
+      <div class="week-topic">自我认知 &amp; 印象管理</div>
+      <div class="week-detail">Self-concept; introspection limitations; spotlight effect; self-serving bias; impression management; self-presentation strategies</div>
+    </div>
+    <div class="week-block exam">
+      <div class="week-dot"></div>
+      <div class="week-label">Week 4 · Apr 21 – Apr 25</div>
+      <div class="week-topic">自我控制 <span class="exam-badge">期中一</span></div>
+      <div class="week-detail">Fujita (2020) on self-control; ego depletion debate; glucose model; implementation intentions; situational vs. dispositional control</div>
+    </div>
+    <div class="week-block">
+      <div class="week-dot"></div>
+      <div class="week-label">Week 5 · Apr 28 – May 2</div>
+      <div class="week-topic">人物感知 &amp; 归因</div>
+      <div class="week-detail">Thin-slice judgments; halo effect; Fundamental Attribution Error (FAE); actor-observer bias; situational vs. dispositional attribution</div>
+    </div>
+    <div class="week-block">
+      <div class="week-dot"></div>
+      <div class="week-label">Week 6 · May 5 – May 9</div>
+      <div class="week-topic">态度与说服</div>
+      <div class="week-detail">Attitude formation; cognitive dissonance (Festinger); Elaboration Likelihood Model (ELM); central vs. peripheral routes; foot-in-the-door</div>
+    </div>
+    <div class="week-block exam">
+      <div class="week-dot"></div>
+      <div class="week-label">Week 7 · May 12 – May 16</div>
+      <div class="week-topic">刻板印象 &amp; 偏见 <span class="exam-badge">期中二</span></div>
+      <div class="week-detail">Prejudice vs. discrimination vs. stereotypes; implicit bias (IAT); stereotype threat (Steele); contact hypothesis (Allport); in-group/out-group dynamics</div>
+    </div>
+    <div class="week-block">
+      <div class="week-dot"></div>
+      <div class="week-label">Week 8 · May 19 – May 23</div>
+      <div class="week-topic">从众与服从</div>
+      <div class="week-detail">Asch conformity experiments; informational vs. normative influence; Milgram obedience studies; situational factors; minority influence</div>
+    </div>
+    <div class="week-block">
+      <div class="week-dot"></div>
+      <div class="week-label">Week 9 · May 26 – May 30</div>
+      <div class="week-topic">攻击行为</div>
+      <div class="week-detail">Definitions of aggression; frustration-aggression hypothesis; social learning theory; Fazel et al. (2024) on violence prediction; media effects</div>
+    </div>
+    <div class="week-block exam">
+      <div class="week-dot"></div>
+      <div class="week-label">Week 10 · Jun 2 – Jun 6</div>
+      <div class="week-topic">亲社会行为 <span class="exam-badge">期中三</span></div>
+      <div class="week-detail">Bystander effect; Darley &amp; Latané (1968); diffusion of responsibility; empathy-altruism hypothesis; kin selection and reciprocity</div>
+    </div>
+  </div>
+</div>
+
+<!-- TOPIC 1 -->
+<div class="page" id="page-t1">
+  <div class="page-header">
+    <h1>🧬 进化与社会生活</h1>
+    <p>Week 1 · 社会心理学的进化基础</p>
+  </div>
+  <div class="content-block">
+    <h4>什么是社会心理学？</h4>
+    <p>社会心理学研究个体的思想、感受和行为如何受到他人真实或想象的存在的影响。关键词：<strong>社会情境</strong>的力量往往比我们预期的更强大。</p>
+  </div>
+  <div class="content-block">
+    <h4>进化视角的核心原则</h4>
+    <ul>
+      <li><strong>自然选择（Natural Selection）</strong>：有助于生存繁殖的特征被保留下来</li>
+      <li><strong>亲属选择（Kin Selection）</strong>：帮助基因相似的亲属，间接传递自己的基因（Hamilton's Rule: rb &gt; c）</li>
+      <li><strong>互惠利他（Reciprocal Altruism）</strong>：帮助他人期待日后获得回报（Trivers）</li>
+      <li><strong>性选择（Sexual Selection）</strong>：择偶偏好影响特征演化</li>
+    </ul>
+  </div>
+  <div class="highlight-box">
+    <p>📌 <strong>考试要点</strong>：Hamilton's Rule — <em>rb &gt; c</em>，r = 亲缘系数，b = 利他行为带来的收益，c = 利他行为的成本。当收益×亲缘关系 > 成本时，利他行为会进化。</p>
+  </div>
+  <div class="content-block">
+    <h4>进化心理学的局限性</h4>
+    <ul>
+      <li>不能从进化上解释的现象就推断"这是为了生存"（<strong>Just-so stories</strong>）</li>
+      <li>文化和学习也极大影响人类行为</li>
+      <li>进化解释不代表"天生如此，无法改变"</li>
+    </ul>
+  </div>
+  <div class="study-box">
+    <p>💡 记忆技巧：亲属选择 = "为家人牺牲"；互惠利他 = "今天你帮我，明天我帮你"。两者都是利他行为，但动机不同。</p>
+  </div>
+</div>
+
+<!-- TOPIC 2 -->
+<div class="page" id="page-t2">
+  <div class="page-header">
+    <h1>🔬 研究方法 &amp; 复制危机</h1>
+    <p>Week 2 · 社会心理学如何做研究，以及为何要担心其可信度</p>
+  </div>
+  <div class="content-block">
+    <h4>核心研究设计</h4>
+    <ul>
+      <li><strong>实验法（Experimental）</strong>：随机分组，操控自变量，确立因果关系</li>
+      <li><strong>相关法（Correlational）</strong>：测量变量间的关联，无法确立因果</li>
+      <li><strong>被试内设计（Within-subjects）</strong>：同一被试参与所有条件，控制个体差异</li>
+      <li><strong>被试间设计（Between-subjects）</strong>：不同被试参与不同条件，避免顺序效应</li>
+    </ul>
+  </div>
+  <div class="content-block">
+    <h4>复制危机（Replication Crisis）</h4>
+    <ul>
+      <li>2015年Open Science Collaboration：仅39%的社会心理学研究能被成功复制</li>
+      <li><strong>p-hacking</strong>：不断分析数据直到p&lt;0.05，属于学术不端</li>
+      <li><strong>发表偏见（Publication Bias）</strong>：阳性结果更易发表，导致文献失真</li>
+      <li><strong>样本量太小</strong>：统计效力不足，偶然性结果误被当作真实发现</li>
+    </ul>
+  </div>
+  <div class="highlight-box">
+    <p>📌 <strong>考试要点</strong>：能区分相关vs.因果。"X与Y相关"≠"X导致Y"。可能存在<strong>第三变量</strong>（confound）。</p>
+  </div>
+  <div class="content-block">
+    <h4>开放科学运动（Open Science）</h4>
+    <ul>
+      <li><strong>预注册（Pre-registration）</strong>：在收集数据前公开研究假设和分析方案</li>
+      <li><strong>开放数据</strong>：共享原始数据供他人验证</li>
+      <li><strong>大样本多实验室复制</strong>：提高可信度</li>
+    </ul>
+  </div>
+</div>
+
+<!-- TOPIC 3 -->
+<div class="page" id="page-t3">
+  <div class="page-header">
+    <h1>🪞 自我认知 &amp; 印象管理</h1>
+    <p>Week 3 · 我们如何认识自己，又如何呈现自己</p>
+  </div>
+  <div class="content-block">
+    <h4>自我概念（Self-Concept）</h4>
+    <ul>
+      <li>我们对自己的信念总集合（traits, roles, memories）</li>
+      <li><strong>自我图式（Self-schema）</strong>：关于自我的认知结构，影响信息处理</li>
+      <li><strong>工作自我概念（Working self-concept）</strong>：当下情境激活的自我信念子集</li>
+    </ul>
+  </div>
+  <div class="content-block">
+    <h4>自我认知的局限</h4>
+    <ul>
+      <li><strong>内省的幻觉</strong>：我们以为能准确了解自己的想法，但研究表明内省常常不准确</li>
+      <li><strong>聚光灯效应（Spotlight Effect）</strong>：高估他人对自己的关注程度</li>
+      <li><strong>透明度幻觉（Illusion of Transparency）</strong>：高估他人感知到自己内心状态的程度</li>
+      <li><strong>自利偏差（Self-Serving Bias）</strong>：成功归因自己，失败归因外部</li>
+    </ul>
+  </div>
+  <div class="highlight-box">
+    <p>📌 <strong>经典研究</strong>：Gilovich等人的"臭T恤实验"——人们以为穿着尴尬衣服会被大家注意，但实验显示他人注意到的比例远低于预期。这证明了Spotlight Effect。</p>
+  </div>
+  <div class="content-block">
+    <h4>印象管理（Impression Management）</h4>
+    <ul>
+      <li>我们主动控制他人对我们的印象（Goffman的"dramaturgical model"）</li>
+      <li><strong>自我展示（Self-presentation）</strong>：有时真实，有时策略性</li>
+      <li><strong>阿谀奉承（Ingratiation）</strong>、<strong>自我推销（Self-promotion）</strong>、<strong>恐吓（Intimidation）</strong>等策略</li>
+      <li><strong>自我妨碍（Self-handicapping）</strong>：事先设置失败借口以保护自尊</li>
+    </ul>
+  </div>
+</div>
+
+<!-- TOPIC 4 -->
+<div class="page" id="page-t4">
+  <div class="page-header">
+    <h1>💪 自我控制</h1>
+    <p>Week 4 · Fujita (2020) 及自我控制的心理机制</p>
+  </div>
+  <div class="content-block">
+    <h4>什么是自我控制？</h4>
+    <p>自我控制（Self-control）是指个体克服即时冲动、欲望或情绪，以实现长期目标的能力。核心：<strong>高层目标 vs. 低层诱惑</strong>之间的冲突。</p>
+  </div>
+  <div class="content-block">
+    <h4>Fujita (2020) 的核心观点</h4>
+    <ul>
+      <li>自我控制不仅仅是"意志力"，而是一种需要考虑情境和策略的复杂过程</li>
+      <li><strong>目标层级理论（Goal Hierarchy）</strong>：高层（why）vs. 低层（how）解释框架</li>
+      <li>高层解释（why）增强自我控制：将行为与抽象意义连接（"我锻炼因为我想保持健康"）</li>
+      <li>低层解释（how）关注具体实施，更易被即时诱惑打断</li>
+    </ul>
+  </div>
+  <div class="highlight-box">
+    <p>📌 <strong>考试要点</strong>：Ego Depletion——Baumeister提出"意志力是有限资源"，但复制率极低（多项大规模研究未能复制）。McCullough课上强调要对此持批判态度。</p>
+  </div>
+  <div class="content-block">
+    <h4>自我控制策略</h4>
+    <ul>
+      <li><strong>执行意图（Implementation Intentions）</strong>："如果X发生，我就做Y"——if-then计划显著提升自我控制成功率</li>
+      <li><strong>情境设计</strong>：改变环境以减少诱惑（移开零食，关掉手机）</li>
+      <li><strong>习惯化</strong>：将行为变成自动化，绕过意志力消耗</li>
+      <li><strong>预承诺（Precommitment）</strong>：提前限制自己的选择（如Ulysses绑桅杆）</li>
+    </ul>
+  </div>
+  <div class="study-box">
+    <p>💡 记忆技巧：Implementation Intentions = "if-then计划"。研究显示加入if-then计划，目标达成率提升2-3倍。期中考试可能考这个！</p>
+  </div>
+</div>
+
+<!-- NATURE & NURTURE -->
+<div class="page" id="page-tnat">
+  <div class="page-header">
+    <h1>🌿 自然与教养（Nature &amp; Nurture）</h1>
+    <p>Lecture 6 · 基因与环境如何共同塑造人类社会行为</p>
+  </div>
+  <div class="content-block">
+    <h4>核心问题</h4>
+    <p>人类行为到底是天生的（nature / genes）还是后天习得的（nurture / environment）？现代科学的答案：<strong>两者都重要，且相互作用</strong>。</p>
+  </div>
+  <div class="content-block">
+    <h4>行为遗传学（Behavioral Genetics）</h4>
+    <ul>
+      <li><strong>遗传率（Heritability）</strong>：某一特征在特定人群中的变异有多少可归因于基因差异（0–100%）</li>
+      <li>遗传率≠"基因决定论"——遗传率描述的是<em>群体中的变异来源</em>，不是个体发展</li>
+      <li><strong>同卵双胞胎研究（MZ twins）</strong>：共享100%基因；<strong>异卵双胞胎（DZ）</strong>：共享约50%</li>
+      <li>分离饲养的双胞胎研究：证明基因对人格、智力、态度有显著影响</li>
+    </ul>
+  </div>
+  <div class="highlight-box">
+    <p>📌 <strong>考试要点</strong>：遗传率的三大误解：① 遗传率高 ≠ 无法改变；② 遗传率是针对群体的统计数字，不预测个体；③ 遗传率会随环境变化（如教育机会平等后，遗传率上升）</p>
+  </div>
+  <div class="content-block">
+    <h4>基因-环境交互（Gene × Environment Interaction）</h4>
+    <ul>
+      <li><strong>基因-环境相关（Gene-Environment Correlation）</strong>：基因影响我们选择的环境（活跃型 rGE）</li>
+      <li><strong>诱发型 rGE</strong>：基因特征引发他人对我们的不同对待</li>
+      <li><strong>被动型 rGE</strong>：父母同时提供基因和环境，难以分离</li>
+      <li><strong>敏感期（Sensitive Periods）</strong>：某些发展窗口期，环境影响格外关键</li>
+    </ul>
+  </div>
+  <div class="content-block">
+    <h4>表观遗传学（Epigenetics）</h4>
+    <ul>
+      <li>环境因素可以"开启"或"关闭"基因表达，而不改变DNA序列</li>
+      <li>早期童年逆境（压力、忽视）→ 影响皮质醇系统的基因表达</li>
+      <li>表观遗传变化有时可跨代传递（祖先经历影响后代）</li>
+    </ul>
+  </div>
+  <div class="content-block">
+    <h4>进化心理学 vs. 社会建构论</h4>
+    <ul>
+      <li><strong>进化心理学</strong>：许多社会行为模式（如嫉妒、地位竞争、择偶偏好）有进化适应性基础</li>
+      <li><strong>社会建构论</strong>：行为和心理特征主要由文化、历史和社会规范塑造</li>
+      <li>现代整合观：进化提供<em>可能性空间</em>，文化决定<em>具体表现</em></li>
+    </ul>
+  </div>
+  <div class="study-box">
+    <p>💡 记忆口诀：Nature（基因）提供乐器，Nurture（环境）决定弹什么曲——两者缺一不可。遗传率高的特征（如智力、人格大五）仍然受环境影响！</p>
+  </div>
+</div>
+
+<!-- TOPIC 5 -->
+<div class="page" id="page-t5">
+  <div class="page-header">
+    <h1>👁️ 人物感知 &amp; 归因</h1>
+    <p>Week 5 · 我们如何判断他人，以及为什么常常判断错误</p>
+  </div>
+  <div class="content-block">
+    <h4>人物感知（Person Perception）</h4>
+    <ul>
+      <li><strong>薄片判断（Thin-slice judgments）</strong>：仅凭极少信息（几秒钟）作出的判断，有时惊人准确</li>
+      <li><strong>光环效应（Halo Effect）</strong>：对一个人的一种正面特质泛化到其他特质（"美的即好的"）</li>
+      <li><strong>首因效应（Primacy Effect）</strong>：第一印象权重极大</li>
+      <li><strong>外貌吸引力偏见</strong>：外表吸引力影响对能力、智力、道德的判断</li>
+    </ul>
+  </div>
+  <div class="content-block">
+    <h4>归因理论（Attribution Theory）</h4>
+    <ul>
+      <li><strong>内部归因（Dispositional）</strong>：将行为归因于个人特质、性格</li>
+      <li><strong>外部归因（Situational）</strong>：将行为归因于情境、外部因素</li>
+      <li><strong>基本归因错误（FAE）</strong>：倾向于低估情境力量，高估个人特质的影响</li>
+      <li><strong>行动者-观察者偏差（Actor-Observer Bias）</strong>：解释自己行为用情境，解释他人行为用特质</li>
+    </ul>
+  </div>
+  <div class="highlight-box">
+    <p>📌 <strong>经典研究</strong>：Jones &amp; Harris (1967) "Castro essay study"——即使被告知对方是被强制要求写赞美卡斯特罗的文章，读者仍然推断作者真的喜欢卡斯特罗。这完美演示了FAE。</p>
+  </div>
+  <div class="content-block">
+    <h4>为什么会有FAE？</h4>
+    <ul>
+      <li>我们"看到"的是人，而非情境——人是感知的焦点</li>
+      <li>认知懒惰：推断特质比分析情境更省力</li>
+      <li>文化差异：东亚文化中FAE较弱（更强调情境与关系）</li>
+    </ul>
+  </div>
+</div>
+
+<!-- TOPIC 6 -->
+<div class="page" id="page-t6">
+  <div class="page-header">
+    <h1>💬 态度与说服</h1>
+    <p>Week 6 · 态度如何形成、改变，以及说服的机制</p>
+  </div>
+  <div class="content-block">
+    <h4>态度（Attitudes）</h4>
+    <ul>
+      <li>态度 = 对对象的评价性反应（认知 + 情感 + 行为意图）</li>
+      <li><strong>内隐态度（Implicit）</strong>：无意识、自动化的评价</li>
+      <li><strong>外显态度（Explicit）</strong>：有意识、可报告的评价</li>
+      <li>两者有时一致，有时分离（如种族偏见）</li>
+    </ul>
+  </div>
+  <div class="content-block">
+    <h4>认知失调（Cognitive Dissonance）</h4>
+    <ul>
+      <li>Festinger (1957)：当行为与态度不一致时产生不适感</li>
+      <li>人们会通过<strong>改变态度</strong>来消除失调，而非改变行为</li>
+      <li><strong>经典研究</strong>：$1 vs. $20 实验——只给$1说谎的人更相信自己的谎言（自我说服）</li>
+      <li><strong>后决策失调</strong>：做决定后贬低未选选项（spread of alternatives）</li>
+    </ul>
+  </div>
+  <div class="highlight-box">
+    <p>📌 <strong>ELM精细可能性模型（Elaboration Likelihood Model）</strong>：Petty &amp; Cacioppo
+    <br>• <strong>中央路径（Central Route）</strong>：高度参与，仔细处理论据，态度改变持久
+    <br>• <strong>外周路径（Peripheral Route）</strong>：低度参与，依赖表面线索（说话者魅力、数量），态度改变短暂</p>
+  </div>
+  <div class="content-block">
+    <h4>常见说服技巧</h4>
+    <ul>
+      <li><strong>登门槛技术（Foot-in-the-door）</strong>：先提小请求，再提大请求</li>
+      <li><strong>门面效应（Door-in-the-face）</strong>：先提大请求被拒，再提小请求</li>
+      <li><strong>稀缺原则</strong>：越稀缺越想要（Cialdini）</li>
+      <li><strong>权威原则</strong>：专家更有说服力</li>
+    </ul>
+  </div>
+</div>
+
+<!-- TOPIC 7 -->
+<div class="page" id="page-t7">
+  <div class="page-header">
+    <h1>⚠️ 刻板印象 &amp; 偏见 &amp; 歧视</h1>
+    <p>Week 7 · 偏见的根源、机制与应对</p>
+  </div>
+  <div class="content-block">
+    <h4>三个核心概念</h4>
+    <ul>
+      <li><strong>刻板印象（Stereotype）</strong>：对某一群体成员特征的概括性信念（认知层面）</li>
+      <li><strong>偏见（Prejudice）</strong>：对某一群体的负面情感态度（情感层面）</li>
+      <li><strong>歧视（Discrimination）</strong>：基于群体成员身份的不平等对待（行为层面）</li>
+    </ul>
+  </div>
+  <div class="content-block">
+    <h4>内隐偏见（Implicit Bias）</h4>
+    <ul>
+      <li><strong>内隐联系测验（IAT）</strong>：测量自动化的、无意识的偏见</li>
+      <li>研究发现大多数人对种族、性别等存在内隐偏见，即使外显态度平等</li>
+      <li>内隐偏见 → 影响日常微行为（microaggressions）和决策（hiring, medical care）</li>
+    </ul>
+  </div>
+  <div class="highlight-box">
+    <p>📌 <strong>刻板印象威胁（Stereotype Threat）</strong>：Steele &amp; Aronson (1995)
+    <br>当个体意识到自己可能会印证关于其群体的负面刻板印象时，表现反而下降。
+    <br>经典研究：提醒非裔美国学生种族身份后，GRE测试成绩下降。</p>
+  </div>
+  <div class="content-block">
+    <h4>接触假说（Contact Hypothesis）</h4>
+    <ul>
+      <li>Allport (1954)：在正确条件下，与外群体成员的接触可减少偏见</li>
+      <li>四个必要条件：平等地位、共同目标、机构支持、合作（而非竞争）</li>
+      <li>现代应用：多元化学校、工作场所多元团队等</li>
+    </ul>
+  </div>
+  <div class="content-block">
+    <h4>内群体-外群体动态</h4>
+    <ul>
+      <li><strong>内群体偏爱（In-group favoritism）</strong>：倾向于对自己群体更积极</li>
+      <li><strong>外群体同质化（Out-group homogeneity）</strong>：认为外群体成员都一样</li>
+      <li><strong>最小群体范式（Minimal Group Paradigm）</strong>：Tajfel研究发现，即使基于随机分组也会产生内群体偏爱</li>
+    </ul>
+  </div>
+</div>
+
+<!-- TOPIC 8 -->
+<div class="page" id="page-t8">
+  <div class="page-header">
+    <h1>🐑 从众与服从</h1>
+    <p>Week 8 · 社会压力如何改变我们的行为</p>
+  </div>
+  <div class="content-block">
+    <h4>从众（Conformity）</h4>
+    <ul>
+      <li>定义：为符合他人期望或群体规范而改变行为或信念</li>
+      <li><strong>信息性影响（Informational influence）</strong>：相信他人的判断比自己更准确（尤其在模糊情境）</li>
+      <li><strong>规范性影响（Normative influence）</strong>：为了被接纳、避免排斥而从众</li>
+    </ul>
+  </div>
+  <div class="highlight-box">
+    <p>📌 <strong>Asch从众实验（1951）</strong>：参与者明知正确答案，但因群体压力而给出错误答案。约37%的试验中参与者从众。关键变量：群体大小、是否有同盟者（ally）的存在显著降低从众率。</p>
+  </div>
+  <div class="content-block">
+    <h4>服从（Obedience）</h4>
+    <ul>
+      <li>定义：遵从权威人物的命令行事</li>
+      <li><strong>Milgram服从实验（1963）</strong>：约65%的参与者在权威命令下，给予了他们认为可能致命的电击</li>
+      <li>影响服从的因素：权威者的近距离/合法性、受害者的距离、机构情境、是否有他人不服从</li>
+    </ul>
+  </div>
+  <div class="content-block">
+    <h4>Milgram实验的启示</h4>
+    <ul>
+      <li>情境力量 > 个人道德：普通人在错误的情境下会做出极端行为</li>
+      <li>"只是服从命令"可解释历史上的集体暴行</li>
+      <li>批判：伦理问题（欺骗参与者）；文化差异；实验设置的生态效度</li>
+    </ul>
+  </div>
+  <div class="study-box">
+    <p>💡 Asch = 从众（横向压力，同伴）；Milgram = 服从（纵向压力，权威）。两者都说明情境力量的巨大作用。</p>
+  </div>
+</div>
+
+<!-- TOPIC 9 -->
+<div class="page" id="page-t9">
+  <div class="page-header">
+    <h1>👊 攻击行为</h1>
+    <p>Week 9 · 攻击的定义、原因与 Fazel et al. (2024)</p>
+  </div>
+  <div class="content-block">
+    <h4>攻击行为的定义</h4>
+    <ul>
+      <li><strong>攻击（Aggression）</strong>：意图伤害他人的任何行为</li>
+      <li><strong>工具性攻击（Instrumental）</strong>：以伤害为手段达到其他目的（如抢劫）</li>
+      <li><strong>敌意性攻击（Hostile）</strong>：以伤害为目的本身（愤怒驱动）</li>
+    </ul>
+  </div>
+  <div class="content-block">
+    <h4>攻击的主要理论</h4>
+    <ul>
+      <li><strong>挫折-攻击假说（Frustration-Aggression）</strong>：Dollard等(1939)——挫折引发攻击冲动；现代修正：挫折只是攻击的诱因之一</li>
+      <li><strong>社会学习理论（Social Learning）</strong>：Bandura——通过观察和模仿学习攻击行为（Bobo Doll实验）</li>
+      <li><strong>一般攻击模型（GAM）</strong>：Anderson &amp; Bushman——输入（个人+情境）→ 内部状态（认知、情感、唤醒）→ 评估→ 行为</li>
+    </ul>
+  </div>
+  <div class="highlight-box">
+    <p>📌 <strong>Fazel et al. (2024)</strong>：系统综述暴力预测模型。发现预测个体暴力行为的精准度有限；风险因素（如精神疾病、过去暴力史）对群体有预测力，但对个体误判率高。提示政策不能仅依赖风险预测工具。</p>
+  </div>
+  <div class="content-block">
+    <h4>影响攻击行为的因素</h4>
+    <ul>
+      <li>气温高 → 攻击行为增多（Heat Hypothesis）</li>
+      <li>酒精 → 降低抑制，增加攻击</li>
+      <li>媒体暴力 → 短期脱敏效应，长期影响争议较大</li>
+      <li>男性 > 女性（身体攻击），但关系攻击性别差异较小</li>
+    </ul>
+  </div>
+</div>
+
+<!-- TOPIC 10 -->
+<div class="page" id="page-t10">
+  <div class="page-header">
+    <h1>🤝 亲社会行为与助人</h1>
+    <p>Week 10 · 为什么我们帮助他人，以及为什么有时袖手旁观</p>
+  </div>
+  <div class="content-block">
+    <h4>旁观者效应（Bystander Effect）</h4>
+    <ul>
+      <li>紧急情况下，旁观者越多，每个人帮助的可能性越低</li>
+      <li><strong>责任扩散（Diffusion of Responsibility）</strong>：当场人多时，每人感到的责任变小</li>
+      <li><strong>多元无知（Pluralistic Ignorance）</strong>：大家都观察彼此，看到没人反应，就认为情况不紧急</li>
+      <li><strong>评估恐惧（Evaluation Apprehension）</strong>：担心当众出丑而不行动</li>
+    </ul>
+  </div>
+  <div class="highlight-box">
+    <p>📌 <strong>Darley &amp; Latané (1968)</strong>：经典旁观者实验。参与者独自时：85%帮助；有另外5名旁观者时：只有31%帮助。这是社会心理学最著名的实验之一。</p>
+  </div>
+  <div class="content-block">
+    <h4>助人行为的决策模型（Latané &amp; Darley）</h4>
+    <ol>
+      <li>注意到事件发生</li>
+      <li>判断为紧急情况</li>
+      <li>承担个人责任</li>
+      <li>知道如何帮助</li>
+      <li>决定实施帮助</li>
+    </ol>
+    <p style="margin-top:8px;">任一步骤失败 → 不帮助</p>
+  </div>
+  <div class="content-block">
+    <h4>为什么人们会帮助他人？</h4>
+    <ul>
+      <li><strong>共情-利他假说（Empathy-Altruism）</strong>：Batson——真正的共情能导致纯粹利他行为</li>
+      <li><strong>社会交换理论</strong>：帮助行为受成本-收益分析影响</li>
+      <li><strong>进化视角</strong>：亲属选择 + 互惠利他</li>
+      <li><strong>情绪状态</strong>：好心情增加助人行为（feel good, do good效应）</li>
+    </ul>
+  </div>
+  <div class="study-box">
+    <p>💡 如何打破旁观者效应？直接点名指定某人（"你，红色外套的！请帮我叫救护车！"）——这消除了责任扩散。</p>
+  </div>
+</div>
+
+<!-- FLASHCARDS -->
+<div class="page" id="page-flashcards">
+  <div class="page-header">
+    <h1>🃏 闪卡记忆</h1>
+    <p>点击卡片翻转查看答案 · 共 20 张</p>
+  </div>
+  <div class="flashcard-grid">
+    <div class="fc-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">什么是基本归因错误（FAE）？</div><div class="fc-hint">点击翻转</div></div>
+        <div class="fc-back"><div class="fc-a">倾向于低估情境因素的影响，高估个人特质/性格对他人行为的解释力。例：看到有人粗鲁，立刻认为"这人本性坏"，而忽略对方可能正在经历糟糕的一天。</div></div>
+      </div>
+    </div>
+    <div class="fc-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">认知失调（Cognitive Dissonance）是什么？</div><div class="fc-hint">点击翻转</div></div>
+        <div class="fc-back"><div class="fc-a">当个体的行为与态度不一致时产生的心理不适感。人们通常会改变态度（而非行为）来消除失调。Festinger (1957) 提出。</div></div>
+      </div>
+    </div>
+    <div class="fc-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">ELM模型的两条路径是什么？</div><div class="fc-hint">点击翻转</div></div>
+        <div class="fc-back"><div class="fc-a">中央路径（Central Route）：高度参与，仔细评估论据，态度改变持久；外周路径（Peripheral Route）：低参与，依赖表面线索（说服者魅力等），态度改变短暂。</div></div>
+      </div>
+    </div>
+    <div class="fc-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">旁观者效应的主要机制是什么？</div><div class="fc-hint">点击翻转</div></div>
+        <div class="fc-back"><div class="fc-a">① 责任扩散（人多各人觉得责任小）② 多元无知（看到他人不动就认为不紧急）③ 评估恐惧（怕出丑不行动）。Darley &amp; Latané (1968) 经典实验验证。</div></div>
+      </div>
+    </div>
+    <div class="fc-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">刻板印象威胁（Stereotype Threat）是什么？</div><div class="fc-hint">点击翻转</div></div>
+        <div class="fc-back"><div class="fc-a">当个体意识到自己可能印证关于其群体的负面刻板印象时，表现反而下降。Steele &amp; Aronson (1995)：提醒非裔学生种族身份后GRE成绩显著下降。</div></div>
+      </div>
+    </div>
+    <div class="fc-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">Hamilton's Rule是什么？</div><div class="fc-hint">点击翻转</div></div>
+        <div class="fc-back"><div class="fc-a">rb &gt; c，r=亲缘系数，b=利他行为的收益，c=利他行为的成本。当亲缘关系×收益 > 成本时，利他行为进化。这是亲属选择理论的核心公式。</div></div>
+      </div>
+    </div>
+    <div class="fc-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">Milgram实验的主要发现是什么？</div><div class="fc-hint">点击翻转</div></div>
+        <div class="fc-back"><div class="fc-a">约65%的普通参与者在权威命令下，给予了他们认为可能致命的最高电击（450V）。证明情境力量（服从权威）可以凌驾于个人道德判断。</div></div>
+      </div>
+    </div>
+    <div class="fc-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">接触假说（Contact Hypothesis）的四个必要条件？</div><div class="fc-hint">点击翻转</div></div>
+        <div class="fc-back"><div class="fc-a">① 平等地位（Equal status）② 共同目标（Common goals）③ 机构/权威支持（Institutional support）④ 合作而非竞争（Cooperation）——Allport (1954)提出。</div></div>
+      </div>
+    </div>
+    <div class="fc-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">聚光灯效应（Spotlight Effect）是什么？</div><div class="fc-hint">点击翻转</div></div>
+        <div class="fc-back"><div class="fc-a">人们高估他人对自己的关注程度。Gilovich等研究：穿着尴尬T恤的人以为大多数人都注意到了，但实际上注意到的比例远低于预期。</div></div>
+      </div>
+    </div>
+    <div class="fc-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">自利偏差（Self-Serving Bias）是什么？</div><div class="fc-hint">点击翻转</div></div>
+        <div class="fc-back"><div class="fc-a">将成功归因于自己的内部因素（能力、努力），将失败归因于外部因素（运气不好、任务太难）。目的是维护积极自我形象。</div></div>
+      </div>
+    </div>
+    <div class="fc-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">Asch实验中，哪个变量最能降低从众率？</div><div class="fc-hint">点击翻转</div></div>
+        <div class="fc-back"><div class="fc-a">有一个同盟者（ally）给出正确答案。即使只有一个人不从众，从众率从37%大幅下降。说明：打破一致性可以解放个体。</div></div>
+      </div>
+    </div>
+    <div class="fc-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">执行意图（Implementation Intentions）是什么？</div><div class="fc-hint">点击翻转</div></div>
+        <div class="fc-back"><div class="fc-a">"如果X发生（情境），我就做Y（行为）"的if-then计划。研究显示这种具体计划将目标达成率提高2-3倍，是自我控制的有效策略（Gollwitzer）。</div></div>
+      </div>
+    </div>
+    <div class="fc-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">挫折-攻击假说（Frustration-Aggression Hypothesis）</div><div class="fc-hint">点击翻转</div></div>
+        <div class="fc-back"><div class="fc-a">Dollard等(1939)提出：挫折（目标受阻）必然导致攻击冲动。现代修正版：挫折是攻击的诱因之一，但并非充分条件；攻击还取决于学习和情境线索。</div></div>
+      </div>
+    </div>
+    <div class="fc-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">什么是登门槛技术（Foot-in-the-door）？</div><div class="fc-hint">点击翻转</div></div>
+        <div class="fc-back"><div class="fc-a">先提出一个小请求，对方答应后，再提出更大的请求。由于一致性压力（"我是个乐于助人的人"），对方更可能同意大请求。</div></div>
+      </div>
+    </div>
+    <div class="fc-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">内群体-外群体同质化效应（Out-group Homogeneity）</div><div class="fc-hint">点击翻转</div></div>
+        <div class="fc-back"><div class="fc-a">倾向于认为外群体成员都是一样的（"他们都一个样"），而内群体成员更多样化（"我们每个人都不同"）。是偏见形成的认知基础之一。</div></div>
+      </div>
+    </div>
+    <div class="fc-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">复制危机（Replication Crisis）指什么？</div><div class="fc-hint">点击翻转</div></div>
+        <div class="fc-back"><div class="fc-a">许多已发表的心理学研究无法被重复验证。2015年OSC发现只有39%的社会心理学研究能复制。原因包括：p-hacking、样本小、发表偏见等。</div></div>
+      </div>
+    </div>
+    <div class="fc-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">光环效应（Halo Effect）是什么？</div><div class="fc-hint">点击翻转</div></div>
+        <div class="fc-back"><div class="fc-a">对一个人的某一正面特质（如外貌吸引力）泛化到其他特质（聪明、善良、能干）的判断偏差。"美的即好的"是典型体现。</div></div>
+      </div>
+    </div>
+    <div class="fc-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">Festinger $1 vs $20实验说明了什么？</div><div class="fc-hint">点击翻转</div></div>
+        <div class="fc-back"><div class="fc-a">只获得$1报酬说谎的人（理由不足），比获得$20的人更相信自己的谎言是真实的。原因：$1不足以证明行为合理，所以改变了态度。这是认知失调的经典证明。</div></div>
+      </div>
+    </div>
+    <div class="fc-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">共情-利他假说（Empathy-Altruism Hypothesis）</div><div class="fc-hint">点击翻转</div></div>
+        <div class="fc-back"><div class="fc-a">Batson提出：当我们对他人产生真正的共情时，会产生真正的利他动机（而非自私的社会交换）。共情越高，帮助的可能性越大，且不依赖于是否有人观察。</div></div>
+      </div>
+    </div>
+    <div class="fc-wrap" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">最小群体范式（Minimal Group Paradigm）的发现？</div><div class="fc-hint">点击翻转</div></div>
+        <div class="fc-back"><div class="fc-a">Tajfel发现：即使将人们随机分入毫无意义的群体（如"喜欢Klee"vs"喜欢Kandinsky"），人们仍然会偏爱内群体成员，对外群体更吝啬。说明群体偏见极易产生。</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="page" id="page-quiz">
+  <div class="page-header">
+    <h1>✅ 模拟测验</h1>
+    <p>20 道选择题 · 点击选项立即查看解析</p>
+  </div>
+  <div id="quiz-container"></div>
+  <div class="quiz-score" id="quiz-score"></div>
+</div>
+
+<!-- GLOSSARY -->
+<div class="page" id="page-glossary">
+  <div class="page-header">
+    <h1>📖 术语表</h1>
+    <p>35 个核心概念 · 输入关键词即时搜索</p>
+  </div>
+  <input class="gloss-search" type="text" placeholder="搜索术语..." oninput="filterGlossary(this.value)" id="glossSearch"/>
+  <div id="glossaryList"></div>
+</div>
+
+</main>
+
+<script>
+// --- Navigation ---
+const visited = new Set();
+const totalPages = 15;
+function goPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  btn.classList.add('active');
+  visited.add(id);
+  const pct = Math.round(visited.size / totalPages * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = `已访问 ${visited.size} / ${totalPages} 页`;
+  window.scrollTo(0, 0);
+}
+visited.add('home');
+
+// --- Quiz ---
+const quizData = [
+  {q:"基本归因错误（FAE）指的是？",opts:["高估情境因素，低估个人特质","低估情境因素，高估个人特质","将成功归因于运气","将失败归因于别人"],ans:1,exp:"FAE=Fundamental Attribution Error：我们倾向于高估性格/特质的影响，低估情境对他人行为的影响。"},
+  {q:"Darley & Latané (1968) 的旁观者实验发现，当有5个旁观者在场时，帮助率约为？",opts:["85%","62%","31%","10%"],ans:2,exp:"独自一人时85%帮助；有5名旁观者时只有31%帮助。这完美展示了旁观者效应和责任扩散。"},
+  {q:"认知失调理论（Festinger）预测，$1组比$20组更相信自己的谎言，原因是？",opts:["$1组更穷，需要更努力","$1的理由不充分，所以需要改变态度来自我合理化","$20组动机太强，不会改变态度","$1组更诚实"],ans:1,exp:"当行为理由不足（$1）时，人们通过改变态度（'那个任务其实挺有趣的'）来消除失调。$20已经提供了充分外部理由。"},
+  {q:"刻板印象威胁（Stereotype Threat）最可能在以下哪种情境中发生？",opts:["一个人独自考试，无人知道其身份","考前提醒女生'女性数学能力较弱'","考试时间充足，无压力","对照组未收到任何信息"],ans:1,exp:"Steele & Aronson的研究：提醒被试可能印证负面群体刻板印象时，表现下降。关键是激活了对印证刻板印象的担忧。"},
+  {q:"ELM模型中，哪种情境最可能走中央路径（Central Route）？",opts:["疲劳时听广告","对主题高度关心且有能力评估论据","只关注说话者外貌","在嘈杂环境中听演讲"],ans:1,exp:"中央路径需要高动机（关心话题）+ 高能力（能评估论据）。走中央路径产生的态度改变更持久、更能预测行为。"},
+  {q:"Hamilton's Rule: rb > c 中，'r'代表什么？",opts:["行为的报酬","亲缘系数（relatedness）","风险（risk）","资源（resources）"],ans:1,exp:"r = 亲缘系数（0-1之间），b = 利他行为的收益，c = 利他行为的成本。当亲缘关系乘以收益大于成本时，利他行为进化。"},
+  {q:"Milgram实验中，以下哪个因素最能降低服从率？",opts:["实验者不在场/通过电话发命令","参与者被告知实验目的","增加电击电压","使用女性参与者"],ans:0,exp:"当权威者不在场（电话命令）时，服从率大幅下降。权威的物理在场是服从的重要影响因素。"},
+  {q:"接触假说（Contact Hypothesis）认为，要减少偏见，群体接触需要满足哪个关键条件？",opts:["接触时间越长越好","双方地位平等，有共同目标","只需要在同一空间共存","竞争能激发尊重"],ans:1,exp:"Allport的四个条件：平等地位、共同目标、机构支持、合作而非竞争。仅仅接触（如竞争性接触）甚至可能加剧偏见。"},
+  {q:"Asch从众实验中，什么最有效地降低从众行为？",opts:["增加群体规模至10人","有一个同盟者给出正确答案","奖励不从众者","私下回答而非公开"],ans:1,exp:"当有一个人给出不同答案（打破一致性）时，从众率显著下降。即使同盟者的答案是错的，也能减少从众，说明对一致性的破坏很关键。"},
+  {q:"自我妨碍（Self-handicapping）的主要动机是？",opts:["真的想失败","创造失败借口，保护自我形象","吸引他人同情","减少竞争"],ans:1,exp:"自我妨碍=提前设置失败理由（如考前熬夜玩游戏）。失败时归因外部（'我没睡好'），成功时自我形象加倍增强（'即使没睡好也成功了！'）"},
+  {q:"复制危机（Replication Crisis）中，P-hacking指的是？",opts:["修改实验数据","反复分析数据直到获得p<0.05的结果","发表负面结果","增加样本量"],ans:1,exp:"P-hacking = 研究者不断尝试不同分析方式、删除数据或加入变量，直到获得显著结果（p<0.05）。这是科学不端行为。"},
+  {q:"旁观者效应中，'多元无知'（Pluralistic Ignorance）指的是？",opts:["旁观者不知道彼此的存在","大家都观察他人，看到没人反应就以为情况不紧急","旁观者知识有限，不知如何帮助","旁观者数量太多"],ans:1,exp:"每个旁观者都私下认为情况可能紧急，但看到他人面无表情/不行动，就推断'大家都觉得没事，那就没事'。这是集体错误信念的典型例子。"},
+  {q:"光环效应（Halo Effect）最好的例子是？",opts:["因为喜欢一个人而相信他说的话","看到有人摔倒立刻去帮忙","记住第一次见面的信息","高估自己被他人注意的程度"],ans:0,exp:"光环效应：一种正面特质（外貌、魅力）扩展到其他判断（聪明、善良、可信）。选项A：因为喜欢某人就相信其观点，这是基于吸引力的信任泛化。"},
+  {q:"Fujita (2020) 关于自我控制的核心观点是？",opts:["意志力是完全固定的资源","高层（why）解释视角增强自我控制","低层（how）解释更有效","自我控制与目标层级无关"],ans:1,exp:"Fujita的目标层级理论：高层解释（为什么要做=意义）比低层解释（怎么做=具体步骤）更能增强自我控制，因为将行为与抽象价值连接，抗诱惑能力更强。"},
+  {q:"行动者-观察者偏差（Actor-Observer Bias）预测：",opts:["解释他人行为用情境，解释自己用特质","解释自己行为用情境，解释他人用特质","两者都用情境","两者都用特质"],ans:1,exp:"当我们是行动者时：'我迟到是因为堵车'（情境）。当我们是观察者时：'他迟到是因为不负责任'（特质）。这是FAE的延伸。"},
+  {q:"Bobo Doll实验（Bandura）对攻击行为理论的主要贡献是？",opts:["证明攻击是完全天生的","证明儿童可以通过观察模仿学习攻击行为","证明挫折必然导致攻击","证明攻击与奖励无关"],ans:1,exp:"Bandura的社会学习理论：儿童观看成人对Bobo玩偶施加攻击后，在自己与玩偶互动时模仿攻击行为，证明攻击可通过观察学习获得。"},
+  {q:"信息性影响（Informational Influence）在以下哪种情境中最强？",opts:["简单明确的任务","模糊不确定的情境","大家都有明确答案","个人独处时"],ans:1,exp:"信息性影响：在不确定情境中，我们相信他人的判断比自己更准确。这是理性的——当情境模糊时，多人信息确实更可靠。"},
+  {q:"最小群体范式（Minimal Group Paradigm）的核心发现是？",opts:["只有长期关系才产生偏爱","即使随机分组也产生内群体偏爱","外群体更受偏爱","没有发现群体偏见"],ans:1,exp:"Tajfel：仅仅被分配到一个群体（哪怕基于荒谬标准）就足以产生内群体偏爱和对外群体的歧视。说明群体偏见不需要历史、竞争或深度接触。"},
+  {q:"共情-利他假说（Empathy-Altruism Hypothesis）与社会交换理论的主要区别是？",opts:["共情-利他认为帮助总是自私的","共情-利他认为真正的共情能产生纯粹利他动机","社会交换认为情绪会增强帮助","两者没有区别"],ans:1,exp:"Batson vs. 社会交换：Batson认为高共情→真正的利他动机（不计回报）；社会交换认为帮助总是为了最大化自身收益（情感奖励、社会认可等）。"},
+  {q:"Fazel et al. (2024) 关于暴力预测的主要结论是？",opts:["可以准确预测个体是否会实施暴力","风险因素对群体有预测力，但对个体预测精度有限","精神疾病是暴力行为的最强预测因子","提前干预总是有效的"],ans:1,exp:"系统综述发现：现有暴力预测模型在群体层面有统计意义，但对具体个人的预测误判率很高。这意味着不应仅凭风险评分就对个人采取限制措施。"}
+];
+
+function initQuiz() {
+  const container = document.getElementById('quiz-container');
+  container.innerHTML = '';
+  let score = 0, answered = 0;
+  quizData.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'quiz-q';
+    div.innerHTML = `<div class="q-num">题目 ${i+1} / ${quizData.length}</div>
+      <div class="q-text">${item.q}</div>
+      <div class="options">${item.opts.map((o,j)=>`<button class="opt" data-i="${i}" data-j="${j}">${String.fromCharCode(65+j)}. ${o}</button>`).join('')}</div>
+      <div class="explanation" id="exp-${i}">💡 ${item.exp}</div>`;
+    container.appendChild(div);
+  });
+  document.querySelectorAll('.opt').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const qi = +this.dataset.i, oi = +this.dataset.j;
+      const parent = this.closest('.quiz-q');
+      if (parent.dataset.answered) return;
+      parent.dataset.answered = '1';
+      parent.querySelectorAll('.opt').forEach((b,k) => {
+        if (k === quizData[qi].ans) b.classList.add('correct');
+        else if (k === oi) b.classList.add('wrong');
+        b.disabled = true;
+      });
+      document.getElementById('exp-' + qi).classList.add('show');
+      if (oi === quizData[qi].ans) score++;
+      answered++;
+      if (answered === quizData.length) {
+        const scoreEl = document.getElementById('quiz-score');
+        scoreEl.style.display = 'block';
+        scoreEl.textContent = `🎉 完成！得分：${score} / ${quizData.length}（${Math.round(score/quizData.length*100)}%）`;
+      }
+    });
+  });
+}
+initQuiz();
+
+// --- Glossary ---
+const glossaryData = [
+  {t:"基本归因错误（FAE）",d:"低估情境因素、高估个人特质对他人行为影响的倾向"},
+  {t:"认知失调",d:"行为与态度不一致时产生的心理不适感，通常通过改变态度来缓解（Festinger, 1957）"},
+  {t:"精细可能性模型（ELM）",d:"Petty & Cacioppo提出的说服理论，包含中央路径（深度处理）和外周路径（表面线索）"},
+  {t:"旁观者效应",d:"紧急情况下旁观者越多，个体帮助的可能性越低的现象"},
+  {t:"责任扩散",d:"群体情境中个人感到的责任因人数多而减小"},
+  {t:"刻板印象威胁",d:"当个体意识到可能印证关于其群体负面刻板印象时，表现下降（Steele & Aronson, 1995）"},
+  {t:"接触假说",d:"Allport(1954)：在平等地位、共同目标、机构支持和合作条件下，接触可减少群体偏见"},
+  {t:"内隐联系测验（IAT）",d:"测量无意识/自动化偏见的反应时间测验"},
+  {t:"亲属选择",d:"通过帮助基因相关的亲属来间接传播自身基因的进化机制"},
+  {t:"互惠利他",d:"帮助他人期待日后获得回报的进化利他机制（Trivers）"},
+  {t:"Hamilton's Rule",d:"rb > c，当亲缘系数×收益 > 成本时，利他行为进化"},
+  {t:"聚光灯效应",d:"高估他人对自己的关注程度（Gilovich）"},
+  {t:"透明度幻觉",d:"高估他人感知到自己内心状态的程度"},
+  {t:"自利偏差",d:"成功归因自己（内部），失败归因外部的归因偏差"},
+  {t:"自我妨碍",d:"提前设置失败借口以保护自我形象的策略"},
+  {t:"执行意图",d:"'如果X，则Y'的if-then计划，显著提升目标达成率（Gollwitzer）"},
+  {t:"光环效应",d:"一种正面特质泛化到其他特质判断的认知偏差（'美的即好的'）"},
+  {t:"行动者-观察者偏差",d:"解释自己行为用情境，解释他人行为用特质"},
+  {t:"多元无知",d:"每个旁观者私下认为情况紧急，但因他人不动就误判无危险"},
+  {t:"规范性影响",d:"为了被群体接纳、避免排斥而从众"},
+  {t:"信息性影响",d:"在不确定情境中相信他人判断比自己更准确而从众"},
+  {t:"Asch从众实验",d:"群体压力下即使答案明显错误，37%的试验中参与者仍从众"},
+  {t:"Milgram服从实验",d:"约65%参与者在权威命令下施加了最高电击，证明情境力量"},
+  {t:"刻板印象",d:"对某群体成员特征的概括性信念（认知层面）"},
+  {t:"偏见",d:"对某群体的负面情感态度（情感层面）"},
+  {t:"歧视",d:"基于群体成员身份的不平等行为对待（行为层面）"},
+  {t:"最小群体范式",d:"Tajfel：随机分组也产生内群体偏爱，证明偏见极易产生"},
+  {t:"外群体同质化",d:"认为外群体成员都一样，而内群体成员更多样化"},
+  {t:"P-hacking",d:"反复分析数据直到获得p<0.05，属于学术不端"},
+  {t:"复制危机",d:"许多已发表心理学研究无法被复制验证（OSC 2015：仅39%复制成功）"},
+  {t:"挫折-攻击假说",d:"Dollard等：挫折引发攻击冲动；现代修正版认为是诱因之一"},
+  {t:"社会学习理论",d:"Bandura：通过观察和模仿学习行为，包括攻击行为（Bobo Doll）"},
+  {t:"共情-利他假说",d:"Batson：真正的共情能产生纯粹利他动机，而非自私的社会交换"},
+  {t:"Fazel et al. (2024)",d:"暴力预测系统综述：风险因素对群体有预测力，但对个体误判率高"},
+  {t:"登门槛技术",d:"先提小请求，答应后提大请求，利用一致性压力提升说服效果"},
+];
+
+function renderGlossary(filter='') {
+  const fl = filter.toLowerCase();
+  const list = document.getElementById('glossaryList');
+  list.innerHTML = glossaryData
+    .filter(g => g.t.toLowerCase().includes(fl) || g.d.toLowerCase().includes(fl))
+    .map(g => `<div class="gloss-item"><div class="gloss-term">${g.t}</div><div class="gloss-def">${g.d}</div></div>`)
+    .join('');
+}
+renderGlossary();
+function filterGlossary(v) { renderGlossary(v); }
+</script>
+</body>
+</html>

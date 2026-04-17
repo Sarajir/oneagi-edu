@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>PSYC 172 – Psychology of Human Sexuality</title>
+<style>
+:root{--bg:#0f1117;--surface:#1a1d27;--surface2:#222536;--border:#2e3250;--text:#e8eaf6;--muted:#8b8fa8;--dim:#555870;--ac:#ff6b9d;--radius:12px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;}
+#sb{width:250px;min-height:100vh;background:var(--surface);border-right:1px solid var(--border);position:fixed;top:0;left:0;bottom:0;overflow-y:auto;display:flex;flex-direction:column;z-index:100;}
+.sb-head{padding:18px 16px 14px;border-bottom:1px solid var(--border);}
+.back{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--dim);text-decoration:none;margin-bottom:10px;transition:color .2s;}.back:hover{color:var(--ac);}
+.sb-tag{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--ac);margin-bottom:4px;}
+.sb-head h2{font-size:13.5px;font-weight:800;line-height:1.4;}
+nav{padding:8px 0;flex:1;}
+.ns{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);padding:7px 16px 3px;}
+.nb{width:100%;background:none;border:none;text-align:left;padding:8px 16px 8px 20px;cursor:pointer;font-size:12.5px;color:var(--muted);border-left:3px solid transparent;transition:all .18s;display:flex;align-items:center;gap:7px;}
+.nb:hover{color:var(--text);background:var(--surface2);}
+.nb.active{color:var(--ac);border-left-color:var(--ac);background:rgba(255,107,157,.1);font-weight:600;}
+.prog{padding:12px 16px;border-top:1px solid var(--border);}
+.prog p{font-size:11px;color:var(--muted);margin-bottom:5px;}
+.pb{height:5px;background:var(--border);border-radius:999px;overflow:hidden;}
+.pf{height:100%;background:linear-gradient(90deg,var(--ac),#ff9a3c);border-radius:999px;transition:width .4s;width:0%;}
+.pl{font-size:10px;color:var(--dim);margin-top:3px;}
+#main{margin-left:250px;flex:1;padding:34px 42px;}
+.page{display:none;animation:fi .28s ease;}.page.active{display:block;}
+@keyframes fi{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+h1.pt{font-size:25px;font-weight:800;margin-bottom:4px;background:linear-gradient(135deg,var(--text),var(--ac));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.ps{font-size:13px;color:var(--muted);margin-bottom:24px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:16px;}
+.card h3{font-size:14.5px;font-weight:700;margin-bottom:11px;}
+.card p,.card li{font-size:13px;line-height:1.8;color:var(--muted);}
+.card ul{padding-left:16px;}.card li{margin-bottom:3px;}
+.ib{border-radius:9px;padding:12px 16px;margin-bottom:10px;font-size:13px;line-height:1.7;border-left:4px solid;}
+.ib strong{display:block;margin-bottom:2px;font-size:13.5px;}
+.ib.b{background:rgba(108,99,255,.08);border-color:#6c63ff;color:var(--muted);}.ib.b strong{color:#6c63ff;}
+.ib.g{background:rgba(0,212,170,.08);border-color:#00d4aa;color:var(--muted);}.ib.g strong{color:#00d4aa;}
+.ib.y{background:rgba(255,209,102,.08);border-color:#ffd166;color:var(--muted);}.ib.y strong{color:#ffd166;}
+.ib.r{background:rgba(255,107,107,.08);border-color:#ff6b6b;color:var(--muted);}.ib.r strong{color:#ff6b6b;}
+.ib.p{background:rgba(255,107,157,.08);border-color:var(--ac);color:var(--muted);}.ib.p strong{color:var(--ac);}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;}
+th{background:var(--surface2);color:var(--text);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;padding:8px 13px;text-align:left;}
+td{padding:8px 13px;color:var(--muted);border-bottom:1px solid var(--border);}
+tr:last-child td{border-bottom:none;}tr:hover td{background:var(--surface2);}
+.hero{background:linear-gradient(135deg,#1a1d27,#200e2a);border:1px solid var(--border);border-radius:14px;padding:32px;margin-bottom:24px;position:relative;overflow:hidden;}
+.hero::after{content:'💕';position:absolute;right:32px;top:50%;transform:translateY(-50%);font-size:64px;opacity:.13;}
+.hero h1{font-size:26px;font-weight:900;margin-bottom:7px;}
+.hero p{font-size:13.5px;color:var(--muted);max-width:480px;line-height:1.75;}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;}
+.tags span{padding:3px 11px;border-radius:999px;font-size:11px;font-weight:600;border:1px solid;}
+.sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:24px;}
+.sc{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;}
+.sc .sv{font-size:22px;font-weight:800;}.sc .sn{font-size:11px;color:var(--muted);margin-top:2px;}
+#fc-wrap{perspective:1000px;max-width:520px;margin:0 auto 18px;}
+.fc{width:100%;height:200px;position:relative;transform-style:preserve-3d;transition:transform .5s;cursor:pointer;}
+.fc.flip{transform:rotateY(180deg);}
+.fcf{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:26px;text-align:center;}
+.fc-front{background:linear-gradient(135deg,var(--surface),var(--surface2));border:1px solid var(--border);}
+.fc-back{background:linear-gradient(135deg,#1f1535,#1a1d27);border:1px solid var(--ac);transform:rotateY(180deg);}
+.fcf .lbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:10px;}
+.fcf .fq{font-size:16px;font-weight:700;line-height:1.5;}.fcf .fa{font-size:13.5px;line-height:1.7;color:var(--ac);}
+.fc-nav{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:10px;}
+.fc-nav button{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:7px 16px;border-radius:7px;cursor:pointer;font-size:12.5px;font-weight:600;transition:all .18s;}
+.fc-nav button:hover{background:var(--ac);border-color:var(--ac);}
+#fcc{font-size:12.5px;color:var(--muted);}
+.fch{text-align:center;font-size:11px;color:var(--dim);margin-bottom:20px;}
+.qb{margin-bottom:22px;}.qt{font-size:13.5px;font-weight:600;margin-bottom:10px;line-height:1.6;}
+.opts{display:flex;flex-direction:column;gap:7px;}
+.opt{background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:10px 14px;cursor:pointer;font-size:13px;transition:all .18s;text-align:left;color:var(--text);}
+.opt:hover:not(.answered){border-color:var(--ac);background:rgba(255,107,157,.1);}
+.opt.correct{border-color:#00d4aa!important;background:rgba(0,212,170,.15)!important;color:#00d4aa;}
+.opt.wrong{border-color:#ff6b6b!important;background:rgba(255,107,107,.15)!important;color:#ff6b6b;}
+.exp{display:none;margin-top:9px;padding:10px 14px;background:rgba(255,107,157,.07);border-radius:7px;border-left:3px solid var(--ac);font-size:12.5px;color:var(--muted);line-height:1.7;}
+.exp.show{display:block;}
+#qsb{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin-bottom:22px;display:flex;align-items:center;gap:18px;}
+#qsn{font-size:28px;font-weight:800;color:#00d4aa;}#qsl{font-size:12.5px;color:var(--muted);}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:7px;border:none;cursor:pointer;font-size:13px;font-weight:600;transition:all .18s;}
+.btn-p{background:var(--ac);color:#fff;}.btn-s{background:var(--surface2);border:1px solid var(--border);color:var(--text);}
+#gsi{width:100%;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:9px;color:var(--text);font-size:13.5px;outline:none;margin-bottom:16px;}
+.tg{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;}
+.tc{background:var(--surface2);border:1px solid var(--border);border-radius:9px;padding:13px;}
+.tc .term{font-size:12.5px;font-weight:700;color:var(--ac);margin-bottom:4px;}.tc .def{font-size:12px;color:var(--muted);line-height:1.6;}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-thumb{background:var(--border);border-radius:999px;}
+</style>
+</head>
+<body>
+<aside id="sb">
+  <div class="sb-head">
+    <a class="back" href="index.html">← 返回主页</a>
+    <div class="sb-tag">PSYC 172 · Dickenson · SP26</div>
+    <h2>Psychology of Human Sexuality</h2>
+  </div>
+  <nav>
+    <div class="ns">课程主页</div>
+    <button class="nb active" onclick="show('home')">🏠 课程概览</button>
+    <div class="ns">核心主题</div>
+    <button class="nb" onclick="show('t1')">🔬 研究方法与性学史</button>
+    <button class="nb" onclick="show('t2')">🫀 性解剖与生理</button>
+    <button class="nb" onclick="show('t3')">🌈 性取向</button>
+    <button class="nb" onclick="show('t4')">🪞 性别认同与表达</button>
+    <button class="nb" onclick="show('t5')">🌱 性发展</button>
+    <button class="nb" onclick="show('t6')">💑 关系与依恋</button>
+    <button class="nb" onclick="show('t7')">🩺 性功能障碍</button>
+    <button class="nb" onclick="show('t8')">🛡️ 性暴力与同意</button>
+    <button class="nb" onclick="show('t9')">🌍 性与文化多元性</button>
+    <button class="nb" onclick="show('t10')">💊 性健康与STIs</button>
+    <div class="ns">练习工具</div>
+    <button class="nb" onclick="show('fc')">🃏 闪卡复习</button>
+    <button class="nb" onclick="show('quiz')">📝 测验练习</button>
+    <button class="nb" onclick="show('glo')">📖 术语表</button>
+  </nav>
+  <div class="prog"><p>学习进度</p><div class="pb"><div class="pf" id="pf"></div></div><div class="pl" id="pl">0/13 已访问</div></div>
+</aside>
+<main id="main">
+
+<div class="page active" id="page-home">
+  <div class="hero">
+    <h1>💕 Psychology of Human Sexuality</h1>
+    <p>PSYC 172 · Prof. Dickenson · SP26 · 从生物学、心理学与社会文化三维度科学解析人类性心理，强调多元视角与实证研究。</p>
+    <div class="tags">
+      <span style="color:var(--ac);border-color:rgba(255,107,157,.35)">生物·心理·社会</span>
+      <span style="color:#00d4aa;border-color:rgba(0,212,170,.35)">Myth Buster作业</span>
+      <span style="color:#ffd166;border-color:rgba(255,209,102,.35)">3次期中考试</span>
+    </div>
+  </div>
+  <div class="sg">
+    <div class="sc"><div class="sv" style="color:var(--ac)">3</div><div class="sn">次期中 各20分</div></div>
+    <div class="sc"><div class="sv" style="color:#00d4aa">4</div><div class="sn">步Myth Buster</div></div>
+    <div class="sc"><div class="sv" style="color:#ffd166">10</div><div class="sn">个核心主题</div></div>
+    <div class="sc"><div class="sv" style="color:#6c63ff">20</div><div class="sn">张复习闪卡</div></div>
+  </div>
+  <div class="card">
+    <h3>📋 课程学习目标（来自Canvas原文）</h3>
+    <div class="ib p"><strong>目标1</strong>通过科学证据获取关于人类性心理的明确知识</div>
+    <div class="ib b"><strong>目标2</strong>运用实证研究批判性评估个人观点、经历和偏见</div>
+    <div class="ib g"><strong>目标3 — Myth Buster</strong>挑战你持有的一个性相关迷思，用科学事实制作Fact Sheet加以反驳</div>
+    <div class="ib y"><strong>目标4</strong>批判性审视生物与社会环境互动：阐述至少3种生物因素受社会化影响的方式，以及两者如何共同塑造多元性表达</div>
+  </div>
+  <div class="card">
+    <h3>📅 重要作业时间线（来自Canvas）</h3>
+    <table>
+      <thead><tr><th>截止日期</th><th>作业</th><th>分值</th></tr></thead>
+      <tbody>
+        <tr><td>4月13日</td><td>Myth Buster Step 1</td><td>8分</td></tr>
+        <tr><td>4月16日</td><td>Reading（课前完成）</td><td>0分</td></tr>
+        <tr><td>4月20日</td><td>Myth Buster Step 2</td><td>8分</td></tr>
+        <tr><td>4月21日</td><td>🔴 <strong>Midterm 1</strong></td><td>20分</td></tr>
+        <tr><td>4月23日</td><td>Reading/Video（课前完成）</td><td>0分</td></tr>
+        <tr><td>5月4日</td><td>Myth Buster Step 3</td><td>16分</td></tr>
+        <tr><td>5月12日</td><td>🔴 <strong>Midterm 2</strong></td><td>20分</td></tr>
+        <tr><td>5月18日</td><td>Myth Buster Step 4</td><td>8分</td></tr>
+        <tr><td>5月25日</td><td>Myth Buster Final Fact Sheet</td><td>20分</td></tr>
+        <tr><td>6月4日</td><td>🔴 <strong>Midterm 3</strong></td><td>20分</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="page" id="page-t1">
+  <h1 class="pt">🔬 研究方法与性学史</h1><p class="ps">Topic 1 · 性学科学研究的基础</p>
+  <div class="card"><h3>性学研究先驱</h3>
+    <div class="ib b"><strong>Alfred Kinsey（1940s-50s）</strong>首次对人类性行为进行大规模系统调查（约18,000人访谈）。提出Kinsey量表（0~6连续谱），著作《男性性行为》《女性性行为》。</div>
+    <div class="ib g"><strong>Masters & Johnson（1960s）</strong>首次在实验室直接观测人类性反应，发现性反应四阶段模型，开创性治疗领域。</div>
+    <div class="ib y"><strong>现代研究者</strong>Debby Herbenick（性行为调查）、Lisa Diamond（性流动性）、Meredith Chivers（女性性唤起测量）</div>
+  </div>
+  <div class="card"><h3>研究方法比较</h3>
+    <table><thead><tr><th>方法</th><th>优点</th><th>局限</th></tr></thead><tbody>
+      <tr><td>自我报告问卷</td><td>大样本、成本低、匿名</td><td>社会期望偏差、回忆偏差</td></tr>
+      <tr><td>访谈法</td><td>深度信息、灵活追问</td><td>访谈者效应、样本小</td></tr>
+      <tr><td>实验室生理测量</td><td>客观、可控</td><td>人工情境、伦理限制</td></tr>
+      <tr><td>日记法/经验取样</td><td>生态效度高、实时</td><td>反应性、负担大</td></tr>
+      <tr><td>神经影像fMRI</td><td>揭示大脑机制</td><td>成本高、人工情境</td></tr>
+    </tbody></table>
+  </div>
+  <div class="card"><h3>⚠️ 性学研究伦理挑战</h3>
+    <ul><li><strong>知情同意</strong>：需充分告知研究内容</li><li><strong>隐私保护</strong>：性行为数据高度敏感</li><li><strong>样本代表性</strong>：早期多为白人、大学生、自愿者</li><li><strong>社会政治压力</strong>：Kinsey曾受国会审查</li><li><strong>研究者偏见</strong>：文化背景影响假设与解读</li></ul>
+  </div>
+</div>
+
+<div class="page" id="page-t2">
+  <h1 class="pt">🫀 性解剖与生理</h1><p class="ps">Topic 2 · 性反应四阶段与关键激素</p>
+  <div class="card"><h3>Masters & Johnson 性反应四阶段</h3>
+    <div class="ib p"><strong>1. 兴奋期 Excitement</strong>血液涌向生殖器；女性阴道润滑、阴蒂勃起；男性阴茎勃起；心率加快。</div>
+    <div class="ib b"><strong>2. 持续期 Plateau</strong>唤起持续；女性"性平台"形成；男性睾丸上提；性潮红可能出现。</div>
+    <div class="ib g"><strong>3. 高潮期 Orgasm</strong>节律性肌肉收缩；男性伴射精；主观体验有个体差异；受注意力与情绪影响。</div>
+    <div class="ib y"><strong>4. 消退期 Resolution</strong>身体恢复未唤起状态；男性有不应期；女性可多次高潮。</div>
+  </div>
+  <div class="card"><h3>关键性激素</h3>
+    <table><thead><tr><th>激素</th><th>来源</th><th>主要功能</th></tr></thead><tbody>
+      <tr><td>睾酮</td><td>睾丸/卵巢/肾上腺</td><td>男女性欲的主要驱动、肌肉、毛发</td></tr>
+      <tr><td>雌激素</td><td>卵巢、胎盘</td><td>女性生殖发育、润滑、情绪</td></tr>
+      <tr><td>孕酮</td><td>卵巢黄体</td><td>月经周期调节、妊娠维持</td></tr>
+      <tr><td>催产素</td><td>下丘脑/垂体</td><td>高潮时释放，促亲密感与信任</td></tr>
+      <tr><td>多巴胺</td><td>大脑奖励回路</td><td>性唤起、欲望与快感</td></tr>
+    </tbody></table>
+  </div>
+</div>
+
+<div class="page" id="page-t3">
+  <h1 class="pt">🌈 性取向</h1><p class="ps">Topic 3 · 定义、理论与多元性</p>
+  <div class="card"><h3>多维度框架</h3>
+    <table><thead><tr><th>维度</th><th>说明</th></tr></thead><tbody>
+      <tr><td>性吸引 Attraction</td><td>对谁产生性吸引力</td></tr>
+      <tr><td>性行为 Behavior</td><td>实际性行为对象（可与吸引不一致）</td></tr>
+      <tr><td>性身份认同 Identity</td><td>自我标签（gay, bi, queer…）</td></tr>
+      <tr><td>浪漫吸引 Romantic</td><td>情感依恋方向（可与性吸引独立）</td></tr>
+    </tbody></table>
+  </div>
+  <div class="card"><h3>理论解释</h3>
+    <div class="ib b"><strong>生物学理论</strong>遗传（同卵双胞胎一致率约50%）；产前激素暴露假说；下丘脑INAH-3差异（LeVay,1991）；哥哥效应（fraternal birth order effect）</div>
+    <div class="ib g"><strong>心理社会理论</strong>早期经历、依恋模式、文化脚本；Lisa Diamond「性流动性」概念</div>
+    <div class="ib y"><strong>科学共识</strong>性取向是生物、心理与社会因素复杂交互的产物，不可被"治疗"改变——转化疗法已被主流机构谴责</div>
+  </div>
+</div>
+
+<div class="page" id="page-t4">
+  <h1 class="pt">🪞 性别认同与性别表达</h1><p class="ps">Topic 4 · 超越性别二元论</p>
+  <div class="card"><h3>核心概念区分</h3>
+    <table><thead><tr><th>概念</th><th>定义</th></tr></thead><tbody>
+      <tr><td><strong>生理性别 Sex</strong></td><td>基于解剖、染色体、激素的生物学分类</td></tr>
+      <tr><td><strong>性别认同 Gender Identity</strong></td><td>个人对自身性别的内在感受</td></tr>
+      <tr><td><strong>性别表达 Gender Expression</strong></td><td>通过外貌、行为等呈现性别的方式</td></tr>
+      <tr><td><strong>顺性别 Cisgender</strong></td><td>认同与出生指定性别一致</td></tr>
+      <tr><td><strong>跨性别 Transgender</strong></td><td>认同与出生指定性别不一致</td></tr>
+      <tr><td><strong>非二元 Non-binary</strong></td><td>不完全属于男或女的性别认同</td></tr>
+      <tr><td><strong>双性人 Intersex</strong></td><td>生理性别特征不典型</td></tr>
+    </tbody></table>
+  </div>
+  <div class="card"><h3>性别焦虑与支持</h3>
+    <div class="ib p"><strong>Gender Dysphoria (DSM-5)</strong>对出生指定性别的显著不适造成临床显著痛苦。核心是「痛苦」而非跨性别本身。</div>
+    <div class="ib g"><strong>社会支持的关键性</strong>家庭和社会接纳是跨性别者心理健康最重要的保护因素。</div>
+  </div>
+</div>
+
+<div class="page" id="page-t5">
+  <h1 class="pt">🌱 性发展</h1><p class="ps">Topic 5 · 青春期到成年期</p>
+  <div class="card"><h3>青春期生理变化</h3>
+    <div class="ib p"><strong>女性</strong>乳房发育（平均10岁）、月经初潮（平均12.5岁）、阴毛体毛、骨盆变宽</div>
+    <div class="ib b"><strong>男性</strong>睾丸阴茎增大、变声、首次遗精（平均13岁）、阴毛体毛、肌肉发育</div>
+    <div class="ib g"><strong>激素机制</strong>下丘脑-垂体-性腺轴激活；LH、FSH分泌增加；肾上腺雄激素驱动阴毛发育</div>
+  </div>
+  <div class="card"><h3>性脚本理论（Sexual Script Theory）</h3>
+    <div class="ib y"><strong>核心概念</strong>性行为是社会学习的"剧本"产物，人们从文化中学习"何时何地与谁如何"进行性行为的规范</div>
+    <table><thead><tr><th>层次</th><th>说明</th></tr></thead><tbody>
+      <tr><td>文化脚本</td><td>媒体、宗教、法律等社会规范</td></tr>
+      <tr><td>人际脚本</td><td>与具体伴侣互动中形成的规范</td></tr>
+      <tr><td>内省脚本</td><td>个人内化的欲望、幻想与期待</td></tr>
+    </tbody></table>
+  </div>
+</div>
+
+<div class="page" id="page-t6">
+  <h1 class="pt">💑 关系与依恋</h1><p class="ps">Topic 6 · 亲密关系心理学</p>
+  <div class="card"><h3>依恋风格</h3>
+    <div class="ib g"><strong>安全型 Secure</strong>信任伴侣，舒适于亲密与独立并存；性满意度和关系质量最高</div>
+    <div class="ib y"><strong>焦虑型 Anxious</strong>害怕被抛弃，过度依赖认可；可能用性换取亲密感</div>
+    <div class="ib r"><strong>回避型 Avoidant</strong>不舒适于亲密，情感疏离；可能将性与情感分离</div>
+  </div>
+  <div class="card"><h3>同意的FRIES框架</h3>
+    <div class="ib p"><strong>F</strong>reely Given（自由给予）· <strong>R</strong>eversible（可撤回）· <strong>I</strong>nformed（知情）· <strong>E</strong>nthusiastic（积极主动）· <strong>S</strong>pecific（针对具体行为）</div>
+    <p>沉默不等于同意；醉酒者无法有效同意；对某行为的同意不扩展至其他行为。</p>
+  </div>
+</div>
+
+<div class="page" id="page-t7">
+  <h1 class="pt">🩺 性功能障碍</h1><p class="ps">Topic 7 · DSM-5分类与治疗</p>
+  <div class="card"><h3>主要性功能障碍（DSM-5）</h3>
+    <table><thead><tr><th>类别</th><th>障碍</th><th>特征</th></tr></thead><tbody>
+      <tr><td>性欲障碍</td><td>性欲/兴趣障碍（女）; 男性性欲减退</td><td>持续缺乏性幻想和性欲</td></tr>
+      <tr><td>唤起障碍</td><td>女性唤起障碍; 勃起障碍(ED)</td><td>无法达到/维持足够唤起</td></tr>
+      <tr><td>高潮障碍</td><td>女性高潮障碍; 早泄/射精延迟</td><td>高潮困难或时机问题</td></tr>
+      <tr><td>性疼痛障碍</td><td>生殖器-骨盆痛/插入障碍</td><td>性交疼痛、阴道痉挛</td></tr>
+    </tbody></table>
+  </div>
+  <div class="card"><h3>原因与治疗</h3>
+    <div class="ib b"><strong>生物因素</strong>激素水平、药物副作用（SSRI）、血管疾病、神经损伤</div>
+    <div class="ib y"><strong>心理因素</strong>表现焦虑、抑郁、创伤史、身体形象问题</div>
+    <div class="ib g"><strong>治疗</strong>CBT认知行为治疗; 感觉聚焦练习(Sensate Focus); PDE-5抑制剂(Viagra用于ED); 激素治疗; 盆底物理治疗</div>
+  </div>
+</div>
+
+<div class="page" id="page-t8">
+  <h1 class="pt">🛡️ 性暴力与同意</h1><p class="ps">Topic 8 · 定义、流行率与预防</p>
+  <div class="card"><h3>流行数据</h3>
+    <div class="ib r"><strong>美国数据（CDC NISVS）</strong>约1/5女性和1/71男性报告曾遭受强奸；约80%施害者为受害者认识的人；报告率约20%</div>
+    <div class="ib y"><strong>校园性暴力</strong>约20-25%女大学生在本科阶段经历性侵犯（未遂或完成）</div>
+  </div>
+  <div class="card"><h3>强奸迷思 vs 事实</h3>
+    <ul>
+      <li>❌ "穿着暴露是邀请" → ✅ 着装与强奸完全无关</li>
+      <li>❌ "认识的人不算强奸" → ✅ 约80%由认识的人实施</li>
+      <li>❌ "酒后不算强奸" → ✅ 无法同意即不同意</li>
+      <li>❌ "男性无法被强奸" → ✅ 男性也是性暴力受害者</li>
+    </ul>
+  </div>
+  <div class="card"><h3>旁观者干预 5D策略</h3>
+    <div class="ib g"><strong>Direct</strong>直接干预 · <strong>Distract</strong>分散注意 · <strong>Delegate</strong>委托他人 · <strong>Delay</strong>事后支持 · <strong>Document</strong>记录留证</div>
+    <div class="ib b"><strong>为何旁观者不干预？</strong>旁观者效应（人越多责任感越低）、情境模糊、害怕出错</div>
+  </div>
+</div>
+
+<div class="page" id="page-t9">
+  <h1 class="pt">🌍 性与文化多元性</h1><p class="ps">Topic 9 · 跨文化视角与媒体影响</p>
+  <div class="card"><h3>跨文化变异</h3>
+    <div class="ib b"><strong>文化差异领域</strong>婚前性行为接受度；一夫多妻vs一夫一妻；性别角色期待；对同性恋的法律与社会态度（全球极度不均）</div>
+    <div class="ib g"><strong>双重标准 Double Standard</strong>相同性行为对男女评价不一致，全球普遍存在</div>
+  </div>
+  <div class="card"><h3>媒体与社交媒体影响</h3>
+    <div class="ib y"><strong>色情媒体</strong>青少年平均首次接触年龄约13岁；可能形成不现实期望；与关系满意度降低相关；因果关系仍有争议</div>
+    <div class="ib p"><strong>社交媒体</strong>身体形象压力（修图、滤镜）；女性身体性化普遍化；同时也为LGBTQ+社区提供支持与性教育资源</div>
+  </div>
+</div>
+
+<div class="page" id="page-t10">
+  <h1 class="pt">💊 性健康与STIs</h1><p class="ps">Topic 10 · 预防、检测与促进</p>
+  <div class="card"><h3>常见STIs一览</h3>
+    <table><thead><tr><th>STI</th><th>病原体</th><th>症状</th><th>可治愈</th></tr></thead><tbody>
+      <tr><td>衣原体</td><td>细菌</td><td>常无症状（隐性）</td><td>✅ 抗生素</td></tr>
+      <tr><td>淋病</td><td>细菌</td><td>分泌物、排尿灼热</td><td>✅ 抗生素</td></tr>
+      <tr><td>梅毒</td><td>细菌</td><td>分阶段：溃疡→皮疹→系统损害</td><td>✅ 青霉素</td></tr>
+      <tr><td>HPV</td><td>病毒</td><td>多无症状；可致宫颈癌/疣</td><td>⚠️ 有疫苗</td></tr>
+      <tr><td>疱疹HSV</td><td>病毒</td><td>水疱、复发</td><td>❌ 终身潜伏</td></tr>
+      <tr><td>HIV</td><td>病毒</td><td>急性→潜伏→AIDS</td><td>❌ ART可控制</td></tr>
+    </tbody></table>
+  </div>
+  <div class="card"><h3>预防策略</h3>
+    <div class="ib g"><strong>屏障方法</strong>男用安全套（正确使用有效率~98%）；女用安全套；口腔防护膜（dental dam）</div>
+    <div class="ib b"><strong>药物预防</strong>PrEP：HIV阴性者每日口服降低感染风险>90%；HPV疫苗9-12岁最佳</div>
+    <div class="ib y"><strong>检测与告知</strong>定期检测是关键；有STI需告知性伴侣；许多STI无症状仍可传播</div>
+  </div>
+</div>
+
+<!-- FLASHCARDS -->
+<div class="page" id="page-fc">
+  <h1 class="pt">🃏 闪卡复习</h1><p class="ps">点击翻转查看答案 · 共20张</p>
+  <div id="fc-wrap"><div class="fc" id="fc-el" onclick="flipFC()">
+    <div class="fcf fc-front"><div class="lbl">概念</div><div class="fq" id="fq"></div></div>
+    <div class="fcf fc-back"><div class="lbl">答案</div><div class="fa" id="fa"></div></div>
+  </div></div>
+  <div class="fch">👆 点击卡片翻转</div>
+  <div class="fc-nav"><button onclick="prevFC()">← 上一张</button><span id="fcc">1/20</span><button onclick="nextFC()">下一张 →</button></div>
+  <div style="text-align:center"><button class="btn btn-s" onclick="shuffleFC()">🔀 随机打乱</button></div>
+</div>
+
+<!-- QUIZ -->
+<div class="page" id="page-quiz">
+  <h1 class="pt">📝 测验练习</h1><p class="ps">15道选择题 · 点击即时反馈</p>
+  <div id="qsb"><div id="qsn">0/15</div><div id="qsl">完成后查看总分</div></div>
+  <div id="qc"></div>
+  <div style="text-align:center;margin-top:16px"><button class="btn btn-p" onclick="resetQ()">🔄 重新开始</button></div>
+</div>
+
+<!-- GLOSSARY -->
+<div class="page" id="page-glo">
+  <h1 class="pt">📖 术语表</h1><p class="ps">PSYC 172 核心术语</p>
+  <input id="gsi" type="text" placeholder="🔍 搜索术语..." oninput="filterGlo()"/>
+  <div class="tg" id="tg"></div>
+</div>
+</main>
+
+<script>
+const visited=new Set(['home']);
+function show(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.querySelectorAll('.nb').forEach(b=>{if(b.getAttribute('onclick')&&b.getAttribute('onclick').includes("'"+id+"'"))b.classList.add('active');});
+  visited.add(id);
+  const t=13,pct=Math.round(visited.size/t*100);
+  document.getElementById('pf').style.width=pct+'%';
+  document.getElementById('pl').textContent=visited.size+'/'+t+' 已访问';
+  window.scrollTo(0,0);
+}
+const fcs=[
+  {q:"Kinsey量表的范围与意义？",a:"0（完全异性恋）到6（完全同性恋），X=无性恋。强调性取向是连续谱而非二元分类。"},
+  {q:"Masters & Johnson性反应四阶段？",a:"①兴奋期→②持续期→③高潮期→④消退期。男性有不应期，女性可多次高潮。"},
+  {q:"FRIES同意框架代表什么？",a:"Freely Given（自由）· Reversible（可撤回）· Informed（知情）· Enthusiastic（积极）· Specific（针对具体行为）"},
+  {q:"性别认同 vs 生理性别的区别？",a:"Sex（生理性别）基于解剖、染色体、激素。Gender Identity（性别认同）是个人内在感受，二者独立。"},
+  {q:"Gender Dysphoria的DSM-5诊断核心？",a:"对出生指定性别不适造成的「临床显著痛苦」，是跨性别者中的一部分，跨性别认同本身不是诊断。"},
+  {q:"哥哥效应（Fraternal Birth Order Effect）？",a:"男性每多一个亲哥哥，成为同性恋的概率约增加33%，与母体对Y染色体蛋白的免疫反应相关。"},
+  {q:"PrEP是什么？如何使用？",a:"HIV暴露前预防药物；HIV阴性者每日口服，可降低感染风险超过90%。"},
+  {q:"衣原体（Chlamydia）的主要特征？",a:"最常见细菌性STI；常无症状（隐性感染）；可致盆腔炎和不孕；可用抗生素治愈。"},
+  {q:"感觉聚焦练习（Sensate Focus）？",a:"Masters & Johnson开发的性治疗技术：从非性感官接触开始，去除表现压力，重建身体愉悦感。"},
+  {q:"旁观者效应与5D策略？",a:"旁观者越多责任感越低。5D：Direct（直接干预）、Distract（分散注意）、Delegate（委托）、Delay（事后支持）、Document（记录）"},
+  {q:"双重标准（Sexual Double Standard）？",a:"相同性行为（如多个性伴侣），男性获积极评价、女性受批评的性别偏见现象。"},
+  {q:"性脚本理论的三个层次？",a:"①文化脚本（社会规范）②人际脚本（伴侣互动规范）③内省脚本（个人内化欲望与期待）"},
+  {q:"安全型依恋在性关系中的表现？",a:"信任伴侣，能舒适地在亲密与独立间平衡，性满意度和关系质量通常最高。"},
+  {q:"性流动性（Sexual Fluidity）是什么？",a:"Lisa Diamond提出：个体的性取向和性吸引在生命历程中可以发生变化，在女性中尤为常见。"},
+  {q:"Myth Buster作业的四个步骤？",a:"Step1（8分）→Step2（8分）→Step3（16分）→Step4（8分）→Final Fact Sheet（20分）。总计识别迷思、收集证据、制作科普材料。"},
+  {q:"HPV疫苗的最佳接种年龄与效果？",a:"9-12岁（免疫反应最强）。可预防导致宫颈癌和尖锐湿疣的主要HPV亚型，男女均可接种。"},
+  {q:"女性性唤起不一致（Non-concordance）？",a:"生理唤起（如阴道润滑）与主观性唤起感受不一致，在女性中极为普遍，不代表"真实"偏好。"},
+  {q:"转化疗法（Conversion Therapy）为何被谴责？",a:"APA等机构认为其无效且有害：可导致抑郁、焦虑、自杀风险增加。没有科学证据支持改变性取向。"},
+  {q:"勃起障碍（ED）的主要原因？",a:"生物：血管疾病、糖尿病、激素失衡、SSRI副作用。心理：表现焦虑、抑郁、关系冲突。常是多因素交互。"},
+  {q:"强奸最常见的施害者是谁？",a:"约80%的强奸由受害者认识的人实施（朋友、约会对象、家庭成员），"陌生人强奸"只占少数。"},
+];
+let fi=0,fo=[...Array(fcs.length).keys()];
+function renderFC(){const f=fcs[fo[fi]];document.getElementById('fq').textContent=f.q;document.getElementById('fa').textContent=f.a;document.getElementById('fcc').textContent=(fi+1)+'/'+fcs.length;document.getElementById('fc-el').classList.remove('flip');}
+function flipFC(){document.getElementById('fc-el').classList.toggle('flip');}
+function nextFC(){fi=(fi+1)%fcs.length;renderFC();}
+function prevFC(){fi=(fi-1+fcs.length)%fcs.length;renderFC();}
+function shuffleFC(){for(let i=fo.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[fo[i],fo[j]]=[fo[j],fo[i]];}fi=0;renderFC();}
+renderFC();
+
+const qs=[
+  {q:"Kinsey量表中数字「3」代表什么？",opts:["A. 完全同性恋","B. 完全异性恋","C. 同等程度的同性恋和异性恋吸引","D. 无性恋"],ans:2,exp:"Kinsey量表：0=完全异性恋，6=完全同性恋，3=同等程度双性吸引，X=无性恋。"},
+  {q:"Masters & Johnson研究的主要方法是？",opts:["A. 大规模问卷调查","B. 实验室直接观测和生理测量","C. 深度访谈","D. 神经影像fMRI"],ans:1,exp:"Masters & Johnson在实验室中使用生理仪器直接观测性反应，具有高客观性。"},
+  {q:"FRIES框架中「R」代表什么？",opts:["A. Respectful（尊重）","B. Reversible（可撤回）","C. Responsive（回应）","D. Rational（理性）"],ans:1,exp:"R=Reversible（可撤回）：同意可在任何时刻撤回，且对某行为的同意不等于对其他行为的同意。"},
+  {q:"哪种STI通常无症状但可致盆腔炎？",opts:["A. 梅毒","B. 疱疹","C. 衣原体","D. HIV"],ans:2,exp:"衣原体是最常见细菌性STI，大多无症状，若不治疗可上行感染致盆腔炎，影响生育。"},
+  {q:"性别认同的最准确定义是？",opts:["A. 基于解剖特征的生物学分类","B. 社会对不同性别的行为期待","C. 个人对自身性别的内在感受","D. 通过外貌行为呈现性别的方式"],ans:2,exp:"性别认同是内在感受，独立于生理性别（Sex）和性别表达（Expression）。"},
+  {q:"旁观者干预5D中「Distract」是指？",opts:["A. 直接告诉施害者停止","B. 制造干扰打断危险情境","C. 事后给予受害者支持","D. 拍摄证据"],ans:1,exp:"Distract=制造干扰，如假装认识受害者或制造意外，中断潜在危险情境而不直接对抗。"},
+  {q:"PrEP的主要作用是？",opts:["A. 治愈HIV","B. 预防HPV","C. HIV阴性者服用以预防HIV感染","D. 治疗淋病"],ans:2,exp:"PrEP是HIV阴性者在暴露前每日服药的预防措施，正确使用可降低HIV感染风险>90%。"},
+  {q:"以下哪项是「强奸迷思」？",opts:["A. 大多数强奸由认识的人实施","B. 受害者的着装与强奸有关","C. 酒后无法给予有效同意","D. 男性也可能成为受害者"],ans:1,exp:"「穿着暴露是邀请」是典型强奸迷思，将责任归咎受害者，完全没有科学支持。"},
+  {q:"安全型依恋的主要特征？",opts:["A. 害怕被抛弃，过度依赖认可","B. 不舒适于亲密，情感疏离","C. 信任伴侣，舒适于亲密与独立并存","D. 将性与情感完全分离"],ans:2,exp:"安全型依恋者信任伴侣，既能享受亲密又能接受独立，关系质量和性满意度通常最高。"},
+  {q:"性脚本理论的「内省脚本」指什么？",opts:["A. 媒体和社会的性规范","B. 与伴侣互动形成的规范","C. 个人内化的性欲望、幻想与期待","D. 法律对性行为的规定"],ans:2,exp:"内省脚本（Intrapsychic Script）是个人内心对性的幻想、欲望与期待，由文化脚本内化而成。"},
+  {q:"哥哥效应（Fraternal Birth Order Effect）的机制？",opts:["A. 受父亲影响","B. 与母体对Y染色体蛋白的免疫反应相关","C. 由成长环境决定","D. 与遗传直接相关"],ans:1,exp:"研究认为随着母亲生育越多男孩，其对Y染色体NLGN4Y蛋白的免疫反应逐渐增强，影响胎儿发育（Blanchard,1997）。"},
+  {q:"HPV疫苗最佳接种年龄是？",opts:["A. 首次性行为前越早越好，推荐9-12岁","B. 只有感染HPV后才有效","C. 18岁以上才能接种","D. 只适合女性"],ans:0,exp:"9-12岁在未暴露HPV前免疫反应最强，效果最佳。男女均可接种，预防主要致癌和致疣亚型。"},
+  {q:"感觉聚焦练习（Sensate Focus）主要用于治疗？",opts:["A. STI感染","B. 性功能障碍和性表现焦虑","C. 性别焦虑","D. STI预防"],ans:1,exp:"感觉聚焦是Masters & Johnson开发的性治疗技术，从非性感官触碰开始，去除表现压力，重建身体愉悦感。"},
+  {q:"Gender Dysphoria的DSM-5诊断核心是？",opts:["A. 跨性别认同本身","B. 对出生指定性别不适造成的显著痛苦","C. 拒绝传统性别角色","D. 对异性服装的偏好"],ans:1,exp:"DSM-5强调「临床显著困扰」是诊断核心，跨性别认同本身不是障碍。"},
+  {q:"双重标准（Sexual Double Standard）是指？",opts:["A. 一个人对自己和他人有两种性标准","B. 相同性行为对男女有不同社会评价","C. 比较两种文化中的性规范","D. 在不同年龄有不同性期望"],ans:1,exp:"双重标准：相同行为（如多个性伴侣），男性受到积极评价，女性受到负面评价的性别偏见现象。"},
+];
+let qa=new Array(qs.length).fill(null),qc=0;
+function buildQ(){
+  const c=document.getElementById('qc');c.innerHTML='';
+  qs.forEach((q,qi)=>{
+    const d=document.createElement('div');d.className='card qb';
+    d.innerHTML=`<div class="qt"><span style="color:var(--ac);font-weight:800">${qi+1}.</span> ${q.q}</div>
+    <div class="opts">${q.opts.map((o,oi)=>`<button class="opt" id="o${qi}-${oi}" onclick="pick(${qi},${oi})">${o}</button>`).join('')}</div>
+    <div class="exp" id="exp${qi}"><strong>💡 解析：</strong>${q.exp}</div>`;
+    c.appendChild(d);
+  });updateQS();
+}
+function pick(qi,oi){
+  if(qa[qi]!==null)return;qa[qi]=oi;
+  if(oi===qs[qi].ans)qc++;
+  document.querySelectorAll(`[id^="o${qi}-"]`).forEach(b=>{
+    b.classList.add('answered');
+    const i=parseInt(b.id.split('-')[1]);
+    if(i===qs[qi].ans)b.classList.add('correct');
+    else if(i===oi)b.classList.add('wrong');
+  });
+  document.getElementById('exp'+qi).classList.add('show');updateQS();
+}
+function updateQS(){
+  const a=qa.filter(x=>x!==null).length;
+  document.getElementById('qsn').textContent=qc+'/'+qs.length;
+  document.getElementById('qsl').textContent=a===qs.length?`完成！正确率${Math.round(qc/qs.length*100)}%`:`已答${a}/${qs.length}题`;
+}
+function resetQ(){qa=new Array(qs.length).fill(null);qc=0;buildQ();}
+buildQ();
+
+const glo=[
+  {t:"Kinsey量表",d:"0（完全异性恋）~6（完全同性恋）的性取向连续谱，X=无性恋"},
+  {t:"性取向 Sexual Orientation",d:"对特定性别的持久性性吸引模式，含吸引、行为、认同三维度"},
+  {t:"性别认同 Gender Identity",d:"个人对自身性别归属的内在感受，独立于生理性别"},
+  {t:"性别表达 Gender Expression",d:"通过外貌、行为、穿着等外在呈现性别的方式"},
+  {t:"顺性别 Cisgender",d:"性别认同与出生指定性别一致的个体"},
+  {t:"跨性别 Transgender",d:"性别认同与出生指定性别不一致的个体"},
+  {t:"非二元 Non-binary",d:"性别认同不完全属于男性或女性的统称"},
+  {t:"双性人 Intersex",d:"生理性别特征（染色体/激素/解剖）不典型的个体"},
+  {t:"性别焦虑 Gender Dysphoria",d:"对出生指定性别的显著不适造成临床显著痛苦（DSM-5）"},
+  {t:"性反应四阶段",d:"Masters & Johnson：兴奋→持续→高潮→消退"},
+  {t:"性脚本理论 Sexual Script Theory",d:"性行为是社会学习的剧本产物，分文化、人际、内省三层次"},
+  {t:"FRIES同意框架",d:"Freely Given, Reversible, Informed, Enthusiastic, Specific"},
+  {t:"强奸迷思 Rape Myth",d:"关于性暴力的错误信念，倾向于为施害者辩护并责怪受害者"},
+  {t:"旁观者效应",d:"旁观者越多，个人责任感越低，越不可能采取行动"},
+  {t:"5D干预策略",d:"Direct, Distract, Delegate, Delay, Document——旁观者干预性暴力的5种方式"},
+  {t:"衣原体 Chlamydia",d:"最常见细菌性STI，常无症状，可致盆腔炎，抗生素可治愈"},
+  {t:"HPV",d:"最常见病毒性STI，可致宫颈癌和尖锐湿疣，有疫苗预防"},
+  {t:"HIV",d:"人类免疫缺陷病毒，攻击免疫系统，ART可控制但无法治愈"},
+  {t:"PrEP",d:"暴露前预防，HIV阴性者每日服药降低感染风险>90%"},
+  {t:"催产素 Oxytocin",d:"高潮时释放，促亲密感与信任，又称「爱情激素」"},
+  {t:"性功能障碍 Sexual Dysfunction",d:"持续性的性反应问题（欲望/唤起/高潮/疼痛），造成显著困扰"},
+  {t:"勃起障碍 ED",d:"男性无法达到/维持足够勃起进行性行为"},
+  {t:"感觉聚焦 Sensate Focus",d:"Masters & Johnson的性治疗技术，从非性感官接触开始减少表现焦虑"},
+  {t:"双重标准 Double Standard",d:"相同性行为对男女有不同社会评价的性别偏见"},
+  {t:"性流动性 Sexual Fluidity",d:"Lisa Diamond提出：性取向在生命历程中可发生变化"},
+  {t:"哥哥效应 Fraternal Birth Order",d:"每多一个亲哥哥，男性为同性恋的概率约增加33%"},
+  {t:"转化疗法 Conversion Therapy",d:"试图改变性取向，已被证明无效且有害，被主流机构谴责"},
+  {t:"安全型依恋 Secure Attachment",d:"信任伴侣，舒适于亲密与独立并存的依恋风格"},
+  {t:"Myth Buster",d:"PSYC172核心作业：识别迷思→收集证据→制作Fact Sheet"},
+  {t:"无性恋 Asexuality",d:"对任何性别几乎不产生性吸引力的性取向"},
+  {t:"性唤起不一致 Non-concordance",d:"生理唤起与主观性唤起感受不一致，在女性中极为普遍"},
+  {t:"梅毒 Syphilis",d:"细菌性STI，分阶段进展（溃疡→皮疹→系统损害），青霉素可治愈"},
+  {t:"疱疹 Herpes HSV",d:"病毒性STI，表现为水疱/溃疡，终身潜伏，可复发"},
+  {t:"HPV疫苗",d:"预防主要致癌HPV亚型，9-12岁接种效果最佳，男女均适用"},
+];
+function buildGlo(f=''){
+  const fl=glo.filter(g=>g.t.toLowerCase().includes(f.toLowerCase())||g.d.toLowerCase().includes(f.toLowerCase()));
+  document.getElementById('tg').innerHTML=fl.map(g=>`<div class="tc"><div class="term">${g.t}</div><div class="def">${g.d}</div></div>`).join('');
+}
+function filterGlo(){buildGlo(document.getElementById('gsi').value);}
+buildGlo();
+</script>
+</body>
+</html>
