@@ -130,6 +130,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
   <button class="nav-item" onclick="goPage('t10',this)"><span class="icon">🤝</span>亲社会行为</button>
 
   <div class="nav-section">备考工具</div>
+  <button class="nav-item" onclick="goPage('midterm1',this)"><span class="icon">🎯</span>期中一复习</button>
   <button class="nav-item" onclick="goPage('flashcards',this)"><span class="icon">🃏</span>闪卡记忆</button>
   <button class="nav-item" onclick="goPage('quiz',this)"><span class="icon">✅</span>模拟测验</button>
   <button class="nav-item" onclick="goPage('glossary',this)"><span class="icon">📖</span>术语表</button>
@@ -700,6 +701,430 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
   </div>
 </div>
 
+<!-- MIDTERM 1 REVIEW -->
+<div class="page" id="page-midterm1">
+  <div class="page-header">
+    <h1>🎯 期中一复习</h1>
+    <p>Week 1–4 · Lectures 1–8 · 基于 Study Guide + Lecture Slides 的全面备考答案</p>
+    <div class="tag-row">
+      <span class="tag">进化与社会生活</span>
+      <span class="tag">研究方法</span>
+      <span class="tag">自然与教养</span>
+      <span class="tag">自我认知</span>
+      <span class="tag">自我控制</span>
+    </div>
+  </div>
+
+  <div class="section-title">📌 PART 1 — 社会心理学导论 &amp; 进化基础（Lec 1–3）</div>
+
+  <div class="card">
+    <h3>Q: 什么是社会心理学？它与其他心理学分支有什么不同？</h3>
+    <p><strong>定义：</strong>社会心理学研究个体的思想、感受和行为如何受到他人（真实的、想象的或隐含的）存在的影响。</p>
+    <ul>
+      <li>关注<strong>情境力量</strong>（situational forces）对行为的影响，而非仅关注个人特质</li>
+      <li>vs 人格心理学：人格关注稳定的个体差异；社会心理学关注情境如何改变行为</li>
+      <li>vs 社会学：社会学研究群体和社会结构；社会心理学聚焦个体的心理过程</li>
+      <li>核心主张：情境的力量往往比我们预期的更强大（Milgram, Zimbardo等实验）</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Q: 解释自然选择（Natural Selection）如何解释社会行为？</h3>
+    <ul>
+      <li><strong>自然选择</strong>：有助于生存和繁殖的特征在种群中频率增加</li>
+      <li>行为特征也受自然选择塑造——有适应意义的社会行为（如合作、利他）更容易被保留</li>
+      <li><strong>适应性（Adaptation）</strong>：对环境压力进化出的解决方案</li>
+      <li><strong>包容适应性（Inclusive Fitness）</strong>：不仅考虑个体繁殖成功，还包括帮助亲属传递共同基因的贡献</li>
+      <li>关键：进化选择的是<em>基因</em>，不是个体或物种</li>
+    </ul>
+    <div class="highlight-box"><p>⚠️ <strong>常考误区：</strong>"进化决定 = 无法改变"是错误的！进化产生的是<em>倾向</em>，不是固定行为。文化和学习可以修改、压制或增强这些倾向。</p></div>
+  </div>
+
+  <div class="card">
+    <h3>Q: 什么是亲属选择（Kin Selection）？Hamilton's Rule是什么？</h3>
+    <ul>
+      <li><strong>亲属选择</strong>：通过帮助带有相同基因的亲属来间接传播自身基因的机制（Hamilton, 1964）</li>
+      <li><strong>Hamilton's Rule：rb &gt; c</strong>
+        <ul>
+          <li><strong>r</strong> = 亲缘系数（relatedness）：同卵双胞胎=1.0；亲兄弟姐妹=0.5；表亲=0.125</li>
+          <li><strong>b</strong> = 利他行为对受益者的收益（benefit）</li>
+          <li><strong>c</strong> = 利他者付出的成本（cost）</li>
+          <li>当 r×b &gt; c 时，利他行为会进化</li>
+        </ul>
+      </li>
+      <li>解释：为什么人们愿意为兄弟姐妹牺牲，而不愿为陌生人同等牺牲</li>
+      <li>名言：Haldane——"我愿意为两个兄弟或八个表亲牺牲自己"</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Q: 什么是互惠利他（Reciprocal Altruism）？与亲属选择有何不同？</h3>
+    <ul>
+      <li><strong>互惠利他</strong>：帮助非亲属，期待日后获得同等回报（Trivers, 1971）</li>
+      <li>条件：双方再次相遇概率高；能识别欺骗者；能记住过去的互动</li>
+      <li><strong>vs 亲属选择</strong>：亲属选择依赖基因共享（血缘）；互惠利他依赖未来回报（交换）</li>
+      <li>现实例子：朋友互相帮忙搬家、动物间的互相梳毛（grooming）</li>
+      <li><strong>欺骗者检测（Cheater Detection）</strong>：进化出对违反社会契约者高度敏感的认知机制</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Q: 什么是"Just-So Stories"问题？进化心理学如何应对批评？</h3>
+    <ul>
+      <li><strong>Just-So Stories</strong>：事后为任何行为编造一个"进化故事"，但无法证伪的问题</li>
+      <li>批评：进化解释往往是后见之明，缺乏预测性和可验证性</li>
+      <li>进化心理学的回应：
+        <ul>
+          <li>跨文化一致性（cross-cultural universals）作为证据</li>
+          <li>与其他物种的比较研究</li>
+          <li>基因证据（行为遗传学）</li>
+          <li>可检验的预测（如配偶嫉妒的性别差异）</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section-title">📌 PART 2 — 研究方法、因果性与复制危机（Lec 4–5）</div>
+
+  <div class="card">
+    <h3>Q: 实验法（Experimental）vs 相关法（Correlational）的核心区别？</h3>
+    <ul>
+      <li><strong>实验法</strong>：
+        <ul>
+          <li>研究者操控<strong>自变量（IV）</strong>，测量<strong>因变量（DV）</strong></li>
+          <li><strong>随机分配（Random Assignment）</strong>：参与者随机分入不同条件，控制混淆变量</li>
+          <li>可以建立<strong>因果关系（causality）</strong></li>
+          <li>内部效度高，外部效度可能受限</li>
+        </ul>
+      </li>
+      <li><strong>相关法</strong>：
+        <ul>
+          <li>测量两个变量间的关联程度（相关系数 -1 到 +1）</li>
+          <li>只能建立<strong>关联</strong>，不能证明因果</li>
+          <li>第三变量问题（confound）：可能有第三因素同时影响两个变量</li>
+          <li>外部效度通常更高（生态效度）</li>
+        </ul>
+      </li>
+    </ul>
+    <div class="highlight-box"><p>📌 <strong>经典例子：</strong>冰淇淋销量与溺水死亡率正相关 → 不是冰淇淋导致溺水，而是"天气热"（第三变量）同时导致两者增加。</p></div>
+  </div>
+
+  <div class="card">
+    <h3>Q: 内部效度（Internal Validity）vs 外部效度（External Validity）？</h3>
+    <ul>
+      <li><strong>内部效度</strong>：研究能在多大程度上确立 IV→DV 的因果关系
+        <ul>
+          <li>威胁：选择偏差、历史事件、测量工具误差、实验者偏差</li>
+          <li>提高方法：随机分配、双盲设计、安慰剂对照</li>
+        </ul>
+      </li>
+      <li><strong>外部效度</strong>：研究结果能在多大程度上推广到其他人、情境、时间
+        <ul>
+          <li>威胁：WEIRD样本（Western, Educated, Industrialized, Rich, Democratic）</li>
+          <li>实验室情境与真实生活的差异</li>
+          <li>提高方法：田野实验、多样化样本、复制研究</li>
+        </ul>
+      </li>
+      <li><strong>两者通常存在权衡（trade-off）</strong>：实验室控制好→内部效度高→外部效度可能低</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Q: 什么是复制危机（Replication Crisis）？主要原因是什么？</h3>
+    <ul>
+      <li><strong>复制危机</strong>：大量已发表的心理学研究无法被独立研究者重复验证</li>
+      <li><strong>里程碑事件</strong>：Open Science Collaboration (2015)——重复100项社会/认知心理学研究，仅约39%获得显著复制结果</li>
+      <li><strong>主要原因</strong>：
+        <ul>
+          <li><strong>P-hacking</strong>：反复分析数据直到 p＜0.05（也称"数据捏合"）</li>
+          <li><strong>HARKing</strong>：Hypothesizing After Results are Known——结果出来后再编假设</li>
+          <li><strong>发表偏见（Publication Bias）</strong>：期刊偏向发表阳性结果，负面结果入抽屉</li>
+          <li><strong>样本量不足</strong>：统计效力低，偶然显著结果被误判为真实发现</li>
+          <li><strong>灵活的数据分析</strong>：Researcher degrees of freedom——可选择的分析方式太多</li>
+        </ul>
+      </li>
+      <li><strong>解决方案（开放科学运动）</strong>：预注册、开放数据、大样本多实验室复制、注册报告</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Q: 什么是被试内 vs 被试间设计？各有什么优缺点？</h3>
+    <ul>
+      <li><strong>被试间设计（Between-subjects）</strong>：
+        <ul>
+          <li>不同参与者在不同条件下测试</li>
+          <li>优点：避免顺序效应、练习效应</li>
+          <li>缺点：需要更多参与者；个体差异成为误差</li>
+        </ul>
+      </li>
+      <li><strong>被试内设计（Within-subjects）</strong>：
+        <ul>
+          <li>同一参与者参与所有实验条件</li>
+          <li>优点：控制个体差异；需要更少参与者</li>
+          <li>缺点：顺序效应（carryover effects）；参与者可能猜出实验目的</li>
+          <li>解决顺序效应：<strong>平衡（counterbalancing）</strong></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Q: 什么是欺骗（Deception）？在心理学研究中的伦理考量？</h3>
+    <ul>
+      <li>许多社会心理学实验需要欺骗参与者（不告知真实目的），否则行为会改变</li>
+      <li><strong>伦理要求（APA准则）</strong>：
+        <ul>
+          <li>知情同意（Informed Consent）：告知研究大致性质</li>
+          <li>欺骗须有科学必要性，且无其他替代方案</li>
+          <li>事后揭密（Debriefing）：实验结束后告知真实目的，消除可能的心理伤害</li>
+          <li>参与者有权随时退出</li>
+        </ul>
+      </li>
+      <li>Milgram实验是最著名的伦理争议案例——欺骗程度深，参与者经历极度压力</li>
+    </ul>
+  </div>
+
+  <div class="section-title">📌 PART 3 — 自然与教养（Lec 6）</div>
+
+  <div class="card">
+    <h3>Q: 什么是遗传率（Heritability）？三大常见误解是什么？</h3>
+    <ul>
+      <li><strong>遗传率</strong>：在特定人群中，某一特征的<em>变异</em>有多少比例可归因于基因差异（0%–100%）</li>
+      <li><strong>误解一</strong>：遗传率高 = 基因决定，无法改变 ❌
+        <ul><li>身高遗传率约80%，但营养改善可显著增加身高</li></ul>
+      </li>
+      <li><strong>误解二</strong>：遗传率是关于个体的统计数字 ❌
+        <ul><li>遗传率描述的是<em>群体中变异的来源</em>，不能用来预测某一个体的特征</li></ul>
+      </li>
+      <li><strong>误解三</strong>：遗传率是固定不变的 ❌
+        <ul><li>遗传率会随环境变化——当环境差异减少时，遗传率上升</li></ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Q: 双胞胎研究如何帮助我们理解基因与环境的作用？</h3>
+    <ul>
+      <li><strong>同卵双胞胎（MZ）</strong>：共享100%基因；<strong>异卵双胞胎（DZ）</strong>：共享约50%基因</li>
+      <li>逻辑：若MZ比DZ更相似，则超出部分归因于基因</li>
+      <li><strong>分离抚养的双胞胎（Twins Reared Apart）</strong>：消除共同环境影响，更纯粹地测量遗传影响</li>
+      <li>Minnesota Twin Study发现：分离抚养的MZ在人格、智力、兴趣等方面仍高度相似</li>
+      <li><strong>共享环境（Shared Environment）</strong>：家庭环境；<strong>非共享环境（Non-shared）</strong>：个体独特经历</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Q: 什么是基因-环境交互（GxE Interaction）和基因-环境相关（rGE）？</h3>
+    <ul>
+      <li><strong>基因-环境交互（GxE）</strong>：基因型决定个体对特定环境的<em>敏感度</em>
+        <ul><li>例：5-HTT基因变体 × 生活压力 → 抑郁风险（Caspi等, 2003）</li></ul>
+      </li>
+      <li><strong>基因-环境相关（rGE）</strong>：基因型影响个体所处的环境
+        <ul>
+          <li><strong>被动型</strong>：父母同时提供基因和成长环境（音乐才能家庭）</li>
+          <li><strong>诱发型</strong>：个体的基因特征引发他人的不同对待（活泼孩子获得更多互动）</li>
+          <li><strong>主动型</strong>：个体主动选择与基因倾向匹配的环境（基因影响利基选择）</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section-title">📌 PART 4 — 自我认知 &amp; 印象管理（Lec 7）</div>
+
+  <div class="card">
+    <h3>Q: 什么是内省错觉（Introspection Illusion）？为什么内省不可靠？</h3>
+    <ul>
+      <li><strong>内省错觉</strong>：我们相信能通过内省准确了解自己的心理状态和行为原因，但研究表明内省经常是错误的</li>
+      <li>Wilson &amp; Nisbett (1977)：人们对自己选择的解释往往是事后建构，与实际决策过程无关</li>
+      <li>"言语遮蔽效应"（Verbal Overshadowing）：用语言描述直觉判断反而降低准确性</li>
+      <li>大量无意识过程（automatic processes）驱动行为，但我们不能直接访问这些过程</li>
+      <li><strong>启示</strong>：不能完全信任自我报告（self-report）数据；行为测量和隐性测量更可靠</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Q: 聚光灯效应（Spotlight Effect）和透明度幻觉（Illusion of Transparency）是什么？</h3>
+    <ul>
+      <li><strong>聚光灯效应</strong>：高估他人对自己的关注程度
+        <ul>
+          <li>Gilovich等(2000)：穿着印有尴尬图案T恤进教室——本人认为约50%的人注意到，实际约23%</li>
+          <li>原因：我们以自己为参照中心（egocentric anchor）</li>
+        </ul>
+      </li>
+      <li><strong>透明度幻觉</strong>：高估他人感知到自己内心状态（紧张、说谎、喜欢）的程度
+        <ul>
+          <li>例：演讲时感觉紧张"全场都能看出来"，其实观众几乎察觉不到</li>
+        </ul>
+      </li>
+      <li>两者共同原因：自己的感受和状态对自己高度显著，但对他人并不显著</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Q: 自利偏差（Self-Serving Bias）是什么？有哪些表现形式？</h3>
+    <ul>
+      <li><strong>自利偏差</strong>：将成功归因于内部因素（能力、努力），将失败归因于外部因素（运气、他人）</li>
+      <li><strong>高于平均效应（Better-than-Average Effect）</strong>：大多数人认为自己各方面能力高于平均水平（统计上不可能）</li>
+      <li><strong>不切实际的乐观（Unrealistic Optimism）</strong>：高估自己遇到好事、低估遇到坏事的概率</li>
+      <li><strong>自我强化式归因（Self-Enhancing Attribution）</strong>：成功"是我努力的结果"；失败"是考题太难"</li>
+      <li>功能：维护自尊、保持动力，但过度可导致自大和不从错误中学习</li>
+      <li><strong>文化差异</strong>：东亚文化中自利偏差较弱，更多自我批评（self-criticism）以维持社会关系</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Q: 印象管理（Impression Management）有哪些策略？什么是自我妨碍？</h3>
+    <ul>
+      <li><strong>印象管理</strong>：个体有意识地控制他人对自己形成的印象（Goffman的戏剧模型）</li>
+      <li><strong>常见策略</strong>：
+        <ul>
+          <li><strong>自我推销（Self-promotion）</strong>：展示能力和成就</li>
+          <li><strong>阿谀奉承（Ingratiation）</strong>：赞美他人以获得好感</li>
+          <li><strong>恐吓（Intimidation）</strong>：展示权力让他人顺从</li>
+          <li><strong>道德宣示（Exemplification）</strong>：展现道德高尚</li>
+        </ul>
+      </li>
+      <li><strong>自我妨碍（Self-handicapping）</strong>：
+        <ul>
+          <li>提前为可能的失败设置借口（考前不睡觉、声称生病）</li>
+          <li>策略逻辑：成功→"即使有障碍还是成功了！"；失败→"因为有障碍才失败，不代表我真实水平"</li>
+          <li>保护自我形象，但代价是真实表现可能下降</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section-title">📌 PART 5 — 自我控制（Lec 8 · Fujita 2020）</div>
+
+  <div class="card">
+    <h3>Q: Fujita (2020) 的自我控制理论核心是什么？高层 vs 低层解释有何区别？</h3>
+    <ul>
+      <li>Fujita (2020) 综合了自我控制研究，提出从<strong>目标层级</strong>角度理解自我控制</li>
+      <li><strong>高层解释（High-level / Why）</strong>：关注行为的<em>意义和目的</em>
+        <ul>
+          <li>"我在锻炼，<em>因为我想保持健康、长寿</em>"</li>
+          <li>将行为与抽象价值和终极目标连接</li>
+          <li>增强自我控制：面对诱惑时更容易坚持</li>
+        </ul>
+      </li>
+      <li><strong>低层解释（Low-level / How）</strong>：关注行为的<em>具体执行方式</em>
+        <ul>
+          <li>"我在锻炼，<em>因为我要做30个俯卧撑</em>"</li>
+          <li>更注重具体步骤，缺乏与更大目标的连接</li>
+          <li>更容易被即时诱惑打断</li>
+        </ul>
+      </li>
+      <li><strong>应用</strong>：当面临自我控制挑战时，提醒自己"为什么"比聚焦"怎么做"更有效</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Q: Ego Depletion是什么？为什么McCullough强调要批判性看待？</h3>
+    <ul>
+      <li><strong>Ego Depletion</strong>（Baumeister et al., 1998）：意志力是有限资源，使用后会暂时耗尽
+        <ul>
+          <li>经典实验：先抵制饼干的人（高消耗），之后在困难问题上更快放弃</li>
+          <li>"葡萄糖模型"：意志力消耗等于血糖消耗</li>
+        </ul>
+      </li>
+      <li><strong>批判</strong>：
+        <ul>
+          <li>大规模复制研究（Hagger et al., 2016，多实验室）：未能复制ego depletion效应</li>
+          <li>葡萄糖模型被否定：葡萄糖水平与自我控制表现无一致关联</li>
+          <li>可能是<strong>期望效应</strong>：相信意志力有限的人表现出depletion</li>
+        </ul>
+      </li>
+      <li>McCullough课上明确：对此类未能复制的经典结果要持批判态度，这正是复制危机的体现</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Q: 执行意图（Implementation Intentions）是什么？为什么有效？</h3>
+    <ul>
+      <li><strong>执行意图</strong>（Gollwitzer, 1999）："如果情境X出现，我就执行行为Y"的if-then计划</li>
+      <li><strong>例子</strong>："如果今晚有人给我倒酒，我就说谢谢，然后要一杯水"</li>
+      <li><strong>为什么有效</strong>：
+        <ul>
+          <li>将行为与具体情境线索预先绑定，减少决策负担</li>
+          <li>在关键时刻自动触发预定反应，绕过意志力消耗</li>
+          <li>将目标意图转化为自动化行为</li>
+        </ul>
+      </li>
+      <li><strong>证据</strong>：meta分析显示，加入if-then计划使目标达成率提升2–3倍（Gollwitzer &amp; Sheeran, 2006）</li>
+      <li><strong>vs 目标意图（Goal Intentions）</strong>："我打算减少饮酒" → 缺乏具体行动计划，效果较弱</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Q: 预承诺（Precommitment）策略是什么？举例说明。</h3>
+    <ul>
+      <li><strong>预承诺</strong>：提前采取行动限制未来自己的选择，以避免在诱惑面前失控</li>
+      <li><strong>经典例子</strong>：Ulysses让船员把自己绑在桅杆上，这样听到海妖歌声时无法跳海</li>
+      <li><strong>现代例子</strong>：
+        <ul>
+          <li>把手机放在另一个房间再睡觉</li>
+          <li>把零食不放在家里（环境设计）</li>
+          <li>提前购买课程/健身房年卡（沉没成本驱动坚持）</li>
+          <li>Commitment device：stickK.com——完不成目标就把钱捐给讨厌的组织</li>
+        </ul>
+      </li>
+      <li>原理：现在的理性自我约束未来可能冲动的自我</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Q: 习惯（Habits）如何帮助自我控制？情境设计的重要性？</h3>
+    <ul>
+      <li><strong>习惯</strong>：在特定情境线索出现时自动激活的行为模式，不需要消耗意志力</li>
+      <li>自我控制最好的策略不是"在诱惑面前更努力抵抗"，而是<strong>避免进入诱惑情境</strong></li>
+      <li><strong>情境设计（Situation Selection）</strong>：
+        <ul>
+          <li>改变环境使好行为更容易、坏行为更难</li>
+          <li>例：把水果放在显眼处，零食藏起来</li>
+          <li>研究发现：自我控制好的人不是更努力抵制诱惑，而是更少遇到诱惑</li>
+        </ul>
+      </li>
+      <li><strong>习惯形成</strong>：一致性 + 情境线索 + 奖励 → 自动化（不再消耗认知资源）</li>
+    </ul>
+    <div class="study-box"><p>💡 <strong>Fujita 2020总结口诀：</strong>Why思维增强控制力 · If-Then计划自动化 · 好习惯减少诱惑接触 · 预承诺锁住未来自己</p></div>
+  </div>
+
+  <div class="section-title">📌 重点实验速查表</div>
+  <div class="card">
+    <h3>期中一必考实验/研究</h3>
+    <table class="grade-table">
+      <thead><tr><th>实验/研究</th><th>研究者</th><th>核心发现</th><th>考点</th></tr></thead>
+      <tbody>
+        <tr><td>亲属选择 Hamilton's Rule</td><td>Hamilton (1964)</td><td>rb &gt; c 时利他行为进化</td><td>公式含义；r/b/c各代表什么</td></tr>
+        <tr><td>互惠利他</td><td>Trivers (1971)</td><td>帮助非亲属以换取未来回报</td><td>与亲属选择的区别</td></tr>
+        <tr><td>Open Science Collaboration</td><td>OSC (2015)</td><td>仅39%社会心理学研究能复制</td><td>复制危机的证据；影响</td></tr>
+        <tr><td>聚光灯效应</td><td>Gilovich et al. (2000)</td><td>高估他人对自己的关注（50%→23%）</td><td>定义；与透明度幻觉区别</td></tr>
+        <tr><td>内省错觉</td><td>Wilson &amp; Nisbett (1977)</td><td>人们对自己行为的解释往往是错误的</td><td>为何内省不可靠</td></tr>
+        <tr><td>Ego Depletion (批判)</td><td>Baumeister; Hagger et al.</td><td>提出"意志力资源有限"，但大规模复制失败</td><td>为何要批判性对待</td></tr>
+        <tr><td>执行意图</td><td>Gollwitzer (1999)</td><td>If-then计划使目标达成率提升2-3倍</td><td>定义；为何比目标意图更有效</td></tr>
+        <tr><td>自我控制目标层级</td><td>Fujita (2020)</td><td>高层Why解释优于低层How解释</td><td>应用场景；与自我控制关系</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-title">📌 高频考题预测</div>
+  <div class="card">
+    <h3>期中一最可能出现的题型</h3>
+    <ul>
+      <li>给出一个研究描述 → 判断是实验法还是相关法，并说明理由</li>
+      <li>给出 r、b、c 的数值 → 判断利他行为是否会进化（Hamilton's Rule）</li>
+      <li>给出研究问题 → 指出可能的第三变量（confound）</li>
+      <li>区分内部效度 vs 外部效度的威胁因素</li>
+      <li>解释为什么ego depletion的复制失败说明了复制危机的问题</li>
+      <li>比较执行意图 vs 目标意图的效果差异</li>
+      <li>解释遗传率的三大误解中的一个</li>
+      <li>举例说明高层解释如何增强自我控制</li>
+      <li>聚光灯效应 vs 透明度幻觉：定义 + 区别 + 实验证据</li>
+      <li>什么是自我妨碍？动机是什么？举例</li>
+    </ul>
+  </div>
+</div>
+
 <!-- FLASHCARDS -->
 <div class="page" id="page-flashcards">
   <div class="page-header">
@@ -855,7 +1280,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 <script>
 // --- Navigation ---
 const visited = new Set();
-const totalPages = 15;
+const totalPages = 16;
 function goPage(id, btn) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -881,7 +1306,7 @@ const quizData = [
   {q:"接触假说（Contact Hypothesis）认为，要减少偏见，群体接触需要满足哪个关键条件？",opts:["接触时间越长越好","双方地位平等，有共同目标","只需要在同一空间共存","竞争能激发尊重"],ans:1,exp:"Allport的四个条件：平等地位、共同目标、机构支持、合作而非竞争。仅仅接触（如竞争性接触）甚至可能加剧偏见。"},
   {q:"Asch从众实验中，什么最有效地降低从众行为？",opts:["增加群体规模至10人","有一个同盟者给出正确答案","奖励不从众者","私下回答而非公开"],ans:1,exp:"当有一个人给出不同答案（打破一致性）时，从众率显著下降。即使同盟者的答案是错的，也能减少从众，说明对一致性的破坏很关键。"},
   {q:"自我妨碍（Self-handicapping）的主要动机是？",opts:["真的想失败","创造失败借口，保护自我形象","吸引他人同情","减少竞争"],ans:1,exp:"自我妨碍=提前设置失败理由（如考前熬夜玩游戏）。失败时归因外部（'我没睡好'），成功时自我形象加倍增强（'即使没睡好也成功了！'）"},
-  {q:"复制危机（Replication Crisis）中，P-hacking指的是？",opts:["修改实验数据","反复分析数据直到获得p<0.05的结果","发表负面结果","增加样本量"],ans:1,exp:"P-hacking = 研究者不断尝试不同分析方式、删除数据或加入变量，直到获得显著结果（p<0.05）。这是科学不端行为。"},
+  {q:"复制危机（Replication Crisis）中，P-hacking指的是？",opts:["修改实验数据","反复分析数据直到获得p＜0.05的结果","发表负面结果","增加样本量"],ans:1,exp:"P-hacking = 研究者不断尝试不同分析方式、删除数据或加入变量，直到获得显著结果（p＜0.05）。这是科学不端行为。"},
   {q:"旁观者效应中，'多元无知'（Pluralistic Ignorance）指的是？",opts:["旁观者不知道彼此的存在","大家都观察他人，看到没人反应就以为情况不紧急","旁观者知识有限，不知如何帮助","旁观者数量太多"],ans:1,exp:"每个旁观者都私下认为情况可能紧急，但看到他人面无表情/不行动，就推断'大家都觉得没事，那就没事'。这是集体错误信念的典型例子。"},
   {q:"光环效应（Halo Effect）最好的例子是？",opts:["因为喜欢一个人而相信他说的话","看到有人摔倒立刻去帮忙","记住第一次见面的信息","高估自己被他人注意的程度"],ans:0,exp:"光环效应：一种正面特质（外貌、魅力）扩展到其他判断（聪明、善良、可信）。选项A：因为喜欢某人就相信其观点，这是基于吸引力的信任泛化。"},
   {q:"Fujita (2020) 关于自我控制的核心观点是？",opts:["意志力是完全固定的资源","高层（why）解释视角增强自我控制","低层（how）解释更有效","自我控制与目标层级无关"],ans:1,exp:"Fujita的目标层级理论：高层解释（为什么要做=意义）比低层解释（怎么做=具体步骤）更能增强自我控制，因为将行为与抽象价值连接，抗诱惑能力更强。"},
@@ -960,7 +1385,7 @@ const glossaryData = [
   {t:"歧视",d:"基于群体成员身份的不平等行为对待（行为层面）"},
   {t:"最小群体范式",d:"Tajfel：随机分组也产生内群体偏爱，证明偏见极易产生"},
   {t:"外群体同质化",d:"认为外群体成员都一样，而内群体成员更多样化"},
-  {t:"P-hacking",d:"反复分析数据直到获得p<0.05，属于学术不端"},
+  {t:"P-hacking",d:"反复分析数据直到获得p＜0.05，属于学术不端"},
   {t:"复制危机",d:"许多已发表心理学研究无法被复制验证（OSC 2015：仅39%复制成功）"},
   {t:"挫折-攻击假说",d:"Dollard等：挫折引发攻击冲动；现代修正版认为是诱因之一"},
   {t:"社会学习理论",d:"Bandura：通过观察和模仿学习行为，包括攻击行为（Bobo Doll）"},
