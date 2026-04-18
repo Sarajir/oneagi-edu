@@ -96,6 +96,19 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .gloss-def{font-size:13px;color:var(--muted);line-height:1.7;}
 /* Responsive */
 @media(max-width:768px){.sidebar{width:100%;min-height:auto;position:relative;}.main{margin-left:0;padding:20px;}}
+/* Bilingual language toggle */
+.lang-toggle{display:flex;gap:6px;margin-top:14px;}
+.lang-btn{padding:5px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface2);color:var(--muted);font-size:12px;font-weight:700;cursor:pointer;transition:all .18s;letter-spacing:.5px;}
+.lang-btn:hover{border-color:var(--ac);color:var(--text);}
+.lang-btn.active{background:rgba(108,99,255,.22);border-color:var(--ac);color:var(--ac);}
+.fc-en-q{display:block;font-size:11px;color:var(--muted);margin-top:6px;font-style:italic;line-height:1.4;}
+.fc-divider{border:none;border-top:1px solid var(--border);margin:8px 0;}
+.fc-en-a{display:block;font-size:11px;color:#7bb3d4;margin-top:4px;font-style:italic;line-height:1.4;}
+.en-note{font-size:12px;color:#7bb3d4;font-style:italic;margin-top:6px;padding:6px 10px;border-radius:6px;background:rgba(108,99,255,.07);line-height:1.6;}
+.m1-en-exp{font-size:12px;color:#7bb3d4;margin-top:6px;font-style:italic;border-top:1px solid var(--border);padding-top:6px;line-height:1.6;}
+#m1fc-grid .fc-wrap{height:290px;}
+#m1fc-grid .fc-back{overflow-y:auto;}
+#m1fc-grid .fc-back .fc-a{font-size:12px;line-height:1.5;}
 </style>
 </head>
 <body>
@@ -131,8 +144,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 
   <div class="nav-section">备考工具</div>
   <button class="nav-item" onclick="goPage('midterm1',this)"><span class="icon">🎯</span>期中一复习</button>
-  <button class="nav-item" onclick="goPage('m1fc',this)"><span class="icon">🃏</span>期中一闪卡（35张）</button>
-  <button class="nav-item" onclick="goPage('m1quiz',this)"><span class="icon">✅</span>期中一测验（30题）</button>
+  <button class="nav-item" onclick="goPage('m1fc',this)"><span class="icon">🃏</span>期中一闪卡（47张）</button>
+  <button class="nav-item" onclick="goPage('m1quiz',this)"><span class="icon">✅</span>期中一测验（36题）</button>
   <button class="nav-item" onclick="goPage('flashcards',this)"><span class="icon">🗂️</span>全课闪卡</button>
   <button class="nav-item" onclick="goPage('quiz',this)"><span class="icon">📝</span>全课测验</button>
   <button class="nav-item" onclick="goPage('glossary',this)"><span class="icon">📖</span>术语表</button>
@@ -706,13 +719,18 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 <!-- MIDTERM 1 REVIEW -->
 <div class="page" id="page-midterm1">
   <div class="page-header">
-    <h1>🎯 期中一复习</h1>
+    <h1>🎯 期中一复习 · Midterm 1 Review</h1>
     <p>完整 Study Guide 答案 · Week 1–4 · 共 50 题 · 按原题顺序</p>
     <div class="tag-row">
       <span class="tag">Week 1: 进化基础</span>
       <span class="tag">Week 2: 研究方法</span>
       <span class="tag">Week 3: 自我 &amp; 自我控制</span>
       <span class="tag">Week 4: 社会认知</span>
+    </div>
+    <div class="lang-toggle">
+      <button class="lang-btn" data-lang="cn" onclick="setM1Lang('cn')">🇨🇳 中文</button>
+      <button class="lang-btn active" data-lang="bi" onclick="setM1Lang('bi')">🌐 双语</button>
+      <button class="lang-btn" data-lang="en" onclick="setM1Lang('en')">🇺🇸 English</button>
     </div>
   </div>
 
@@ -1482,10 +1500,15 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 <!-- MIDTERM 1 FLASHCARDS -->
 <div class="page" id="page-m1fc">
   <div class="page-header">
-    <h1>🃏 期中一闪卡</h1>
-    <p>Week 1–4 全部考点 · 35张 · 按Study Guide顺序 · 点击翻转查看答案</p>
+    <h1>🃏 期中一闪卡 · Midterm 1 Flashcards</h1>
+    <p>Week 1–4 全部考点 · 47张 · 按Study Guide顺序 · 点击翻转查看答案 · Click to flip · 支持中文/双语/英文</p>
     <div class="tag-row">
       <span class="tag">进化基础</span><span class="tag">研究方法</span><span class="tag">自然教养</span><span class="tag">自我认知</span><span class="tag">自我控制</span>
+    </div>
+    <div class="lang-toggle">
+      <button class="lang-btn" data-lang="cn" onclick="setM1Lang('cn')">🇨🇳 中文</button>
+      <button class="lang-btn active" data-lang="bi" onclick="setM1Lang('bi')">🌐 双语</button>
+      <button class="lang-btn" data-lang="en" onclick="setM1Lang('en')">🇺🇸 English</button>
     </div>
   </div>
   <div class="flashcard-grid" id="m1fc-grid"></div>
@@ -1494,8 +1517,13 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 <!-- MIDTERM 1 QUIZ -->
 <div class="page" id="page-m1quiz">
   <div class="page-header">
-    <h1>✅ 期中一模拟测验</h1>
-    <p>30道选择题 · 覆盖 Week 1–4 全部Study Guide考点 · 点击选项立即查看解析</p>
+    <h1>✅ 期中一模拟测验 · Midterm 1 Quiz</h1>
+    <p>36道选择题 · 覆盖 Week 1–4 全部Study Guide考点 · 点击选项立即查看解析 · 支持中文/双语/英文</p>
+    <div class="lang-toggle">
+      <button class="lang-btn" data-lang="cn" onclick="setM1Lang('cn')">🇨🇳 中文</button>
+      <button class="lang-btn active" data-lang="bi" onclick="setM1Lang('bi')">🌐 双语</button>
+      <button class="lang-btn" data-lang="en" onclick="setM1Lang('en')">🇺🇸 English</button>
+    </div>
   </div>
   <div id="m1quiz-container"></div>
   <div class="quiz-score" id="m1quiz-score"></div>
@@ -1782,201 +1810,513 @@ renderGlossary();
 function filterGlossary(v) { renderGlossary(v); }
 
 // =============================================
-// MIDTERM 1 FLASHCARDS DATA (Week 1-4, 35 cards — Study Guide order)
+// MIDTERM 1 BILINGUAL LANGUAGE STATE
+// =============================================
+let m1Lang = 'bi'; // 'cn' | 'bi' | 'en'
+function setM1Lang(lang) {
+  m1Lang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.lang-btn[data-lang="'+lang+'"]').forEach(b => b.classList.add('active'));
+  initM1FC();
+  initM1Quiz();
+  const showEN = (lang === 'bi' || lang === 'en');
+  document.querySelectorAll('.en-note').forEach(n => n.style.display = showEN ? '' : 'none');
+}
+
+// =============================================
+// MIDTERM 1 FLASHCARDS DATA (Week 1-4 — Study Guide order, bilingual)
 // =============================================
 const m1Cards = [
   // ══════ WEEK 1: 进化与社会生活 ══════
-  {q:"[W1-Q1] 自然选择的三个条件是什么？", a:"① 变异（Variation）：同物种个体存在特征差异；② 遗传性（Heritability）：这些特征可从父母传给后代；③ 差异繁殖成功（Differential Reproductive Success）：某些变体比其他变体产生更多存活后代。三个条件缺一不可。"},
-  {q:"[W1-Q2] 自然选择如何塑造大脑系统来解决社会问题？", a:"祖先面临反复的适应性问题（检测欺骗者、吸引配偶、养育后代、建立联盟）。解决更好的神经机制→更多后代→传播。结果：大脑是由专用模块构成，每个针对特定适应问题进化而来，而非通用计算机。"},
-  {q:"[W1-Q3] Charles Darwin 是谁？对科学的主要贡献？", a:"英国博物学家（1809–1882）。《物种起源》（1859）：提出自然选择是进化的机制；《人类的由来》（1871）：将进化应用于人类行为。贡献：提供了机制性、自然主义的解释，无需诉诸神圣设计。"},
-  {q:"[W1-Q4] 二战如何塑造了社会心理学的研究主题？", a:"二战提出迫切问题：普通人如何服从极端命令？催生了：服从权威（Milgram）、从众（Asch）、偏见研究（Allport）、态度改变与说服研究。Kurt Lewin逃离纳粹德国后创建群体动力学。核心启示：情境力量可让普通人做极端行为。"},
-  {q:"[W1-Q5] Auguste Comte 是谁？主要贡献？", a:"法国哲学家（1798–1857），实证主义和社会学创始人。贡献：提出「科学层级」（从数学到社会学）；主张社会现象应用科学方法研究而非仅凭哲学推理；创造了'sociology'一词。"},
-  {q:"[W1-Q6] 灵长类睾丸大小揭示了什么关于交配系统？", a:"睾丸大小（相对体重）是精子竞争强度指标。多雄多雌（如黑猩猩）→精子竞争激烈→睾丸最大；一夫一妻（长臂猿）→几乎无竞争→小睾丸；一夫多妻（大猩猩）→独占交配→睾丸相对小。人类居中→温和多配偶的祖先系统。"},
-  {q:"[W1-Q7] 三种交配系统的定义？祖先人类最可能是哪种？", a:"一夫一妻（Monogamous）：一雄一雌共同育后；一夫多妻（Polygynous）：一雄多雌，雄性体型更大（大猩猩）；多雄多雌（Multimale）：多雄多雌互相交配（黑猩猩）。祖先人类最可能是温和的一夫多妻制：体型二态性存在但不极端，睾丸居中。"},
-  {q:"[W1-Q8] 现代家庭与祖先家庭有何不同？", a:"祖先家庭：小型游群，扩展亲属网络，共同育儿（alloparenting），祖母积极参与；现代家庭：核心家庭与亲属地理分离，机构替代亲属网络，家庭规模更小，独居现象史无前例。含义：现代人在祖先未曾面对的孤立环境中挣扎。"},
-  {q:"[W1-Q9] 控制生育社会 vs 自然生育社会的区别？", a:"自然生育社会：不用人工避孕，生育由哺乳期闭经、营养调节；女性一生生育更多孩子，但婴儿死亡率高。控制生育社会：现代社会用避孕手段有意限制；家庭规模小，每孩资源投入更多。研究祖先生育需参考自然生育社会数据。"},
-  {q:"[W1-Q10] 绝经是什么？祖母假说如何解释它？", a:"绝经（Menopause）：女性约50岁后生育能力停止，在灵长类中近乎独特。祖母假说（Hawkes等）：停止繁殖后帮助女儿/外孙存活，反而增加了更多共享基因的后代→选择压力维持了绝经后的长寿。"},
-  {q:"[W1-Q11] 人类生育率和生育间隔与非人类灵长类相比如何？", a:"人类比其他大型类人猿繁殖更快：生育间隔约3年（黑猩猩约5年）；寿命更长；幼儿依赖期更长。原因：共同育儿（父亲+祖母帮助）分担抚育负担，使母亲可更快再次生育。人类的高合作育儿是进化独特点。"},
-  {q:"[W1-Q12] 游群（Bands）是什么？其主要特征？", a:"游群：人类进化史上大部分时间的社会组织形式，约25–150人（居住游群约30–50人）。特征：平等主义（无正式等级）、游动性（跟随食物）、亲属为核心、资源共享、集体育儿、高度相互依赖。"},
-  {q:"[W1-Q13] 进化失配（Evolutionary Mismatch）是什么？", a:"进化出的心理机制遇到与其设计环境不同的现代环境，产生适应不良的反应。大脑为EEA（进化适应环境）——食物匮乏、小型游群——设计。现代例：高糖/脂肪食物偏好→肥胖；社会媒体→过度关注他人评价。"},
+  {qCN:"[W1-Q1] 自然选择的三个条件是什么？",
+   qEN:"[W1-Q1] What are the three conditions for natural selection?",
+   aCN:"① 变异（Variation）：同物种个体存在特征差异；② 遗传性（Heritability）：这些特征可从父母传给后代；③ 差异繁殖成功（Differential Reproductive Success）：某些变体比其他变体产生更多存活后代。三个条件缺一不可。",
+   aEN:"① Variation: individuals within a species differ in traits; ② Heritability: traits can be passed from parents to offspring; ③ Differential Reproductive Success: some variants produce more surviving offspring. All three conditions are necessary."},
+  {qCN:"[W1-Q2] 自然选择如何塑造大脑系统来解决社会问题？",
+   qEN:"[W1-Q2] How does natural selection shape brain systems to solve social problems?",
+   aCN:"祖先面临反复的适应性问题（检测欺骗者、吸引配偶、养育后代、建立联盟）。解决更好的神经机制→更多后代→传播。结果：大脑是由专用模块构成，每个针对特定适应问题进化而来，而非通用计算机。",
+   aEN:"Ancestors repeatedly faced adaptive problems (detecting cheaters, attracting mates, raising offspring, forming alliances). Neural mechanisms that solved these better → more offspring → spread. Result: the brain consists of specialized modules, not a general-purpose computer."},
+  {qCN:"[W1-Q3] Charles Darwin 是谁？对科学的主要贡献？",
+   qEN:"[W1-Q3] Who was Charles Darwin? What were his main scientific contributions?",
+   aCN:"英国博物学家（1809–1882）。《物种起源》（1859）：提出自然选择是进化的机制；《人类的由来》（1871）：将进化应用于人类行为。贡献：提供了机制性、自然主义的解释，无需诉诸神圣设计。",
+   aEN:"British naturalist (1809–1882). On the Origin of Species (1859): proposed natural selection as the mechanism of evolution; The Descent of Man (1871): applied evolution to human behavior. Provided a mechanistic, naturalistic explanation without divine design."},
+  {qCN:"[W1-Q4] 二战如何塑造了社会心理学的研究主题？",
+   qEN:"[W1-Q4] How did World War II shape social psychology research?",
+   aCN:"二战提出迫切问题：普通人如何服从极端命令？催生了：服从权威（Milgram）、从众（Asch）、偏见研究（Allport）、态度改变与说服研究。Kurt Lewin逃离纳粹德国后创建群体动力学。核心启示：情境力量可让普通人做极端行为。",
+   aEN:"WWII raised urgent questions: How could ordinary people obey extreme commands? Spawned: obedience (Milgram), conformity (Asch), prejudice (Allport), attitude change research. Kurt Lewin fled Nazi Germany and founded group dynamics. Core insight: situational forces can make ordinary people do extreme things."},
+  {qCN:"[W1-Q5] Auguste Comte 是谁？主要贡献？",
+   qEN:"[W1-Q5] Who was Auguste Comte? What were his main contributions?",
+   aCN:"法国哲学家（1798–1857），实证主义和社会学创始人。贡献：提出「科学层级」（从数学到社会学）；主张社会现象应用科学方法研究而非仅凭哲学推理；创造了'sociology'一词。",
+   aEN:"French philosopher (1798–1857), founder of positivism and sociology. Proposed a hierarchy of sciences (from mathematics to sociology); argued social phenomena should be studied scientifically; coined the word 'sociology'."},
+  {qCN:"[W1-Q6] 灵长类睾丸大小揭示了什么关于交配系统？",
+   qEN:"[W1-Q6] What does primate testis size reveal about mating systems?",
+   aCN:"睾丸大小（相对体重）是精子竞争强度指标。多雄多雌（如黑猩猩）→精子竞争激烈→睾丸最大；一夫一妻（长臂猿）→几乎无竞争→小睾丸；一夫多妻（大猩猩）→独占交配→睾丸相对小。人类居中→温和多配偶的祖先系统。",
+   aEN:"Testis size (relative to body weight) indicates sperm competition intensity. Multi-male (chimps) → intense sperm competition → largest testes; monogamous (gibbons) → almost none → smallest; polygynous (gorillas) → monopolized mating → relatively small. Humans intermediate → mild ancestral polygyny."},
+  {qCN:"[W1-Q7] 三种交配系统的定义？祖先人类最可能是哪种？",
+   qEN:"[W1-Q7] Define three mating systems. Which is most likely for ancestral humans?",
+   aCN:"一夫一妻（Monogamous）：一雄一雌共同育后；一夫多妻（Polygynous）：一雄多雌，雄性体型更大（大猩猩）；多雄多雌（Multimale）：多雄多雌互相交配（黑猩猩）。祖先人类最可能是温和的一夫多妻制：体型二态性存在但不极端，睾丸居中。",
+   aEN:"Monogamous: one male + one female raise offspring together; Polygynous: one male + multiple females, males larger (gorillas); Multi-male: multiple males and females mate freely (chimps). Ancestral humans most likely mild polygyny: sexual dimorphism exists but not extreme, intermediate testis size."},
+  {qCN:"[W1-Q8] 现代家庭与祖先家庭有何不同？",
+   qEN:"[W1-Q8] How do modern families differ from ancestral families?",
+   aCN:"祖先家庭：小型游群，扩展亲属网络，共同育儿（alloparenting），祖母积极参与；现代家庭：核心家庭与亲属地理分离，机构替代亲属网络，家庭规模更小，独居现象史无前例。含义：现代人在祖先未曾面对的孤立环境中挣扎。",
+   aEN:"Ancestral: small bands, extended kin networks, cooperative childcare (alloparenting), active grandmother involvement; Modern: nuclear families geographically separated from kin, institutions replace kin networks, smaller families, unprecedented solo living. Modern humans struggle in isolation ancestors never faced."},
+  {qCN:"[W1-Q9] 控制生育社会 vs 自然生育社会的区别？",
+   qEN:"[W1-Q9] Contraceptive vs natural fertility societies: key differences?",
+   aCN:"自然生育社会：不用人工避孕，生育由哺乳期闭经、营养调节；女性一生生育更多孩子，但婴儿死亡率高。控制生育社会：现代社会用避孕手段有意限制；家庭规模小，每孩资源投入更多。研究祖先生育需参考自然生育社会数据。",
+   aEN:"Natural fertility societies: no artificial contraception, fertility regulated by nursing-induced amenorrhea and nutrition; women have more children but higher infant mortality. Contraceptive societies: intentionally limit births; smaller families, more resources per child. Ancestral fertility research requires natural fertility society data."},
+  {qCN:"[W1-Q10] 绝经是什么？祖母假说如何解释它？",
+   qEN:"[W1-Q10] What is menopause? How does the Grandmother Hypothesis explain it?",
+   aCN:"绝经（Menopause）：女性约50岁后生育能力停止，在灵长类中近乎独特。祖母假说（Hawkes等）：停止繁殖后帮助女儿/外孙存活，反而增加了更多共享基因的后代→选择压力维持了绝经后的长寿。",
+   aEN:"Menopause: women cease reproductive capacity around age 50, nearly unique among primates. Grandmother Hypothesis (Hawkes et al.): stopping reproduction and helping daughters/grandchildren survive actually increases offspring sharing genes → selection pressure maintained post-menopausal longevity."},
+  {qCN:"[W1-Q11] 人类生育率和生育间隔与非人类灵长类相比如何？",
+   qEN:"[W1-Q11] How do human fertility rates compare to non-human primates?",
+   aCN:"人类比其他大型类人猿繁殖更快：生育间隔约3年（黑猩猩约5年）；寿命更长；幼儿依赖期更长。原因：共同育儿（父亲+祖母帮助）分担抚育负担，使母亲可更快再次生育。人类的高合作育儿是进化独特点。",
+   aEN:"Humans reproduce faster than other great apes: birth interval ~3 years (chimps ~5 years); longer lifespan; longer juvenile dependency. Reason: cooperative childcare (father + grandmother) shares rearing burden so mothers can reproduce sooner. Human cooperative childcare is an evolutionary unique."},
+  {qCN:"[W1-Q12] 游群（Bands）是什么？其主要特征？",
+   qEN:"[W1-Q12] What are Bands? What are their main characteristics?",
+   aCN:"游群：人类进化史上大部分时间的社会组织形式，约25–150人（居住游群约30–50人）。特征：平等主义（无正式等级）、游动性（跟随食物）、亲属为核心、资源共享、集体育儿、高度相互依赖。",
+   aEN:"Bands: the social organization for most of human evolutionary history, ~25–150 people (residential bands ~30–50). Characteristics: egalitarian (no formal hierarchy), mobile (following food), kin-centered, resource sharing, cooperative childcare, high mutual interdependence."},
+  {qCN:"[W1-Q13] 进化失配（Evolutionary Mismatch）是什么？",
+   qEN:"[W1-Q13] What is Evolutionary Mismatch?",
+   aCN:"进化出的心理机制遇到与其设计环境不同的现代环境，产生适应不良的反应。大脑为EEA（进化适应环境）——食物匮乏、小型游群——设计。现代例：高糖/脂肪食物偏好→肥胖；社会媒体→过度关注他人评价。",
+   aEN:"Evolved psychological mechanisms encounter modern environments different from their design environments, producing maladaptive responses. The brain was designed for the EEA (food scarcity, small bands). Modern examples: high-sugar/fat food preference → obesity; social media → excessive concern about others' evaluations."},
 
   // ══════ WEEK 2: 研究方法、伦理与行为遗传学 ══════
-  {q:"[W2-Q1] IAATOPE 代表什么？每个字母的含义？", a:"McCullough实验设计框架：I=Isolated（目标变量被隔离）；A=Artificially（人工操控）；A=Assigned（随机分配）；T=Treated（各组接受不同处理）；O=Observed（系统测量）；P=Passively（相关研究中被动观察）；E=Eliminated（通过随机分配排除混淆）。"},
-  {q:"[W2-Q2] 为什么相关不能证明因果？", a:"两大问题：① 第三变量/混淆（Confound）：第三个变量C同时导致A和B相关（冰淇淋销量↑与溺水率↑均因热天气）；② 方向性问题：无法判断是A→B还是B→A（抑郁↔孤立）。只有随机分配的实验法才能建立因果。"},
-  {q:"[W2-Q3] 四种实验技术的定义和优缺点？", a:"实验室实验（Lab）：受控环境+随机分配→高内部效度，低外部效度；田野实验（Field）：自然环境+随机分配→高外部效度，控制较少；自然实验（Natural）：利用自然事件为准随机→高生态效度，无控制；准实验（Quasi）：有比较组无真正随机分配→因果推断有限。"},
-  {q:"[W2-Q4] 随机分配在实验中为何如此重要？", a:"在操控前使各组在已知和未知个体差异上趋于平衡→消除混淆变量→任何组间差异只能归因于IV操控。没有随机分配，各组可能系统性不同，无法确立因果推断。注意区分：随机分配（影响内部效度）vs 随机抽样（影响外部效度）。"},
-  {q:"[W2-Q5] 塔斯基吉、Milgram、斯坦福监狱实验如何推动伦理演化？", a:"塔斯基吉（1932–72）：对黑人男性隐瞒梅毒诊断→导致1974年《贝尔蒙报告》和知情同意法定要求；Milgram（1963）：极度心理压力→确立揭密/保护心理健康要求；斯坦福监狱（1971）：虐待升级→强化IRB监督和提前终止标准。"},
-  {q:"[W2-Q6] 《贝尔蒙报告》的三项基本原则？", a:"① 尊重个人（Respect for Persons）：自主权+知情同意+保护弱势群体；② 受益原则（Beneficence）：最大化收益+最小化伤害；③ 公正原则（Justice）：公平分配研究负担与收益，不用弱势群体承担风险让他人享受成果。"},
-  {q:"[W2-Q7] 效度（Validity）的定义？什么可以具有效度？", a:"效度：某测量/推断在多大程度上测量了它声称要测量的东西。可以有：IV操控效度（操控是否真正改变目标心理状态？）；DV构念效度（测量工具真正捕捉目标构念？）；内部效度（因果关系？）；外部效度（可推广性？）。"},
-  {q:"[W2-Q8] 直接复制 vs 概念复制？为何可重复性重要？", a:"直接/精确复制：完全按原研究重复→测结果是否稳定；概念/间接复制：用不同方法检验同一底层理论→测效应是否普遍。两者都重要。科学知识基础是可重复性；OSC(2015)：约39%社会心理学研究无法直接复制。"},
-  {q:"[W2-Q9] 收缩/不可能/欺诈/人工制造结果的区别？", a:"收缩结果：复制研究中效应越来越小（发表偏见夸大原始效应）；不可能结果：统计数学不可能存在的数据（标准差为负、数据过于完美）；欺诈结果：数据被完全捏造（Diederik Stapel案）；人工制造结果：通过p-hacking/HARKing等技术手段获得显著结果。"},
-  {q:"[W2-Q10] 双胞胎研究的ACE各代表什么？", a:"A = Additive genetic effects（加性遗传效应/遗传率）：基因差异解释的变异比例；C = Common/Shared environment（共享环境）：同一家庭/社区的共同影响；E = Unique/Unshared environment（独特环境）：每人独特经历+测量误差。典型发现：多数心理特征A和E贡献大，C出乎意料地小。"},
-  {q:"[W2-Q11] 行为遗传学四大定律是什么？", a:"第一定律：所有人类行为特征都是可遗传的；第二定律：共享环境影响小于基因影响；第三定律：大量特征变异无法由基因或共享环境解释（独特环境不可忽视）；第四定律（McCullough重点）：典型行为特征与许多基因变体相关，每个效应极小→行为性状是多基因的（polygenic）。"},
+  {qCN:"[W2-Q1] IAATOPE 代表什么？每个字母的含义？",
+   qEN:"[W2-Q1] What does IAATOPE stand for? What does each letter mean?",
+   aCN:"McCullough实验设计框架：I=Isolated（目标变量被隔离）；A=Artificially（人工操控）；A=Assigned（随机分配）；T=Treated（各组接受不同处理）；O=Observed（系统测量）；P=Passively（相关研究中被动观察）；E=Eliminated（通过随机分配排除混淆）。",
+   aEN:"McCullough experimental design framework: I=Isolated (target variable is isolated); A=Artificially (artificially manipulated); A=Assigned (randomly assigned); T=Treated (groups receive different treatments); O=Observed (systematically measured); P=Passively (observed in correlational research); E=Eliminated (confounds eliminated by random assignment)."},
+  {qCN:"[W2-Q2] 为什么相关不能证明因果？",
+   qEN:"[W2-Q2] Why can't correlation prove causation?",
+   aCN:"两大问题：① 第三变量/混淆（Confound）：第三个变量C同时导致A和B相关（冰淇淋销量↑与溺水率↑均因热天气）；② 方向性问题：无法判断是A→B还是B→A（抑郁↔孤立）。只有随机分配的实验法才能建立因果。",
+   aEN:"Two major problems: ① Third variable/confound: a third variable C causes both A and B to correlate (ice cream sales and drowning rates both rise with hot weather); ② Directionality: can't determine if A causes B or B causes A (depression and isolation). Only randomized experiments establish causation."},
+  {qCN:"[W2-Q3] 四种实验技术的定义和优缺点？",
+   qEN:"[W2-Q3] Definitions and trade-offs of four experimental techniques?",
+   aCN:"实验室实验（Lab）：受控环境+随机分配→高内部效度，低外部效度；田野实验（Field）：自然环境+随机分配→高外部效度，控制较少；自然实验（Natural）：利用自然事件为准随机→高生态效度，无控制；准实验（Quasi）：有比较组无真正随机分配→因果推断有限。",
+   aEN:"Lab experiment: controlled + random assignment → high internal, low external validity; Field experiment: natural setting + random assignment → high external, less control; Natural experiment: exploits natural events for quasi-randomness → high ecological validity, no control; Quasi-experiment: comparison groups without true random assignment → limited causal inference."},
+  {qCN:"[W2-Q4] 随机分配在实验中为何如此重要？",
+   qEN:"[W2-Q4] Why is random assignment so important in experiments?",
+   aCN:"在操控前使各组在已知和未知个体差异上趋于平衡→消除混淆变量→任何组间差异只能归因于IV操控。没有随机分配，各组可能系统性不同，无法确立因果推断。注意区分：随机分配（影响内部效度）vs 随机抽样（影响外部效度）。",
+   aEN:"Before manipulation, it balances groups on known and unknown individual differences → eliminates confounds → any between-group differences attributed only to IV manipulation. Without it, groups may systematically differ. Key distinction: random assignment (internal validity) vs. random sampling (external validity)."},
+  {qCN:"[W2-Q5] 塔斯基吉、Milgram、斯坦福监狱实验如何推动伦理演化？",
+   qEN:"[W2-Q5] How did Tuskegee, Milgram, and Stanford Prison drive ethical evolution?",
+   aCN:"塔斯基吉（1932–72）：对黑人男性隐瞒梅毒诊断→导致1974年《贝尔蒙报告》和知情同意法定要求；Milgram（1963）：极度心理压力→确立揭密/保护心理健康要求；斯坦福监狱（1971）：虐待升级→强化IRB监督和提前终止标准。",
+   aEN:"Tuskegee (1932–72): withheld syphilis diagnosis from Black men → led to 1974 Belmont Report and legal informed consent; Milgram (1963): extreme psychological pressure → established debriefing and psychological protection requirements; Stanford Prison (1971): escalating abuse → strengthened IRB oversight and early termination standards."},
+  {qCN:"[W2-Q6] 《贝尔蒙报告》的三项基本原则？",
+   qEN:"[W2-Q6] What are the three basic principles of the Belmont Report?",
+   aCN:"① 尊重个人（Respect for Persons）：自主权+知情同意+保护弱势群体；② 受益原则（Beneficence）：最大化收益+最小化伤害；③ 公正原则（Justice）：公平分配研究负担与收益，不用弱势群体承担风险让他人享受成果。",
+   aEN:"① Respect for Persons: autonomy + informed consent + protection of vulnerable populations; ② Beneficence: maximize benefits + minimize harms; ③ Justice: fair distribution of research burdens and benefits — don't use vulnerable populations to bear risks while others enjoy the benefits."},
+  {qCN:"[W2-Q7] 效度（Validity）的定义？什么可以具有效度？",
+   qEN:"[W2-Q7] What is validity? What can have validity?",
+   aCN:"效度：某测量/推断在多大程度上测量了它声称要测量的东西。可以有：IV操控效度（操控是否真正改变目标心理状态？）；DV构念效度（测量工具真正捕捉目标构念？）；内部效度（因果关系？）；外部效度（可推广性？）。",
+   aEN:"Validity: the degree to which a measurement/inference measures what it claims to. Types: IV manipulation validity (does manipulation change the target state?); DV construct validity (does the measure capture the target construct?); internal validity (causal relationship?); external validity (generalizability?)."},
+  {qCN:"[W2-Q8] 直接复制 vs 概念复制？为何可重复性重要？",
+   qEN:"[W2-Q8] Direct vs conceptual replication? Why does replicability matter?",
+   aCN:"直接/精确复制：完全按原研究重复→测结果是否稳定；概念/间接复制：用不同方法检验同一底层理论→测效应是否普遍。两者都重要。科学知识基础是可重复性；OSC(2015)：约39%社会心理学研究无法直接复制。",
+   aEN:"Direct replication: repeat the original study exactly → tests whether results are stable; Conceptual replication: test the same theory with different methods → tests whether the effect is general. Both matter. OSC (2015): ~39% of social psychology studies failed direct replication."},
+  {qCN:"[W2-Q9] 收缩/不可能/欺诈/人工制造结果的区别？",
+   qEN:"[W2-Q9] Differences between shrunk/impossible/fraudulent/fabricated results?",
+   aCN:"收缩结果：复制研究中效应越来越小（发表偏见夸大原始效应）；不可能结果：统计数学不可能存在的数据（标准差为负、数据过于完美）；欺诈结果：数据被完全捏造（Diederik Stapel案）；人工制造结果：通过p-hacking/HARKing等技术手段获得显著结果。",
+   aEN:"Shrunk results: effect gets smaller in replication (publication bias inflated original); Impossible results: statistically impossible data (negative SD, suspiciously perfect data); Fraudulent results: data completely fabricated (Diederik Stapel case); Fabricated results: significant results obtained through p-hacking/HARKing techniques."},
+  {qCN:"[W2-Q10] 双胞胎研究的ACE各代表什么？",
+   qEN:"[W2-Q10] What does ACE represent in twin studies?",
+   aCN:"A = Additive genetic effects（加性遗传效应/遗传率）：基因差异解释的变异比例；C = Common/Shared environment（共享环境）：同一家庭/社区的共同影响；E = Unique/Unshared environment（独特环境）：每人独特经历+测量误差。典型发现：多数心理特征A和E贡献大，C出乎意料地小。",
+   aEN:"A = Additive genetic effects (heritability): variance explained by genetic differences; C = Common/Shared environment: shared influences from same family/community; E = Unique/Unshared environment: unique experiences + measurement error. Typical finding: for most traits, A and E are large, C is surprisingly small."},
+  {qCN:"[W2-Q11] 行为遗传学四大定律是什么？",
+   qEN:"[W2-Q11] What are the four laws of behavioral genetics?",
+   aCN:"第一定律：所有人类行为特征都是可遗传的；第二定律：共享环境影响小于基因影响；第三定律：大量特征变异无法由基因或共享环境解释（独特环境不可忽视）；第四定律（McCullough重点）：典型行为特征与许多基因变体相关，每个效应极小→行为性状是多基因的（polygenic）。",
+   aEN:"1st Law: all human behavioral traits are heritable; 2nd Law: shared environment effects are smaller than genetic effects; 3rd Law: substantial variance is unexplained by genes or shared environment (unique environment matters); 4th Law (McCullough emphasis): typical behavioral traits are associated with many variants, each with tiny effect — behavioral traits are polygenic."},
 
   // ══════ WEEK 3: 自我认知、社会比较与自我控制 ══════
-  {q:"[W3-Q1] 镜子自我识别测试（MSRT）是什么？它揭示什么？", a:"程序（Rouge Test）：趁动物麻醉时在额头标记，清醒后照镜子，观察是否触摸自己的标记。通过说明具有自我意识——能将自己作为独立客体认知。能通过的物种：人类、黑猩猩、倭黑猩猩、大象、海豚、某些喜鹊。"},
-  {q:"[W3-Q2] 大多数儿童大约在什么年龄通过MSRT？", a:"大多数儿童在18–24个月（1.5–2岁）开始通过。18个月前：把镜中像当另一个婴儿；18–24个月：开始触摸额头标记（自我定向行为）。与其他里程碑同步：开始用「我」/「我的」；出现自我意识情绪（尴尬、骄傲）。"},
-  {q:"[W3-Q3] 黑猩猩MSRT研究说明了什么关于自我的功能？", a:"能通过MSRT的黑猩猩展现更高级社会能力：更高社会等级、更强心理理论、更擅长欺骗和社交操控、更好合作能力。结论：自我进化的功能是通过建立关于自身的模型来预测和操控他人行为——自我意识是社会智慧的工具。"},
-  {q:"[W3-Q4] 什么是图式（Schema）？自我如何作为图式被表征？", a:"图式：关于某类别的认知结构，组织和引导对相关信息的感知、编码和提取。自我图式（Self-Schema）：关于自身特征、角色的认知结构。自我参照效应：与自我相关的信息被处理得更深、记忆更好。高度组织化影响我们注意和解释外部信息的方式。"},
-  {q:"[W3-Q5] 镜中自我（Looking-Glass Self）是什么？", a:"Cooley（1902）：自我概念通过想象他人如何看待我们来形成。三步骤：① 想象自己在他人眼中的样子；② 想象他人的评价；③ 根据感知到的评价体验自豪或羞耻。解释：自我知识通过反映性评价（Reflected Appraisals）获得，而非纯内省。"},
-  {q:"[W3-Q6] 社会计量器理论（Sociometer Theory）如何解释自尊？", a:"Leary提出：自尊不是目标，而是社会计量器——测量个体被群体接纳程度的内部仪表盘。进化逻辑：被排斥≈死亡→进化出监测社会接纳度的系统→自尊是其主观信号。被拒绝→自尊降低；被欣赏→自尊提升。"},
-  {q:"[W3-Q7] 向上比较 vs 向下比较的效果？", a:"Festinger（1954）社会比较理论：缺乏客观标准时通过与他人比较评估自己。向上比较（与更优秀者比）：可激励进步，但更常见的是降低自尊、引发嫉妒；社交媒体盛行向上比较→抑郁焦虑。向下比较（与条件更差者比）：提升自尊、满足感，但可能减少改进动机。"},
-  {q:"[W3-Q8] Goffman 的自我呈现理论（戏剧模型）是什么？其目标？", a:"Goffman（1959）戏剧理论：社会生活如舞台表演。前台（Front Stage）：有观众时的表演；后台（Back Stage）：无观众时的放松状态；印象管理（Impression Management）：控制他人对自己的印象。目标：获得社会认可、维护面子、建立有利社会认同。"},
-  {q:"[W3-Q9] 自我控制（Self-Control）的定义？需要哪三个要素？", a:"自我控制：克服、抑制或改变优势反应（即时冲动），以追求更高层目标的能力。包括调节思想、情绪、冲动、行为。需要三要素：① 目标（要追求什么）；② 监控系统（追踪当前状态与目标的差距）；③ 改变能力（能实际调整行为）。"},
-  {q:"[W3-Q10] 棉花糖测试揭示了什么？与长期结果的关系？", a:"Mischel等（1970s）：给学前儿童一个棉花糖，等待可得两个。能等待更久的孩子后来有更好的SAT成绩、学业表现、更低BMI、较少物质滥用。重要批评（Watts等2018）：控制社会经济背景后，延迟满足预测力大幅减弱——穷人家的孩子不等待是理性的。"},
-  {q:"[W3-Q11] 延迟折扣（Delay Discounting）是什么？双曲折扣？", a:"延迟折扣：随着奖励延迟增加，奖励主观价值降低的现象。双曲折扣（Hyperbolic Discounting）：近期延迟折扣率远高于远期（今天vs明天的折扣 >> 365天vs366天）。高延迟折扣=高冲动性，是成瘾、肥胖、财务问题的重要预测因子。"},
-  {q:"[W3-Q12] 延迟折扣在人类和动物中都存在的证据？进化意义？", a:"动物证据：鸽子、大鼠、猴子、黑猩猩在选择任务中都偏好即时奖励（鸽子最陡峭，黑猩猩相对更能等待）。跨物种意义：延迟折扣是高度保守的进化特征，反映多巴胺奖励回路的基本工作方式。进化解释：祖先环境中即时奖励更可靠——一鸟在手胜两鸟在林。"},
-  {q:"[W3-Q13] 高自我控制与哪些重要人生结果相关？", a:"学业/职业：更高GPA、学历、职业地位；健康：更低BMI和肥胖率、更少吸烟饮酒、更好运动习惯；关系：更满意的亲密关系、更少冲突；财务：更多储蓄、更少债务；法律：更少犯罪（Moffitt等2011）；心理健康：更少焦虑抑郁、更高幸福感。"},
-  {q:"[W3-Q14/15] 资源模型（Ego Depletion）是什么？复制研究说明了什么？", a:"Baumeister（1998）：自我控制依赖有限心理资源，用后需恢复。大规模复制失败：Hagger等（2016）23个实验室重复经典研究→未发现显著效应；葡萄糖模型也被否定。替代解释：可能是期望/信念效应。McCullough：这是复制危机的典型案例。"},
-  {q:"[W3-Q16] 过程模型 vs 资源模型的核心区别？", a:"资源模型：有限燃料耗尽→被动耗竭，自动且不可避免。过程模型（Inzlicht等）：自我控制失败是动机和注意力的主动转移——行使自我控制后被激励去追求即时满足，注意力转向诱惑。关键区别：过程模型中耗竭效应受动机、信念、情境因素调节，可以克服。"},
-  {q:"[W3-Q17] 改善自我控制的策略有哪些类别？", a:"① 情境选择：主动避免诱惑情境；② 情境修改：改变当前情境减少诱惑；③ 注意力部署：将注意力从诱惑转移；④ 认知重评：重新框架诱惑意义；⑤ 反应调制：直接抑制冲动反应；⑥ 执行意图：if-then计划自动化行为。"},
-  {q:"[W3-Q18] 捷径策略（Shortcut Strategies）是什么？为何比意志力更有效？", a:"核心思想：最好的自我控制策略是让好行为自动发生，而非在诱惑面前努力抵制。主要捷径：习惯（反复练习自动化行为）、环境设计（改变默认行为）、预承诺（提前限制选择）、执行意图（if-then触发器）。高自我控制的人更少遇到诱惑，而非更努力抵制。"},
+  {qCN:"[W3-Q1] 镜子自我识别测试（MSRT）是什么？它揭示什么？",
+   qEN:"[W3-Q1] What is the Mirror Self-Recognition Test (MSRT)? What does it reveal?",
+   aCN:"程序（Rouge Test）：趁动物麻醉时在额头标记，清醒后照镜子，观察是否触摸自己的标记。通过说明具有自我意识——能将自己作为独立客体认知。能通过的物种：人类、黑猩猩、倭黑猩猩、大象、海豚、某些喜鹊。",
+   aEN:"Procedure (Rouge Test): mark the animal's forehead while anesthetized, upon waking show mirror, observe if it touches its own mark. Passing indicates self-awareness — recognizing oneself as a distinct object. Species that pass: humans (18 mo+), chimpanzees, bonobos, elephants, dolphins, some magpies."},
+  {qCN:"[W3-Q2] 大多数儿童大约在什么年龄通过MSRT？",
+   qEN:"[W3-Q2] At approximately what age do most children pass the MSRT?",
+   aCN:"大多数儿童在18–24个月（1.5–2岁）开始通过。18个月前：把镜中像当另一个婴儿；18–24个月：开始触摸额头标记（自我定向行为）。与其他里程碑同步：开始用「我」/「我的」；出现自我意识情绪（尴尬、骄傲）。",
+   aEN:"Most children begin passing at 18–24 months (1.5–2 years). Before 18 months: treat mirror image as another baby; 18–24 months: begin touching the forehead mark (self-directed behavior). Synchronized with: first-person pronoun use (I/mine); emergence of self-conscious emotions (embarrassment, pride)."},
+  {qCN:"[W3-Q3] 黑猩猩MSRT研究说明了什么关于自我的功能？",
+   qEN:"[W3-Q3] What does chimp MSRT research tell us about the function of self?",
+   aCN:"能通过MSRT的黑猩猩展现更高级社会能力：更高社会等级、更强心理理论、更擅长欺骗和社交操控、更好合作能力。结论：自我进化的功能是通过建立关于自身的模型来预测和操控他人行为——自我意识是社会智慧的工具。",
+   aEN:"Chimps who pass MSRT show higher social abilities: higher social rank, stronger theory of mind, better deception and social manipulation, better cooperation. Conclusion: self evolved to predict and manipulate others' behavior by building a model of oneself — self-awareness is a tool of social intelligence."},
+  {qCN:"[W3-Q4] 什么是图式（Schema）？自我如何作为图式被表征？",
+   qEN:"[W3-Q4] What is a Schema? How is the self represented as a schema?",
+   aCN:"图式：关于某类别的认知结构，组织和引导对相关信息的感知、编码和提取。自我图式（Self-Schema）：关于自身特征、角色的认知结构。自我参照效应：与自我相关的信息被处理得更深、记忆更好。高度组织化影响我们注意和解释外部信息的方式。",
+   aEN:"Schema: a cognitive structure that organizes and guides perception, encoding, and retrieval of related information. Self-schema: cognitive structure about one's own traits and roles. Self-reference effect: self-related information is processed more deeply and remembered better. Highly organized structure shapes how we notice and interpret the world."},
+  {qCN:"[W3-Q5] 镜中自我（Looking-Glass Self）是什么？",
+   qEN:"[W3-Q5] What is the Looking-Glass Self?",
+   aCN:"Cooley（1902）：自我概念通过想象他人如何看待我们来形成。三步骤：① 想象自己在他人眼中的样子；② 想象他人的评价；③ 根据感知到的评价体验自豪或羞耻。解释：自我知识通过反映性评价（Reflected Appraisals）获得，而非纯内省。",
+   aEN:"Cooley (1902): self-concept forms by imagining how others see us. Three steps: ① Imagine how we appear to others; ② Imagine others' evaluation; ③ Experience pride or shame based on the perceived evaluation. Self-knowledge comes from Reflected Appraisals, not pure introspection."},
+  {qCN:"[W3-Q6] 社会计量器理论（Sociometer Theory）如何解释自尊？",
+   qEN:"[W3-Q6] How does Sociometer Theory explain self-esteem?",
+   aCN:"Leary提出：自尊不是目标，而是社会计量器——测量个体被群体接纳程度的内部仪表盘。进化逻辑：被排斥≈死亡→进化出监测社会接纳度的系统→自尊是其主观信号。被拒绝→自尊降低；被欣赏→自尊提升。",
+   aEN:"Leary proposed: self-esteem is not a goal but a sociometer — an internal gauge measuring degree of group acceptance. Evolutionary logic: rejection ≈ death → evolved system monitoring social acceptance → self-esteem is its subjective signal. Rejected → self-esteem drops; appreciated → self-esteem rises."},
+  {qCN:"[W3-Q7] 向上比较 vs 向下比较的效果？",
+   qEN:"[W3-Q7] Effects of upward vs downward social comparison?",
+   aCN:"Festinger（1954）社会比较理论：缺乏客观标准时通过与他人比较评估自己。向上比较（与更优秀者比）：可激励进步，但更常见的是降低自尊、引发嫉妒；社交媒体盛行向上比较→抑郁焦虑。向下比较（与条件更差者比）：提升自尊、满足感，但可能减少改进动机。",
+   aEN:"Festinger (1954) Social Comparison Theory: without objective standards, we evaluate ourselves by comparing to others. Upward comparison (with more successful others): sometimes motivates, but more often lowers self-esteem and causes envy; social media promotes upward comparison → depression/anxiety. Downward comparison (with less fortunate): boosts self-esteem but may reduce motivation to improve."},
+  {qCN:"[W3-Q8] Goffman 的自我呈现理论（戏剧模型）是什么？其目标？",
+   qEN:"[W3-Q8] What is Goffman's dramaturgical model of self-presentation?",
+   aCN:"Goffman（1959）戏剧理论：社会生活如舞台表演。前台（Front Stage）：有观众时的表演；后台（Back Stage）：无观众时的放松状态；印象管理（Impression Management）：控制他人对自己的印象。目标：获得社会认可、维护面子、建立有利社会认同。",
+   aEN:"Goffman (1959) dramaturgical theory: social life is like a stage performance. Front Stage: performance with an audience; Back Stage: relaxed state without an audience; Impression Management: controlling others' impressions. Goals: gain social approval, maintain face, establish a favorable social identity."},
+  {qCN:"[W3-Q9] 自我控制（Self-Control）的定义？需要哪三个要素？",
+   qEN:"[W3-Q9] What is self-control? What three components does it require?",
+   aCN:"自我控制：克服、抑制或改变优势反应（即时冲动），以追求更高层目标的能力。包括调节思想、情绪、冲动、行为。需要三要素：① 目标（要追求什么）；② 监控系统（追踪当前状态与目标的差距）；③ 改变能力（能实际调整行为）。",
+   aEN:"Self-control: the ability to overcome, inhibit, or alter dominant responses (immediate impulses) to pursue higher-level goals. Includes regulating thoughts, emotions, impulses, and behaviors. Requires: ① Standards (what goal to pursue); ② Monitoring system (tracking gap between current state and goal); ③ Capacity to change (ability to adjust behavior)."},
+  {qCN:"[W3-Q10] 棉花糖测试揭示了什么？与长期结果的关系？",
+   qEN:"[W3-Q10] What did the Marshmallow Test reveal? Its relationship to long-term outcomes?",
+   aCN:"Mischel等（1970s）：给学前儿童一个棉花糖，等待可得两个。能等待更久的孩子后来有更好的SAT成绩、学业表现、更低BMI、较少物质滥用。重要批评（Watts等2018）：控制社会经济背景后，延迟满足预测力大幅减弱——穷人家的孩子不等待是理性的。",
+   aEN:"Mischel et al. (1970s): preschoolers offered one marshmallow now or two if they wait. Children who waited longer later had better SAT scores, academic performance, lower BMI, less substance abuse. Critical criticism (Watts et al. 2018): after controlling for SES, predictive power greatly reduced — not waiting is rational for poor children."},
+  {qCN:"[W3-Q11] 延迟折扣（Delay Discounting）是什么？双曲折扣？",
+   qEN:"[W3-Q11] What is Delay Discounting? What is Hyperbolic Discounting?",
+   aCN:"延迟折扣：随着奖励延迟增加，奖励主观价值降低的现象。双曲折扣（Hyperbolic Discounting）：近期延迟折扣率远高于远期（今天vs明天的折扣 >> 365天vs366天）。高延迟折扣=高冲动性，是成瘾、肥胖、财务问题的重要预测因子。",
+   aEN:"Delay Discounting: subjective value of a reward decreases as the delay increases. Hyperbolic Discounting: discounting rate for near-future delays is far higher than for far-future delays (today vs tomorrow >> 365-day vs 366-day). High delay discounting = high impulsivity; predicts addiction, obesity, and financial problems."},
+  {qCN:"[W3-Q12] 延迟折扣在人类和动物中都存在的证据？进化意义？",
+   qEN:"[W3-Q12] Evidence that delay discounting exists in humans and animals? Evolutionary significance?",
+   aCN:"动物证据：鸽子、大鼠、猴子、黑猩猩在选择任务中都偏好即时奖励（鸽子最陡峭，黑猩猩相对更能等待）。跨物种意义：延迟折扣是高度保守的进化特征，反映多巴胺奖励回路的基本工作方式。进化解释：祖先环境中即时奖励更可靠——一鸟在手胜两鸟在林。",
+   aEN:"Animal evidence: pigeons, rats, monkeys, and chimps all prefer immediate rewards in choice tasks (pigeons most steep, chimps relatively more patient). Cross-species significance: delay discounting is a highly conserved evolutionary trait reflecting basic dopamine reward circuit function. Evolutionary explanation: immediate rewards were more reliable in ancestral environments — a bird in hand beats two in the bush."},
+  {qCN:"[W3-Q13] 高自我控制与哪些重要人生结果相关？",
+   qEN:"[W3-Q13] What important life outcomes correlate with high self-control?",
+   aCN:"学业/职业：更高GPA、学历、职业地位；健康：更低BMI和肥胖率、更少吸烟饮酒、更好运动习惯；关系：更满意的亲密关系、更少冲突；财务：更多储蓄、更少债务；法律：更少犯罪（Moffitt等2011）；心理健康：更少焦虑抑郁、更高幸福感。",
+   aEN:"Academic/career: higher GPA, education, occupational status; Health: lower BMI and obesity, less smoking/drinking, better exercise habits; Relationships: more satisfying relationships, less conflict; Financial: more savings, less debt; Legal: less crime (Moffitt et al. 2011); Mental health: less anxiety/depression, higher well-being."},
+  {qCN:"[W3-Q14/15] 资源模型（Ego Depletion）是什么？复制研究说明了什么？",
+   qEN:"[W3-Q14/15] What is the Resource Model (Ego Depletion)? What do replication studies show?",
+   aCN:"Baumeister（1998）：自我控制依赖有限心理资源，用后需恢复。大规模复制失败：Hagger等（2016）23个实验室重复经典研究→未发现显著效应；葡萄糖模型也被否定。替代解释：可能是期望/信念效应。McCullough：这是复制危机的典型案例。",
+   aEN:"Baumeister (1998): self-control relies on limited psychological resources that need replenishment. Large-scale replication failure: Hagger et al. (2016) 23-lab replication found no significant ego depletion effect; glucose model also rejected. Alternative explanation: may be expectancy/belief effect. McCullough: this is a textbook replication crisis case."},
+  {qCN:"[W3-Q16] 过程模型 vs 资源模型的核心区别？",
+   qEN:"[W3-Q16] Core difference between the Process Model and Resource Model?",
+   aCN:"资源模型：有限燃料耗尽→被动耗竭，自动且不可避免。过程模型（Inzlicht等）：自我控制失败是动机和注意力的主动转移——行使自我控制后被激励去追求即时满足，注意力转向诱惑。关键区别：过程模型中耗竭效应受动机、信念、情境因素调节，可以克服。",
+   aEN:"Resource Model: limited fuel is exhausted, passive depletion, automatic and unavoidable. Process Model (Inzlicht et al.): self-control failure is an active shift of motivation and attention — after exercising self-control, one is motivated to pursue immediate gratification, attention shifts to temptation. Key: process model effects are modulated by motivation/beliefs and can be overcome."},
+  {qCN:"[W3-Q17] 改善自我控制的策略有哪些类别？",
+   qEN:"[W3-Q17] What categories of strategies improve self-control?",
+   aCN:"① 情境选择：主动避免诱惑情境；② 情境修改：改变当前情境减少诱惑；③ 注意力部署：将注意力从诱惑转移；④ 认知重评：重新框架诱惑意义；⑤ 反应调制：直接抑制冲动反应；⑥ 执行意图：if-then计划自动化行为。",
+   aEN:"① Situation selection: proactively avoid tempting situations; ② Situation modification: change the current situation to reduce temptation; ③ Attention deployment: shift attention away from temptation; ④ Cognitive reappraisal: reframe the meaning of temptation; ⑤ Response modulation: directly inhibit impulsive responses; ⑥ Implementation intentions: if-then plans to automate behavior."},
+  {qCN:"[W3-Q18] 捷径策略（Shortcut Strategies）是什么？为何比意志力更有效？",
+   qEN:"[W3-Q18] What are Shortcut Strategies? Why are they more effective than willpower?",
+   aCN:"核心思想：最好的自我控制策略是让好行为自动发生，而非在诱惑面前努力抵制。主要捷径：习惯（反复练习自动化行为）、环境设计（改变默认行为）、预承诺（提前限制选择）、执行意图（if-then触发器）。高自我控制的人更少遇到诱惑，而非更努力抵制。",
+   aEN:"Core idea: the best self-control strategy is making good behaviors happen automatically, rather than resisting temptation with willpower. Main shortcuts: habits (automating behavior through repetition), environmental design (changing defaults), precommitment (limiting choices in advance), implementation intentions (if-then triggers). High self-control people face fewer temptations rather than resist harder."},
 
   // ══════ WEEK 4: 社会认知、心理理论与面孔判断 ══════
-  {q:"[W4-Q1] 人们如何对因果性和动态性做出推断？", a:"Heider & Simmel（1944）：人们自发地对移动几何形状归因意图和目标（大三角形追小三角形）。因果线索：协变、时间接近、空间接近、机制。动态性（Animacy）线索：自主运动、目标导向行为（路径改变仍朝目标）、对他物行动的响应性。"},
-  {q:"[W4-Q2/Q3] 婴儿目标推断实验+Woodward（1998）揭示了什么？", a:"Woodward（1998）：习惯化婴儿（6个月）看实验者伸向物体A；交换位置后测试：婴儿对'同位置新物体'（条件B）盯更久→婴儿编码的是目标（物体A）而非运动模式。揭示：早在6个月，婴儿就将行动解读为意向性的、目标导向的。"},
-  {q:"[W4-Q4] Sally-Anne 测试是什么？揭示什么能力？", a:"流程（Baron-Cohen等1985）：Sally把球放篮子里→离开→Anne把球移到盒子里→Sally回来——'Sally会去哪找球？'正确答案：篮子（Sally持有错误信念）。通过测试说明具备心理理论（Theory of Mind）：能理解他人可持有与现实不符的信念。"},
-  {q:"[W4-Q5] 自闭症儿童在错误信念测试上的表现？", a:"Baron-Cohen等（1985）：大多数自闭症儿童（即使语言/智力正常）未能通过Sally-Anne测试，说盒子（混淆自己知道的与Sally知道的）。典型儿童约4岁通过；自闭症儿童常在8–9岁仍失败。Baron-Cohen称之为「读心盲（Mindblindness）」——解释了自闭症核心社交困难。"},
-  {q:"[W4-Q6/Q7] 面孔判断的两个主要维度？为何我们仍基于面孔做判断？", a:"两个维度（Todorov等）：① 可信赖性/温暖（最重要，100ms内自动发生）；② 支配性/能力。仅据面孔能力判断预测约70%美国参议院选举。为何持续：情绪表情溢出假说（静态特征触发情绪识别系统）；成本不对称（错误信任代价更大）；微弱准确性（健康→面容）。"},
-  {q:"[W4-Q8] 吸引力启发（Attractiveness Heuristic）是什么？美即好效应？", a:"\"美即好\"（Dion等1972）：有吸引力的人被假定有更好人格、更高智力。吸引力启发：用外表作为判断其他属性的捷径。现实影响：更有吸引力的求职者获更多邀约和更高薪资；被告获更轻判决；政治候选人赢更多选票。原因：光环效应+微弱进化根据（健康面容→健康基因）。"},
+  {qCN:"[W4-Q1] 人们如何对因果性和动态性做出推断？",
+   qEN:"[W4-Q1] How do people make inferences about causality and animacy?",
+   aCN:"Heider & Simmel（1944）：人们自发地对移动几何形状归因意图和目标（大三角形追小三角形）。因果线索：协变、时间接近、空间接近、机制。动态性（Animacy）线索：自主运动、目标导向行为（路径改变仍朝目标）、对他物行动的响应性。",
+   aEN:"Heider & Simmel (1944): people spontaneously attribute intentions and goals to moving geometric shapes (big triangle chasing small triangle). Causality cues: covariation, temporal proximity, spatial proximity, mechanism. Animacy cues: autonomous motion, goal-directed behavior (path changes still aimed at target), responsiveness to others' actions."},
+  {qCN:"[W4-Q2/Q3] 婴儿目标推断实验+Woodward（1998）揭示了什么？",
+   qEN:"[W4-Q2/Q3] Infant goal inference + what did Woodward (1998) reveal?",
+   aCN:"Woodward（1998）：习惯化婴儿（6个月）看实验者伸向物体A；交换位置后测试：婴儿对'同位置新物体'（条件B）盯更久→婴儿编码的是目标（物体A）而非运动模式。揭示：早在6个月，婴儿就将行动解读为意向性的、目标导向的。",
+   aEN:"Woodward (1998): habituated infants (6 months) watched experimenter reaching toward object A; after position swap, infants looked longer at 'same position, new object' (condition B) → infants encoded the goal (object A) not the movement pattern. Reveals: as early as 6 months, infants interpret actions as intentional and goal-directed."},
+  {qCN:"[W4-Q4] Sally-Anne 测试是什么？揭示什么能力？",
+   qEN:"[W4-Q4] What is the Sally-Anne Test? What ability does it reveal?",
+   aCN:"流程（Baron-Cohen等1985）：Sally把球放篮子里→离开→Anne把球移到盒子里→Sally回来——'Sally会去哪找球？'正确答案：篮子（Sally持有错误信念）。通过测试说明具备心理理论（Theory of Mind）：能理解他人可持有与现实不符的信念。",
+   aEN:"Procedure (Baron-Cohen et al. 1985): Sally puts ball in basket → leaves → Anne moves ball to box → Sally returns — 'Where will Sally look for the ball?' Correct answer: basket (Sally has a false belief). Passing reveals Theory of Mind: the ability to understand that others can hold beliefs that don't match reality."},
+  {qCN:"[W4-Q5] 自闭症儿童在错误信念测试上的表现？",
+   qEN:"[W4-Q5] How do autistic children perform on the false belief test?",
+   aCN:"Baron-Cohen等（1985）：大多数自闭症儿童（即使语言/智力正常）未能通过Sally-Anne测试，说盒子（混淆自己知道的与Sally知道的）。典型儿童约4岁通过；自闭症儿童常在8–9岁仍失败。Baron-Cohen称之为「读心盲（Mindblindness）」——解释了自闭症核心社交困难。",
+   aEN:"Baron-Cohen et al. (1985): most autistic children (even with normal language/intelligence) failed the Sally-Anne test, saying 'box' (confusing what they know with what Sally knows). Typical children pass around age 4; autistic children often still fail at 8–9. Baron-Cohen called it 'Mindblindness' — explaining core social difficulties in autism."},
+  {qCN:"[W4-Q6/Q7] 面孔判断的两个主要维度？为何我们仍基于面孔做判断？",
+   qEN:"[W4-Q6/Q7] Two main dimensions of face judgment? Why do we still make judgments from faces?",
+   aCN:"两个维度（Todorov等）：① 可信赖性/温暖（最重要，100ms内自动发生）；② 支配性/能力。仅据面孔能力判断预测约70%美国参议院选举。为何持续：情绪表情溢出假说（静态特征触发情绪识别系统）；成本不对称（错误信任代价更大）；微弱准确性（健康→面容）。",
+   aEN:"Two dimensions (Todorov et al.): ① Trustworthiness/warmth (most important, automatic within 100ms); ② Dominance/competence. Facial competence judgments predict ~70% of U.S. Senate elections. Why it persists: emotion overgeneralization hypothesis (static features trigger emotion detection); asymmetric costs (wrongly trusting is more costly); weak accuracy (health implies appearance)."},
+  {qCN:"[W4-Q8] 吸引力启发（Attractiveness Heuristic）是什么？美即好效应？",
+   qEN:"[W4-Q8] What is the Attractiveness Heuristic? The Beautiful-is-Good effect?",
+   aCN:"「美即好」（Dion等1972）：有吸引力的人被假定有更好人格、更高智力。吸引力启发：用外表作为判断其他属性的捷径。现实影响：更有吸引力的求职者获更多邀约和更高薪资；被告获更轻判决；政治候选人赢更多选票。原因：光环效应+微弱进化根据（健康面容→健康基因）。",
+   aEN:"Beautiful-is-Good (Dion et al. 1972): attractive people assumed to have better personality and higher intelligence. Attractiveness Heuristic: using appearance as a shortcut for judging other attributes. Real-world impact: attractive job applicants get more callbacks and higher salaries; defendants receive lighter sentences; political candidates win more votes. Reason: halo effect + weak evolutionary basis (healthy appearance implies healthy genes)."},
 ];
 
 function initM1FC() {
   const grid = document.getElementById('m1fc-grid');
   if (!grid) return;
-  grid.innerHTML = m1Cards.map((c, i) => `
-    <div class="fc-wrap" onclick="this.classList.toggle('flipped')">
-      <div class="fc-inner">
-        <div class="fc-front">
-          <div style="font-size:10px;font-weight:800;letter-spacing:1px;color:var(--dim);margin-bottom:8px;">卡片 ${i+1} / ${m1Cards.length}</div>
-          <div class="fc-q">${c.q}</div>
-          <div class="fc-hint">点击翻转 👆</div>
-        </div>
-        <div class="fc-back"><div class="fc-a">${c.a}</div></div>
-      </div>
-    </div>`).join('');
+  grid.innerHTML = m1Cards.map((c, i) => {
+    let qHTML, aHTML;
+    if (m1Lang === 'en') {
+      qHTML = c.qEN;
+      aHTML = c.aEN;
+    } else if (m1Lang === 'cn') {
+      qHTML = c.qCN;
+      aHTML = c.aCN;
+    } else {
+      qHTML = c.qCN + '<span class="fc-en-q">' + c.qEN + '</span>';
+      aHTML = c.aCN + '<hr class="fc-divider"><span class="fc-en-a">' + c.aEN + '</span>';
+    }
+    const label = m1Lang === 'en' ? 'Card ' + (i+1) + ' / ' + m1Cards.length : '卡片 ' + (i+1) + ' / ' + m1Cards.length;
+    const hint = m1Lang === 'en' ? 'Click to flip 👆' : '点击翻转 👆';
+    return '<div class="fc-wrap" onclick="this.classList.toggle(\'flipped\')">' +
+      '<div class="fc-inner">' +
+        '<div class="fc-front">' +
+          '<div style="font-size:10px;font-weight:800;letter-spacing:1px;color:var(--dim);margin-bottom:8px;">' + label + '</div>' +
+          '<div class="fc-q">' + qHTML + '</div>' +
+          '<div class="fc-hint">' + hint + '</div>' +
+        '</div>' +
+        '<div class="fc-back"><div class="fc-a">' + aHTML + '</div></div>' +
+      '</div></div>';
+  }).join('');
 }
 initM1FC();
 
 // =============================================
-// MIDTERM 1 QUIZ DATA (30 questions — Study Guide W1-W4 aligned)
+// MIDTERM 1 QUIZ DATA (36 questions — Study Guide W1-W4 aligned, bilingual)
 // =============================================
 const m1QuizData = [
   // ── WEEK 1 ──
-  {q:"[W1] 自然选择的三个必要条件是什么组合？",
-   opts:["变异、智力、繁殖率","变异、遗传性、差异繁殖成功","突变、适应、进化","基因、环境、行为"],
-   ans:1, exp:"自然选择三条件：变异（Variation）——同物种个体特征有差异；遗传性（Heritability）——特征可传代；差异繁殖成功（Differential Reproductive Success）——某些变体后代更多。三个条件缺一不可。"},
-  {q:"[W1] 自然选择塑造大脑系统的核心逻辑是？",
-   opts:["自然选择只塑造身体结构，不影响大脑","解决重复性社会问题更好的神经机制→更多后代→在种群中扩散","大脑是通用计算机，可以学习任何事","进化只对有意识的行为发生作用"],
-   ans:1, exp:"祖先反复面临社会性适应问题（欺骗者检测、吸引配偶、建立联盟等），能更好解决这些问题的神经机制→繁殖成功→传播。结果：大脑由专用模块组成，而非通用计算机。"},
-  {q:"[W1] 以下关于 Charles Darwin 的说法，哪个是正确的？",
-   opts:["Darwin提出了遗传学定律（豌豆实验）","Darwin的《物种起源》（1859）提出自然选择是进化机制","Darwin认为人类行为不受进化影响","Darwin在20世纪才提出进化论"],
-   ans:1, exp:"Darwin（1809–1882）的《物种起源》（1859）提出自然选择机制；《人类的由来》（1871）将进化应用于人类行为。遗传学定律是孟德尔（Mendel）提出的。"},
-  {q:"[W1] 二战对社会心理学的最重要影响是？",
-   opts:["让社会心理学家全部转行研究战争","催生了服从、从众、偏见等研究领域，强调情境力量","证明了社会心理学无法解释极端行为","使社会心理学成为独立于心理学的学科"],
-   ans:1, exp:"二战提出迫切问题：普通人如何服从极端命令？催生了Milgram的服从研究、Asch的从众研究、Allport的偏见研究。Kurt Lewin创建群体动力学。核心启示：情境力量可让普通人做极端行为。"},
-  {q:"[W1] 灵长类睾丸大小与交配系统的对应关系，以下哪项正确？",
-   opts:["大猩猩（一夫多妻）→睾丸最大；黑猩猩（多雄多雌）→睾丸最小","黑猩猩（多雄多雌）→精子竞争最激烈→睾丸相对最大","长臂猿（一夫一妻）→精子竞争激烈→睾丸最大","人类睾丸最大，因为人类繁殖最成功"],
-   ans:1, exp:"多雄多雌系统（如黑猩猩）精子竞争最激烈→睾丸相对体重最大；一夫一妻（长臂猿）几乎无精子竞争→最小；一夫多妻（大猩猩）独占交配→尽管体型庞大，睾丸相对小。人类居中。"},
-  {q:"[W1] 祖先人类最可能是以下哪种交配系统？证据？",
-   opts:["完全的一夫一妻制，因为人类配对键合","严格的多雄多雌制，因为黑猩猩是我们最近的亲属","温和的一夫多妻制——体型二态性存在但不极端，睾丸居中","完全的一夫多妻制，因为男性体型远大于女性"],
-   ans:2, exp:"祖先人类最可能是温和的一夫多妻制（或介于一夫一妻与一夫多妻之间）：男性比女性体型稍大（二态性存在但不极端）；睾丸大小居中（有一定精子竞争但不如黑猩猩激烈）。"},
-  {q:"[W1] 祖母假说（Grandmother Hypothesis）最好地解释了什么现象？",
-   opts:["为什么人类祖母比其他灵长类更长寿且停止繁殖","为什么男性比女性寿命短","为什么人类婴儿依赖期最长","为什么人类有最大的大脑"],
-   ans:0, exp:"祖母假说（Hawkes等）：女性绝经后停止繁殖，帮助女儿和外孙存活，反而增加更多共享基因的后代。选择压力维持了绝经后的长寿——停止繁殖+帮助亲属繁殖比继续自己繁殖更划算。"},
-  {q:"[W1] 进化失配（Evolutionary Mismatch）的最佳例子是？",
-   opts:["现代人使用工具（工具是进化适应环境的产物）","对高糖/高脂食物的偏好导致现代肥胖流行（在食物匮乏的EEA是适应性的，在现代过剩环境中适应不良）","人类比黑猩猩更聪明（这是正向进化，不是失配）","现代人仍然生活在小型游群中"],
-   ans:1, exp:"进化失配：进化出的机制在现代环境中触发不适应的反应。高糖/高脂食物偏好在食物匮乏的EEA（进化适应环境）中是适应性的；现代食物过剩使同样的偏好导致肥胖。"},
+  {qCN:"[W1] 自然选择的三个必要条件是什么组合？",
+   qEN:"[W1] Which combination correctly states the three necessary conditions for natural selection?",
+   optsCN:["变异、智力、繁殖率","变异、遗传性、差异繁殖成功","突变、适应、进化","基因、环境、行为"],
+   optsEN:["Variation, intelligence, reproduction rate","Variation, heritability, differential reproductive success","Mutation, adaptation, evolution","Genes, environment, behavior"],
+   ans:1,
+   expCN:"自然选择三条件：变异（Variation）——同物种个体特征有差异；遗传性（Heritability）——特征可传代；差异繁殖成功（Differential Reproductive Success）——某些变体后代更多。三个条件缺一不可。",
+   expEN:"The three conditions for natural selection: Variation (individuals differ in traits); Heritability (traits can be passed down); Differential Reproductive Success (some variants produce more surviving offspring). All three are necessary."},
+  {qCN:"[W1] 自然选择塑造大脑系统的核心逻辑是？",
+   qEN:"[W1] What is the core logic by which natural selection shapes brain systems?",
+   optsCN:["自然选择只塑造身体结构，不影响大脑","解决重复性社会问题更好的神经机制→更多后代→在种群中扩散","大脑是通用计算机，可以学习任何事","进化只对有意识的行为发生作用"],
+   optsEN:["Natural selection only shapes body structures, not the brain","Neural mechanisms that better solve recurring social problems → more offspring → spread through the population","The brain is a general-purpose computer that can learn anything","Evolution only acts on conscious behavior"],
+   ans:1,
+   expCN:"祖先反复面临社会性适应问题（欺骗者检测、吸引配偶、建立联盟等），能更好解决这些问题的神经机制→繁殖成功→传播。结果：大脑由专用模块组成，而非通用计算机。",
+   expEN:"Ancestors repeatedly faced social adaptive problems (cheater detection, mate attraction, building alliances, etc.). Neural mechanisms that better solved these → reproductive success → spread. Result: the brain consists of specialized modules, not a general-purpose computer."},
+  {qCN:"[W1] 以下关于 Charles Darwin 的说法，哪个是正确的？",
+   qEN:"[W1] Which statement about Charles Darwin is correct?",
+   optsCN:["Darwin提出了遗传学定律（豌豆实验）","Darwin的《物种起源》（1859）提出自然选择是进化机制","Darwin认为人类行为不受进化影响","Darwin在20世纪才提出进化论"],
+   optsEN:["Darwin proposed the laws of genetics (pea experiments)","Darwin's On the Origin of Species (1859) proposed natural selection as the mechanism of evolution","Darwin believed human behavior is not influenced by evolution","Darwin proposed the theory of evolution in the 20th century"],
+   ans:1,
+   expCN:"Darwin（1809–1882）的《物种起源》（1859）提出自然选择机制；《人类的由来》（1871）将进化应用于人类行为。遗传学定律是孟德尔（Mendel）提出的。",
+   expEN:"Darwin (1809–1882)'s On the Origin of Species (1859) proposed the mechanism of natural selection; The Descent of Man (1871) applied evolution to human behavior. The laws of genetics were proposed by Mendel."},
+  {qCN:"[W1] 二战对社会心理学的最重要影响是？",
+   qEN:"[W1] What was World War II's most important influence on social psychology?",
+   optsCN:["让社会心理学家全部转行研究战争","催生了服从、从众、偏见等研究领域，强调情境力量","证明了社会心理学无法解释极端行为","使社会心理学成为独立于心理学的学科"],
+   optsEN:["Made all social psychologists switch to studying war","Spawned research on obedience, conformity, and prejudice, emphasizing situational forces","Proved that social psychology cannot explain extreme behavior","Made social psychology independent from psychology"],
+   ans:1,
+   expCN:"二战提出迫切问题：普通人如何服从极端命令？催生了Milgram的服从研究、Asch的从众研究、Allport的偏见研究。Kurt Lewin创建群体动力学。核心启示：情境力量可让普通人做极端行为。",
+   expEN:"WWII raised urgent questions: how could ordinary people obey extreme commands? Spawned Milgram's obedience research, Asch's conformity research, Allport's prejudice research. Kurt Lewin founded group dynamics. Core insight: situational forces can make ordinary people do extreme things."},
+  {qCN:"[W1] 灵长类睾丸大小与交配系统的对应关系，以下哪项正确？",
+   qEN:"[W1] Which correctly matches primate testis size with mating systems?",
+   optsCN:["大猩猩（一夫多妻）→睾丸最大；黑猩猩（多雄多雌）→睾丸最小","黑猩猩（多雄多雌）→精子竞争最激烈→睾丸相对最大","长臂猿（一夫一妻）→精子竞争激烈→睾丸最大","人类睾丸最大，因为人类繁殖最成功"],
+   optsEN:["Gorillas (polygynous) → largest testes; chimps (multi-male) → smallest testes","Chimpanzees (multi-male) → most intense sperm competition → relatively largest testes","Gibbons (monogamous) → intense sperm competition → largest testes","Humans have the largest testes because humans are most reproductively successful"],
+   ans:1,
+   expCN:"多雄多雌系统（如黑猩猩）精子竞争最激烈→睾丸相对体重最大；一夫一妻（长臂猿）几乎无精子竞争→最小；一夫多妻（大猩猩）独占交配→尽管体型庞大，睾丸相对小。人类居中。",
+   expEN:"Multi-male systems (e.g., chimpanzees) have the most intense sperm competition → relatively largest testes; monogamous (gibbons) have almost no sperm competition → smallest; polygynous (gorillas) monopolize mating → relatively small despite large body size. Humans are intermediate."},
+  {qCN:"[W1] 祖先人类最可能是以下哪种交配系统？证据？",
+   qEN:"[W1] What mating system were ancestral humans most likely to have had? What is the evidence?",
+   optsCN:["完全的一夫一妻制，因为人类配对键合","严格的多雄多雌制，因为黑猩猩是我们最近的亲属","温和的一夫多妻制——体型二态性存在但不极端，睾丸居中","完全的一夫多妻制，因为男性体型远大于女性"],
+   optsEN:["Complete monogamy, because humans form pair bonds","Strict multi-male system, because chimpanzees are our closest relatives","Mild polygyny — sexual dimorphism exists but not extreme, intermediate testis size","Complete polygyny, because males are much larger than females"],
+   ans:2,
+   expCN:"祖先人类最可能是温和的一夫多妻制（或介于一夫一妻与一夫多妻之间）：男性比女性体型稍大（二态性存在但不极端）；睾丸大小居中（有一定精子竞争但不如黑猩猩激烈）。",
+   expEN:"Ancestral humans most likely had mild polygyny (between monogamy and polygyny): males are slightly larger than females (dimorphism exists but not extreme); testis size is intermediate (some sperm competition but not as intense as chimpanzees)."},
+  {qCN:"[W1] 祖母假说（Grandmother Hypothesis）最好地解释了什么现象？",
+   qEN:"[W1] The Grandmother Hypothesis best explains which phenomenon?",
+   optsCN:["为什么人类祖母比其他灵长类更长寿且停止繁殖","为什么男性比女性寿命短","为什么人类婴儿依赖期最长","为什么人类有最大的大脑"],
+   optsEN:["Why human grandmothers live longer than other primates and stop reproducing","Why males live shorter lives than females","Why human infants have the longest dependency period","Why humans have the largest brains"],
+   ans:0,
+   expCN:"祖母假说（Hawkes等）：女性绝经后停止繁殖，帮助女儿和外孙存活，反而增加更多共享基因的后代。选择压力维持了绝经后的长寿——停止繁殖+帮助亲属繁殖比继续自己繁殖更划算。",
+   expEN:"Grandmother Hypothesis (Hawkes et al.): after menopause, women stop reproducing and help daughters and grandchildren survive, actually increasing offspring sharing their genes. Selection pressure maintained post-menopausal longevity — stopping reproduction and helping relatives reproduce is more effective than continuing to reproduce."},
+  {qCN:"[W1] 进化失配（Evolutionary Mismatch）的最佳例子是？",
+   qEN:"[W1] Which is the best example of Evolutionary Mismatch?",
+   optsCN:["现代人使用工具（工具是进化适应环境的产物）","对高糖/高脂食物的偏好导致现代肥胖流行（在食物匮乏的EEA是适应性的，在现代过剩环境中适应不良）","人类比黑猩猩更聪明（这是正向进化，不是失配）","现代人仍然生活在小型游群中"],
+   optsEN:["Modern humans use tools (tools are products of the ancestral environment)","Preference for high-sugar/high-fat foods leads to modern obesity epidemic (adaptive in food-scarce EEA, maladaptive in modern abundance)","Humans are smarter than chimpanzees (this is positive evolution, not mismatch)","Modern humans still live in small bands"],
+   ans:1,
+   expCN:"进化失配：进化出的机制在现代环境中触发不适应的反应。高糖/高脂食物偏好在食物匮乏的EEA（进化适应环境）中是适应性的；现代食物过剩使同样的偏好导致肥胖。",
+   expEN:"Evolutionary mismatch: mechanisms evolved for an ancestral environment produce maladaptive responses in the modern environment. High-sugar/high-fat food preference was adaptive in the food-scarce EEA; the same preference leads to obesity in modern food abundance."},
 
   // ── WEEK 2 ──
-  {q:"[W2] IAATOPE中的'随机分配'对应哪个字母？其作用是？",
-   opts:["I（Isolated）——隔离目标变量","A（Assigned）——通过随机分配排除混淆变量","E（Eliminated）——消除竞争性解释","T（Treated）——不同条件的不同处理"],
-   ans:1, exp:"IAATOPE中：A（Assigned）= 参与者被随机分配到各实验条件。E（Eliminated）= 通过随机分配排除竞争性解释（混淆变量）。两个字母共同描述随机分配的过程和目的。"},
-  {q:"[W2] 为什么'抑郁的人社交活动更少'这一相关发现无法确定因果？",
-   opts:["样本量太小，无法得出结论","存在方向性问题（孤立→抑郁？还是抑郁→孤立？）和第三变量问题，需要实验法","相关系数不够高","没有进行跨文化验证"],
-   ans:1, exp:"相关不能证明因果的两大原因：① 方向性问题——无法判断谁导致谁（孤立→抑郁？还是抑郁→孤立？）；② 第三变量问题——可能有第三个变量（如负面生活事件）同时导致两者。只有随机分配的实验才能建立因果。"},
-  {q:"[W2] 以下哪种研究设计能最好地建立因果推断？",
-   opts:["调查500名大学生的睡眠和GPA之间的相关","随机将学生分配到'8小时睡眠'或'5小时睡眠'条件，测量考试成绩","追踪同一批学生10年观察睡眠变化与GPA变化","比较不同国家学生的睡眠习惯和学业成就"],
-   ans:1, exp:"只有随机分配到不同条件（实验法）才能建立因果推断。选项A是相关研究；选项C是纵向研究（仍为相关）；选项D是跨文化比较（仍为相关）。只有B通过随机分配控制了混淆变量。"},
-  {q:"[W2] 塔斯基吉研究最严重违反了贝尔蒙报告的哪个原则？",
-   opts:["受益原则（Beneficence）——研究没有任何科学价值","公正原则（Justice）——让弱势群体承担风险，让其他人享受成果","尊重个人（Respect for Persons）——完全违反，没有任何问题","只违反了APA伦理准则，没有违反贝尔蒙原则"],
-   ans:1, exp:"塔斯基吉同时严重违反多项原则，但最典型的是公正原则（Justice）：黑人男性承担极大风险（被故意隐瞒诊断、拒绝治疗），而其他人（特别是白人社会）享受医学进步成果。这是不公正的研究负担分配。"},
-  {q:"[W2] 效度（Validity）的定义是？以下哪项不是效度的类型？",
-   opts:["某测量在多大程度上测量了它声称要测量的东西；'受欢迎度效度'不是效度类型","测量结果的一致性；'内部效度'不是效度类型","测量结果的稳定性；'外部效度'不是效度类型","某推断的可信度；'统计效度'不是效度类型"],
-   ans:0, exp:"效度定义：某测量/推断在多大程度上测量了它声称要测量的东西。效度类型包括：IV操控效度、DV构念效度、内部效度、外部效度。'受欢迎度效度'不是心理学研究方法中的效度类型。'信度'（Reliability）是测量结果的一致性，不同于效度。"},
-  {q:"[W2] Open Science Collaboration（2015）的主要发现是什么？",
-   opts:["100%的心理学研究都能成功复制","约39%的社会/认知心理学研究能被成功复制","复制危机只是媒体夸大，实际影响很小","只有认知心理学研究无法复制，社会心理学研究完全可复制"],
-   ans:1, exp:"OSC（2015）重复了100项社会/认知心理学研究，只有约39%获得显著复制结果。这是复制危机最重要的实证证据，说明大量已发表结果可能是虚假阳性或效应被高估。"},
-  {q:"[W2] 以下哪种情况最符合'欺诈结果（Fraudulent Results）'的定义？",
-   opts:["复制研究发现原始效应量比原始研究小","研究者在数据允许的范围内选择报告最显著的分析","Diederik Stapel承认捏造了实验数据，超50篇论文被撤稿","研究者使用了不合适的统计方法"],
-   ans:2, exp:"欺诈结果：数据被完全捏造或故意篡改。Diederik Stapel是典型案例——他承认系统性地捏造数据，超过50篇论文被撤稿，是复制危机中最著名的欺诈案例。选项A是收缩结果，选项B类似人工制造结果。"},
-  {q:"[W2] 双胞胎研究中ACE框架里，'C'代表什么？典型发现是？",
-   opts:["C = Cognitive ability（认知能力），遗传率高","C = Common/Shared environment（共享环境），对大多数心理特征影响出乎意料地小","C = Chromosomal effects（染色体效应），决定性格","C = Cultural influences（文化影响），影响最大"],
-   ans:1, exp:"ACE框架中C = Common/Shared Environment（共享/共同环境效应）：来自同一家庭、社区的共同影响。典型发现：对大多数心理特征，C的贡献出乎意料地小——同一家庭长大的兄弟姐妹差异主要来自A（基因）和E（独特环境）。"},
-  {q:"[W2] 行为遗传学第四定律（McCullough特别强调）的含义是？",
-   opts:["所有人类行为特征都是完全由基因决定的","典型行为特征与许多基因变体相关，每个效应极小→行为性状是多基因的","共享环境对行为的影响比基因更大","行为特征完全由单一基因决定（一基因一性状）"],
-   ans:1, exp:"第四定律（Turkheimer）：典型人类行为特征与许多基因变体相关，每个变体的效应都很小→行为性状是多基因的（polygenic）。意义：'一个基因一个特征'模型是错误的；GWAS研究发现成千上万个小效应基因，行为遗传学远比我们想象的复杂。"},
+  {qCN:"[W2] IAATOPE中的'随机分配'对应哪个字母？其作用是？",
+   qEN:"[W2] In IAATOPE, which letter corresponds to 'random assignment'? What is its function?",
+   optsCN:["I（Isolated）——隔离目标变量","A（Assigned）——通过随机分配排除混淆变量","E（Eliminated）——消除竞争性解释","T（Treated）——不同条件的不同处理"],
+   optsEN:["I (Isolated) — isolating the target variable","A (Assigned) — eliminating confounds through random assignment","E (Eliminated) — eliminating competing explanations","T (Treated) — different treatments for different conditions"],
+   ans:1,
+   expCN:"IAATOPE中：A（Assigned）= 参与者被随机分配到各实验条件。E（Eliminated）= 通过随机分配排除竞争性解释（混淆变量）。两个字母共同描述随机分配的过程和目的。",
+   expEN:"In IAATOPE: A (Assigned) = participants are randomly assigned to experimental conditions. E (Eliminated) = competing explanations (confounds) are eliminated through random assignment. Both letters together describe the process and purpose of random assignment."},
+  {qCN:"[W2] 为什么'抑郁的人社交活动更少'这一相关发现无法确定因果？",
+   qEN:"[W2] Why can't the correlation 'depressed people have less social activity' establish causation?",
+   optsCN:["样本量太小，无法得出结论","存在方向性问题（孤立→抑郁？还是抑郁→孤立？）和第三变量问题，需要实验法","相关系数不够高","没有进行跨文化验证"],
+   optsEN:["The sample size is too small to draw conclusions","There is a directionality problem (isolation causes depression? or depression causes isolation?) and third variable problem; experimental method is needed","The correlation coefficient is not high enough","Cross-cultural validation has not been conducted"],
+   ans:1,
+   expCN:"相关不能证明因果的两大原因：① 方向性问题——无法判断谁导致谁（孤立→抑郁？还是抑郁→孤立？）；② 第三变量问题——可能有第三个变量（如负面生活事件）同时导致两者。只有随机分配的实验才能建立因果。",
+   expEN:"Two major reasons why correlation cannot establish causation: ① Directionality problem — cannot determine who causes whom (isolation causes depression? or depression causes isolation?); ② Third variable problem — a third variable (e.g., negative life events) might simultaneously cause both. Only randomized experiments can establish causation."},
+  {qCN:"[W2] 以下哪种研究设计能最好地建立因果推断？",
+   qEN:"[W2] Which research design best establishes causal inference?",
+   optsCN:["调查500名大学生的睡眠和GPA之间的相关","随机将学生分配到'8小时睡眠'或'5小时睡眠'条件，测量考试成绩","追踪同一批学生10年观察睡眠变化与GPA变化","比较不同国家学生的睡眠习惯和学业成就"],
+   optsEN:["Surveying 500 college students on the correlation between sleep and GPA","Randomly assigning students to '8-hour sleep' or '5-hour sleep' conditions and measuring exam scores","Tracking the same students for 10 years observing changes in sleep and GPA","Comparing sleep habits and academic achievement of students in different countries"],
+   ans:1,
+   expCN:"只有随机分配到不同条件（实验法）才能建立因果推断。选项A是相关研究；选项C是纵向研究（仍为相关）；选项D是跨文化比较（仍为相关）。只有B通过随机分配控制了混淆变量。",
+   expEN:"Only random assignment to different conditions (experimental method) can establish causal inference. Option A is correlational research; Option C is longitudinal research (still correlational); Option D is cross-cultural comparison (still correlational). Only B controls confounds through random assignment."},
+  {qCN:"[W2] 塔斯基吉研究最严重违反了贝尔蒙报告的哪个原则？",
+   qEN:"[W2] Which principle of the Belmont Report did the Tuskegee study most seriously violate?",
+   optsCN:["受益原则（Beneficence）——研究没有任何科学价值","公正原则（Justice）——让弱势群体承担风险，让其他人享受成果","尊重个人（Respect for Persons）——完全违反，没有任何问题","只违反了APA伦理准则，没有违反贝尔蒙原则"],
+   optsEN:["Beneficence — the research had no scientific value","Justice — making vulnerable populations bear the risks while others enjoy the benefits","Respect for Persons — completely violated, no problem with that","Only violated APA ethical guidelines, not the Belmont principles"],
+   ans:1,
+   expCN:"塔斯基吉同时严重违反多项原则，但最典型的是公正原则（Justice）：黑人男性承担极大风险（被故意隐瞒诊断、拒绝治疗），而其他人享受医学进步成果。这是不公正的研究负担分配。",
+   expEN:"Tuskegee most paradigmatically violated the principle of Justice: Black men bore tremendous risks (deliberately withheld diagnosis, denied treatment) while others enjoyed medical progress. This was an unjust distribution of research burdens and benefits."},
+  {qCN:"[W2] 效度（Validity）的定义是？以下哪项不是效度的类型？",
+   qEN:"[W2] What is the definition of validity? Which of the following is NOT a type of validity?",
+   optsCN:["某测量在多大程度上测量了它声称要测量的东西；'受欢迎度效度'不是效度类型","测量结果的一致性；'内部效度'不是效度类型","测量结果的稳定性；'外部效度'不是效度类型","某推断的可信度；'统计效度'不是效度类型"],
+   optsEN:["The degree to which a measurement measures what it claims to; 'Popularity validity' is not a type of validity","Consistency of measurement results; 'Internal validity' is not a type of validity","Stability of measurement results; 'External validity' is not a type of validity","Credibility of an inference; 'Statistical validity' is not a type of validity"],
+   ans:0,
+   expCN:"效度定义：某测量/推断在多大程度上测量了它声称要测量的东西。效度类型包括：IV操控效度、DV构念效度、内部效度、外部效度。'受欢迎度效度'不是心理学研究方法中的效度类型。'信度'（Reliability）是测量结果的一致性，不同于效度。",
+   expEN:"Validity definition: the degree to which a measurement/inference measures what it claims to measure. Valid types include: IV manipulation validity, DV construct validity, internal validity, external validity. 'Popularity validity' is not a type in psychological research. 'Reliability' (consistency of measurement results) is different from validity."},
+  {qCN:"[W2] Open Science Collaboration（2015）的主要发现是什么？",
+   qEN:"[W2] What was the main finding of the Open Science Collaboration (2015)?",
+   optsCN:["100%的心理学研究都能成功复制","约39%的社会/认知心理学研究能被成功复制","复制危机只是媒体夸大，实际影响很小","只有认知心理学研究无法复制，社会心理学研究完全可复制"],
+   optsEN:["100% of psychological studies can be successfully replicated","About 39% of social/cognitive psychology studies can be successfully replicated","The replication crisis is just media exaggeration with little real impact","Only cognitive psychology studies cannot be replicated; social psychology studies are fully replicable"],
+   ans:1,
+   expCN:"OSC（2015）重复了100项社会/认知心理学研究，只有约39%获得显著复制结果。这是复制危机最重要的实证证据，说明大量已发表结果可能是虚假阳性或效应被高估。",
+   expEN:"OSC (2015) replicated 100 social/cognitive psychology studies, and only about 39% obtained significant replication results. This is the most important empirical evidence for the replication crisis, indicating that many published results may be false positives or overestimated effects."},
+  {qCN:"[W2] 以下哪种情况最符合'欺诈结果（Fraudulent Results）'的定义？",
+   qEN:"[W2] Which situation best fits the definition of 'Fraudulent Results'?",
+   optsCN:["复制研究发现原始效应量比原始研究小","研究者在数据允许的范围内选择报告最显著的分析","Diederik Stapel承认捏造了实验数据，超50篇论文被撤稿","研究者使用了不合适的统计方法"],
+   optsEN:["A replication study finds a smaller effect size than the original study","The researcher selects the most significant analyses within what the data allows","Diederik Stapel admitted to fabricating experimental data; over 50 papers were retracted","The researcher used inappropriate statistical methods"],
+   ans:2,
+   expCN:"欺诈结果：数据被完全捏造或故意篡改。Diederik Stapel是典型案例——他承认系统性地捏造数据，超过50篇论文被撤稿，是复制危机中最著名的欺诈案例。选项A是收缩结果，选项B类似人工制造结果。",
+   expEN:"Fraudulent results: data that is completely fabricated or deliberately falsified. Diederik Stapel is the classic case — he systematically fabricated data, and over 50 papers were retracted, making him the most notorious fraud case in the replication crisis. Option A is shrunk results; Option B is similar to fabricated results (p-hacking)."},
+  {qCN:"[W2] 双胞胎研究中ACE框架里，'C'代表什么？典型发现是？",
+   qEN:"[W2] In the ACE framework from twin studies, what does 'C' represent? What is the typical finding?",
+   optsCN:["C = Cognitive ability（认知能力），遗传率高","C = Common/Shared environment（共享环境），对大多数心理特征影响出乎意料地小","C = Chromosomal effects（染色体效应），决定性格","C = Cultural influences（文化影响），影响最大"],
+   optsEN:["C = Cognitive ability, high heritability","C = Common/Shared environment, surprisingly small influence on most psychological traits","C = Chromosomal effects, determines personality","C = Cultural influences, the largest influence"],
+   ans:1,
+   expCN:"ACE框架中C = Common/Shared Environment（共享/共同环境效应）：来自同一家庭、社区的共同影响。典型发现：对大多数心理特征，C的贡献出乎意料地小——同一家庭长大的兄弟姐妹差异主要来自A（基因）和E（独特环境）。",
+   expEN:"In the ACE framework, C = Common/Shared Environment: shared influences from the same family and community. Typical finding: for most psychological traits, C's contribution is surprisingly small — differences between siblings raised in the same family mainly come from A (genes) and E (unique environment)."},
+  {qCN:"[W2] 行为遗传学第四定律（McCullough特别强调）的含义是？",
+   qEN:"[W2] What is the meaning of the Fourth Law of Behavioral Genetics (especially emphasized by McCullough)?",
+   optsCN:["所有人类行为特征都是完全由基因决定的","典型行为特征与许多基因变体相关，每个效应极小→行为性状是多基因的","共享环境对行为的影响比基因更大","行为特征完全由单一基因决定（一基因一性状）"],
+   optsEN:["All human behavioral traits are completely determined by genes","Typical behavioral traits are associated with many genetic variants, each with very small effect → behavioral traits are polygenic","Shared environment has greater influence on behavior than genes","Behavioral traits are completely determined by a single gene (one gene, one trait)"],
+   ans:1,
+   expCN:"第四定律（Turkheimer）：典型人类行为特征与许多基因变体相关，每个变体的效应都很小→行为性状是多基因的（polygenic）。意义：'一个基因一个特征'模型是错误的；GWAS研究发现成千上万个小效应基因，行为遗传学远比我们想象的复杂。",
+   expEN:"Fourth Law (Turkheimer): typical human behavioral traits are associated with many genetic variants, each with a very small effect → behavioral traits are polygenic. Significance: the 'one gene, one trait' model is wrong; GWAS research has found thousands of small-effect genes, making behavioral genetics far more complex than we imagined."},
 
   // ── WEEK 3 ──
-  {q:"[W3] 镜子自我识别测试（MSRT/Rouge Test）的程序是？能通过的物种？",
-   opts:["让动物看另一只同类，观察其是否认出；所有哺乳类都能通过","趁麻醉时在额头标记→清醒后照镜子→观察是否触摸自己的标记；人类、黑猩猩、大象、海豚等可通过","让婴儿选择镜中像或真实玩具；所有灵长类都能通过","给动物两面镜子，观察其能否从不同角度认出自己；只有人类能通过"],
-   ans:1, exp:"MSRT程序：在动物麻醉时于额头做标记（无气味），清醒后照镜子，观察是否触摸自己的标记（说明认出是自己）。能通过：人类（18月+）、黑猩猩、倭黑猩猩、大象、海豚、虎鲸、某些喜鹊。不能通过：猫狗等大多数动物。"},
-  {q:"[W3] 大多数儿童大约在什么年龄通过MSRT？这与什么里程碑同步？",
-   opts:["6–12个月；与爬行能力发展同步","18–24个月；与使用第一人称代词、出现自我意识情绪同步","3–4岁；与错误信念理解能力同步","出生即可；这是天生的自我识别能力"],
-   ans:1, exp:"大多数儿童在18–24个月（1.5–2岁）通过MSRT。与其他自我意识里程碑同步：开始用'我'/'我的'等第一人称代词；出现自我意识情绪（尴尬、骄傲、羞愧）。18个月前婴儿把镜中像当作另一个婴儿。"},
-  {q:"[W3] 黑猩猩MSRT研究说明了'自我'进化的功能是？",
-   opts:["自我进化是为了感受美的能力","自我意识是社会智慧的工具——通过建立关于自身的模型来预测和操控他人行为","自我是为了向神圣存在祈祷而进化的","自我意识只在有语言的物种中存在"],
-   ans:1, exp:"通过MSRT的黑猩猩展现更高社会能力：更高社会等级、更强心理理论、更擅长欺骗和社交操控。结论：'自我'进化的功能是通过建立关于自身的模型来预测和操控他人——自我意识是社会智慧的工具，而非仅仅是内省能力。"},
-  {q:"[W3] 自我参照效应（Self-Reference Effect）说明了什么？",
-   opts:["人们总是把自己作为所有事情的参照，因此判断不准确","与自我相关的信息被处理得更深、记忆更好——反映自我图式对信息处理的影响","自我参照会降低记忆效果，因为引入了个人偏见","只有高自尊的人才有自我参照效应"],
-   ans:1, exp:"自我参照效应：与自我相关的信息被处理得更深（更深层的加工）、记忆更好。这反映了自我图式（Self-Schema）的作用：自我相关信息与已有的丰富自我知识结构连接，产生更深层的编码和更强的记忆痕迹。"},
-  {q:"[W3] Cooley 的'镜中自我（Looking-Glass Self）'的核心主张是？",
-   opts:["我们的自我形象主要通过照镜子发现","自我概念通过想象他人如何看待我们来形成，他人是我们的镜子","自我概念完全由遗传基因决定","自我是通过反复内省逐渐形成的"],
-   ans:1, exp:"Cooley（1902）镜中自我：① 想象自己在他人眼中的样子；② 想象他人的评价；③ 根据感知到的评价体验自豪或羞耻。核心：自我知识通过反映性评价（Reflected Appraisals）获得，而非通过纯粹内省——他人反应是我们了解自己的主要来源。"},
-  {q:"[W3] 社会计量器理论（Sociometer Theory）对自尊的解释是？",
-   opts:["自尊是我们客观评估自身价值的精确工具","自尊是监测被社会接纳程度的内部仪表盘——进化出的信号系统","自尊高低完全由遗传决定，无法通过社会互动改变","自尊越高表示越有道德，越低表示越不道德"],
-   ans:1, exp:"Leary的社会计量器理论：自尊不是目标本身，而是进化出的内部仪表盘，测量个体被群体接纳的程度。进化逻辑：被排斥在祖先环境中几乎等于死亡→进化出高度敏感的社会接纳监测系统→自尊是其主观信号。"},
-  {q:"[W3] 向上社会比较（Upward Social Comparison）通常的心理后果是？",
-   opts:["总是激励进步，是最好的比较方式","总是降低自尊，产生嫉妒，对心理健康有害","可能激励进步，但更常见的是降低自尊和引发嫉妒；社交媒体上的盛行与抑郁相关","对自尊没有影响，因为比较对象与自己不同"],
-   ans:2, exp:"向上比较（与更优秀者比）：有时激励进步（'我也可以做到！'），但更常见的是降低自尊、引发嫉妒和自我怀疑。社交媒体创造了持续的向上比较环境→与更高的抑郁和焦虑率相关。"},
-  {q:"[W3] Goffman 戏剧模型中的'前台'和'后台'分别指什么？",
-   opts:["前台=前额叶皮层（理性）；后台=边缘系统（情绪）","前台=有观众时的表演/社会呈现；后台=无观众时的放松真实状态","前台=对外表现的积极面；后台=隐藏的消极面","前台=意识层面的自我；后台=无意识的自我"],
-   ans:1, exp:"Goffman（1959）戏剧理论：社会生活如舞台表演。前台（Front Stage）：有观众时遵守社会规范的表演；后台（Back Stage）：无观众时的放松状态，不需要维持表演。印象管理是前台的核心活动。"},
-  {q:"[W3] 棉花糖测试（Marshmallow Test）的最重要研究结论+批评是？",
-   opts:["延迟满足能力完全由基因决定，与社会经济因素无关","等待更久的孩子后来有更好的人生结果；但Watts等（2018）发现控制SES后预测力大幅减弱——穷人家的孩子不等待是理性的","棉花糖测试完全无效，已被完全否定","只有在美国文化中有效，在其他文化中不同"],
-   ans:1, exp:"Mischel等（1970s）：等待更久→更好的SAT成绩、学业、健康、更少物质滥用。重要批评（Watts等2018）：控制家庭SES（社会经济背景）后，延迟满足的预测力大幅减弱——穷人家的孩子不等待是理性策略（不可靠环境中即时获取更有利）。"},
-  {q:"[W3] 延迟折扣（Delay Discounting）与自我控制失败的关系是？",
-   opts:["高延迟折扣（偏好即时奖励）与高度自我控制相关","低延迟折扣与成瘾和冲动行为相关","高延迟折扣（急于得到奖励，主观价值随等待迅速下降）=高冲动性，是成瘾、肥胖、财务问题的重要预测因子","延迟折扣只在动物中存在，人类已进化出克服它的能力"],
-   ans:2, exp:"延迟折扣：随着奖励延迟增加，奖励主观价值降低。高延迟折扣=即时奖励比延迟奖励价值高得多=高冲动性。这是成瘾（宁要即时的药物快感）、肥胖（宁要即时的美食）、财务问题（宁要即时消费）的重要预测因子。"},
-  {q:"[W3] 资源模型（Ego Depletion）的复制失败说明了什么？",
-   opts:["意志力确实是有限资源，但只在特定条件下耗竭","Hagger等（2016）23个实验室多实验室复制失败——表明该效应可能是虚假阳性或期望效应；是复制危机的典型案例","意志力是无限的，人可以无限期地自我控制","Ego Depletion效应只在美国被复制，在其他国家有效"],
-   ans:1, exp:"Hagger等（2016）大规模多实验室复制（N=2141）：未发现显著的Ego Depletion效应。葡萄糖模型也被否定。替代解释：效应可能由期望/信念驱动（相信意志力有限的人表现出耗竭）。McCullough将其作为复制危机典型案例讲授。"},
-  {q:"[W3] 过程模型（Process Model）如何解释自我控制失败？与资源模型的关键区别？",
-   opts:["自我控制失败=能量耗尽，与资源模型相同","自我控制失败是动机和注意力的主动转移（而非燃料耗尽）；关键区别：过程模型中效应受动机/信念调节，可克服","自我控制从不失败，失败只是外部借口","过程模型完全否认自我控制能力的存在"],
-   ans:1, exp:"过程模型（Inzlicht等）：自我控制失败是动机和注意力的主动转移——行使自我控制后被激励追求即时满足，注意力转向诱惑。关键区别：资源模型=被动的不可避免的耗竭；过程模型=受动机、信念、情境因素调节，可以通过改变动机克服。"},
-  {q:"[W3] 以下哪种自我控制策略属于'捷径策略（Shortcut Strategies）'？",
-   opts:["面对诱惑时用更强的意志力抵制","把薪水自动转入储蓄账户（预承诺）、建立健康饮食习惯（习惯化）、把零食放在看不到的地方（环境设计）","每当想吃糖时数数到100","做更多力量训练来增强'意志力肌肉'"],
-   ans:1, exp:"捷径策略：让好行为自动发生，而非在诱惑面前努力抵制。包括：预承诺（提前限制选择）、习惯（反复练习自动化行为）、环境设计（改变默认行为环境）、执行意图（if-then触发器）。高自我控制的人更少遇到诱惑，而非更努力抵制。"},
+  {qCN:"[W3] 镜子自我识别测试（MSRT/Rouge Test）的程序是？能通过的物种？",
+   qEN:"[W3] What is the procedure for the MSRT (Rouge Test)? Which species can pass?",
+   optsCN:["让动物看另一只同类，观察其是否认出；所有哺乳类都能通过","趁麻醉时在额头标记→清醒后照镜子→观察是否触摸自己的标记；人类、黑猩猩、大象、海豚等可通过","让婴儿选择镜中像或真实玩具；所有灵长类都能通过","给动物两面镜子，观察其能否从不同角度认出自己；只有人类能通过"],
+   optsEN:["Show the animal another of its kind, observe if it recognizes it; all mammals can pass","Mark the forehead while anesthetized → show mirror upon waking → observe if it touches its own mark; humans, chimps, elephants, dolphins, etc. can pass","Show infants a mirror image or real toy; all primates can pass","Give the animal two mirrors, observe if it can recognize itself from different angles; only humans can pass"],
+   ans:1,
+   expCN:"MSRT程序：在动物麻醉时于额头做标记（无气味），清醒后照镜子，观察是否触摸自己的标记（说明认出是自己）。能通过：人类（18月+）、黑猩猩、倭黑猩猩、大象、海豚、虎鲸、某些喜鹊。不能通过：猫狗等大多数动物。",
+   expEN:"MSRT procedure: mark the animal's forehead (odorless) while anesthetized, show it a mirror upon waking, observe if it touches its own mark (indicating self-recognition). Can pass: humans (18+ months), chimpanzees, bonobos, elephants, dolphins, killer whales, some magpies. Cannot pass: most animals including cats and dogs."},
+  {qCN:"[W3] 大多数儿童大约在什么年龄通过MSRT？这与什么里程碑同步？",
+   qEN:"[W3] At approximately what age do most children pass the MSRT? What developmental milestones does this coincide with?",
+   optsCN:["6–12个月；与爬行能力发展同步","18–24个月；与使用第一人称代词、出现自我意识情绪同步","3–4岁；与错误信念理解能力同步","出生即可；这是天生的自我识别能力"],
+   optsEN:["6–12 months; coincides with development of crawling ability","18–24 months; coincides with use of first-person pronouns and emergence of self-conscious emotions","3–4 years; coincides with false belief understanding ability","At birth; this is an innate self-recognition ability"],
+   ans:1,
+   expCN:"大多数儿童在18–24个月（1.5–2岁）通过MSRT。与其他自我意识里程碑同步：开始用'我'/'我的'等第一人称代词；出现自我意识情绪（尴尬、骄傲、羞愧）。18个月前婴儿把镜中像当作另一个婴儿。",
+   expEN:"Most children pass the MSRT at 18–24 months (1.5–2 years). This coincides with other self-awareness milestones: beginning to use first-person pronouns ('I'/'mine'); emergence of self-conscious emotions (embarrassment, pride, shame). Before 18 months, infants treat the mirror image as another baby."},
+  {qCN:"[W3] 黑猩猩MSRT研究说明了'自我'进化的功能是？",
+   qEN:"[W3] What does chimpanzee MSRT research suggest about the evolutionary function of 'self'?",
+   optsCN:["自我进化是为了感受美的能力","自我意识是社会智慧的工具——通过建立关于自身的模型来预测和操控他人行为","自我是为了向神圣存在祈祷而进化的","自我意识只在有语言的物种中存在"],
+   optsEN:["Self evolved for the ability to appreciate beauty","Self-awareness is a tool of social intelligence — predicting and manipulating others' behavior by building a model of oneself","Self evolved for the ability to pray to divine beings","Self-awareness only exists in species with language"],
+   ans:1,
+   expCN:"通过MSRT的黑猩猩展现更高社会能力：更高社会等级、更强心理理论、更擅长欺骗和社交操控。结论：'自我'进化的功能是通过建立关于自身的模型来预测和操控他人——自我意识是社会智慧的工具，而非仅仅是内省能力。",
+   expEN:"Chimps who pass the MSRT show higher social abilities: higher social rank, stronger theory of mind, better at deception and social manipulation. Conclusion: 'self' evolved to predict and manipulate others' behavior by building a model of oneself — self-awareness is a tool of social intelligence, not merely an introspective capacity."},
+  {qCN:"[W3] 自我参照效应（Self-Reference Effect）说明了什么？",
+   qEN:"[W3] What does the Self-Reference Effect demonstrate?",
+   optsCN:["人们总是把自己作为所有事情的参照，因此判断不准确","与自我相关的信息被处理得更深、记忆更好——反映自我图式对信息处理的影响","自我参照会降低记忆效果，因为引入了个人偏见","只有高自尊的人才有自我参照效应"],
+   optsEN:["People always use themselves as a reference for everything, so their judgments are inaccurate","Self-related information is processed more deeply and remembered better — reflecting the influence of self-schema on information processing","Self-reference lowers memory performance because it introduces personal bias","Only people with high self-esteem show the self-reference effect"],
+   ans:1,
+   expCN:"自我参照效应：与自我相关的信息被处理得更深（更深层的加工）、记忆更好。这反映了自我图式（Self-Schema）的作用：自我相关信息与已有的丰富自我知识结构连接，产生更深层的编码和更强的记忆痕迹。",
+   expEN:"The Self-Reference Effect: self-related information is processed more deeply (deeper level of processing) and remembered better. This reflects the role of the self-schema: self-related information connects with the rich existing self-knowledge structure, producing deeper encoding and stronger memory traces."},
+  {qCN:"[W3] Cooley 的'镜中自我（Looking-Glass Self）'的核心主张是？",
+   qEN:"[W3] What is the core claim of Cooley's 'Looking-Glass Self'?",
+   optsCN:["我们的自我形象主要通过照镜子发现","自我概念通过想象他人如何看待我们来形成，他人是我们的镜子","自我概念完全由遗传基因决定","自我是通过反复内省逐渐形成的"],
+   optsEN:["Our self-image is primarily discovered by looking in a mirror","Self-concept forms by imagining how others see us; others are our mirror","Self-concept is completely determined by genetic inheritance","Self is gradually formed through repeated introspection"],
+   ans:1,
+   expCN:"Cooley（1902）镜中自我：① 想象自己在他人眼中的样子；② 想象他人的评价；③ 根据感知到的评价体验自豪或羞耻。核心：自我知识通过反映性评价（Reflected Appraisals）获得，而非通过纯粹内省——他人反应是我们了解自己的主要来源。",
+   expEN:"Cooley (1902) Looking-Glass Self: ① Imagine how we appear to others; ② Imagine others' evaluation; ③ Experience pride or shame based on the perceived evaluation. Core: self-knowledge comes through Reflected Appraisals — others' reactions are our primary source of self-understanding, not pure introspection."},
+  {qCN:"[W3] 社会计量器理论（Sociometer Theory）对自尊的解释是？",
+   qEN:"[W3] What is Sociometer Theory's explanation of self-esteem?",
+   optsCN:["自尊是我们客观评估自身价值的精确工具","自尊是监测被社会接纳程度的内部仪表盘——进化出的信号系统","自尊高低完全由遗传决定，无法通过社会互动改变","自尊越高表示越有道德，越低表示越不道德"],
+   optsEN:["Self-esteem is a precise tool for objectively assessing our own worth","Self-esteem is an internal gauge monitoring the degree of social acceptance — an evolved signal system","Self-esteem level is completely determined by genetics and cannot be changed through social interaction","Higher self-esteem indicates greater morality; lower self-esteem indicates lesser morality"],
+   ans:1,
+   expCN:"Leary的社会计量器理论：自尊不是目标本身，而是进化出的内部仪表盘，测量个体被群体接纳的程度。进化逻辑：被排斥在祖先环境中几乎等于死亡→进化出高度敏感的社会接纳监测系统→自尊是其主观信号。",
+   expEN:"Leary's Sociometer Theory: self-esteem is not a goal itself, but an evolved internal gauge measuring the degree to which one is accepted by the group. Evolutionary logic: rejection in the ancestral environment was almost equivalent to death → evolved a highly sensitive social acceptance monitoring system → self-esteem is its subjective signal."},
+  {qCN:"[W3] 向上社会比较（Upward Social Comparison）通常的心理后果是？",
+   qEN:"[W3] What are the typical psychological consequences of upward social comparison?",
+   optsCN:["总是激励进步，是最好的比较方式","总是降低自尊，产生嫉妒，对心理健康有害","可能激励进步，但更常见的是降低自尊和引发嫉妒；社交媒体上的盛行与抑郁相关","对自尊没有影响，因为比较对象与自己不同"],
+   optsEN:["Always motivates improvement; it is the best way to compare","Always lowers self-esteem and produces envy; harmful to mental health","May motivate improvement, but more commonly lowers self-esteem and causes envy; prevalence on social media is linked to depression","Has no effect on self-esteem because the comparison target is different from oneself"],
+   ans:2,
+   expCN:"向上比较（与更优秀者比）：有时激励进步（'我也可以做到！'），但更常见的是降低自尊、引发嫉妒和自我怀疑。社交媒体创造了持续的向上比较环境→与更高的抑郁和焦虑率相关。",
+   expEN:"Upward comparison (comparing with more successful others): sometimes motivates ('I can do it too!'), but more commonly lowers self-esteem, causes envy and self-doubt. Social media creates a constant upward comparison environment → associated with higher rates of depression and anxiety."},
+  {qCN:"[W3] Goffman 戏剧模型中的'前台'和'后台'分别指什么？",
+   qEN:"[W3] In Goffman's dramaturgical model, what do 'front stage' and 'back stage' refer to?",
+   optsCN:["前台=前额叶皮层（理性）；后台=边缘系统（情绪）","前台=有观众时的表演/社会呈现；后台=无观众时的放松真实状态","前台=对外表现的积极面；后台=隐藏的消极面","前台=意识层面的自我；后台=无意识的自我"],
+   optsEN:["Front stage = prefrontal cortex (rational); back stage = limbic system (emotional)","Front stage = performance/social presentation when there is an audience; back stage = relaxed authentic state when there is no audience","Front stage = positive aspects of outward presentation; back stage = hidden negative aspects","Front stage = conscious self; back stage = unconscious self"],
+   ans:1,
+   expCN:"Goffman（1959）戏剧理论：社会生活如舞台表演。前台（Front Stage）：有观众时遵守社会规范的表演；后台（Back Stage）：无观众时的放松状态，不需要维持表演。印象管理是前台的核心活动。",
+   expEN:"Goffman (1959) dramaturgical theory: social life is like a stage performance. Front Stage: following social norms and performing in front of an audience; Back Stage: the relaxed state when there is no audience, not needing to maintain the performance. Impression management is the core activity on the front stage."},
+  {qCN:"[W3] 棉花糖测试（Marshmallow Test）的最重要研究结论+批评是？",
+   qEN:"[W3] What are the most important conclusions and criticisms of the Marshmallow Test?",
+   optsCN:["延迟满足能力完全由基因决定，与社会经济因素无关","等待更久的孩子后来有更好的人生结果；但Watts等（2018）发现控制SES后预测力大幅减弱——穷人家的孩子不等待是理性的","棉花糖测试完全无效，已被完全否定","只有在美国文化中有效，在其他文化中不同"],
+   optsEN:["Delay of gratification ability is completely determined by genes, unrelated to socioeconomic factors","Children who waited longer had better life outcomes; but Watts et al. (2018) found that predictive power greatly weakened after controlling for SES — not waiting is rational for children from poor families","The marshmallow test is completely invalid and has been entirely debunked","Only valid in American culture; different in other cultures"],
+   ans:1,
+   expCN:"Mischel等（1970s）：等待更久→更好的SAT成绩、学业、健康、更少物质滥用。重要批评（Watts等2018）：控制家庭SES（社会经济背景）后，延迟满足的预测力大幅减弱——穷人家的孩子不等待是理性策略（不可靠环境中即时获取更有利）。",
+   expEN:"Mischel et al. (1970s): children who waited longer → better SAT scores, academic performance, health, less substance abuse. Important criticism (Watts et al. 2018): after controlling for family SES (socioeconomic status), the predictive power of delay of gratification greatly weakened — not waiting is a rational strategy for poor children (more reliable to take rewards immediately in an unreliable environment)."},
+  {qCN:"[W3] 延迟折扣（Delay Discounting）与自我控制失败的关系是？",
+   qEN:"[W3] What is the relationship between delay discounting and self-control failure?",
+   optsCN:["高延迟折扣（偏好即时奖励）与高度自我控制相关","低延迟折扣与成瘾和冲动行为相关","高延迟折扣（急于得到奖励，主观价值随等待迅速下降）=高冲动性，是成瘾、肥胖、财务问题的重要预测因子","延迟折扣只在动物中存在，人类已进化出克服它的能力"],
+   optsEN:["High delay discounting (preferring immediate rewards) is associated with high self-control","Low delay discounting is associated with addiction and impulsive behavior","High delay discounting (subjective value decreases rapidly with waiting) = high impulsivity; an important predictor of addiction, obesity, and financial problems","Delay discounting only exists in animals; humans have evolved the ability to overcome it"],
+   ans:2,
+   expCN:"延迟折扣：随着奖励延迟增加，奖励主观价值降低。高延迟折扣=即时奖励比延迟奖励价值高得多=高冲动性。这是成瘾（宁要即时的药物快感）、肥胖（宁要即时的美食）、财务问题（宁要即时消费）的重要预测因子。",
+   expEN:"Delay discounting: subjective value of rewards decreases as delay increases. High delay discounting = immediate rewards are worth much more than delayed rewards = high impulsivity. This is an important predictor of addiction (preferring immediate drug high), obesity (preferring immediate food pleasure), and financial problems (preferring immediate spending)."},
+  {qCN:"[W3] 资源模型（Ego Depletion）的复制失败说明了什么？",
+   qEN:"[W3] What does the replication failure of the Resource Model (Ego Depletion) demonstrate?",
+   optsCN:["意志力确实是有限资源，但只在特定条件下耗竭","Hagger等（2016）23个实验室多实验室复制失败——表明该效应可能是虚假阳性或期望效应；是复制危机的典型案例","意志力是无限的，人可以无限期地自我控制","Ego Depletion效应只在美国被复制，在其他国家有效"],
+   optsEN:["Willpower is indeed a limited resource, but only depletes under specific conditions","Hagger et al. (2016) 23-lab multi-lab replication failure — suggests the effect may be a false positive or expectancy effect; a textbook case of the replication crisis","Willpower is unlimited; people can self-control indefinitely","The Ego Depletion effect has only been replicated in the US; it works in other countries"],
+   ans:1,
+   expCN:"Hagger等（2016）大规模多实验室复制（N=2141）：未发现显著的Ego Depletion效应。葡萄糖模型也被否定。替代解释：效应可能由期望/信念驱动（相信意志力有限的人表现出耗竭）。McCullough将其作为复制危机典型案例讲授。",
+   expEN:"Hagger et al. (2016) large-scale multi-lab replication (N=2141): no significant Ego Depletion effect found. The glucose model was also rejected. Alternative explanation: the effect may be driven by expectancy/beliefs (people who believe willpower is limited show depletion). McCullough teaches this as a textbook case of the replication crisis."},
+  {qCN:"[W3] 过程模型（Process Model）如何解释自我控制失败？与资源模型的关键区别？",
+   qEN:"[W3] How does the Process Model explain self-control failure? What is the key difference from the Resource Model?",
+   optsCN:["自我控制失败=能量耗尽，与资源模型相同","自我控制失败是动机和注意力的主动转移（而非燃料耗尽）；关键区别：过程模型中效应受动机/信念调节，可克服","自我控制从不失败，失败只是外部借口","过程模型完全否认自我控制能力的存在"],
+   optsEN:["Self-control failure = energy exhaustion, same as the resource model","Self-control failure is an active shift of motivation and attention (not fuel exhaustion); key difference: in the process model, effects are modulated by motivation/beliefs and can be overcome","Self-control never fails; failure is just an external excuse","The process model completely denies the existence of self-control ability"],
+   ans:1,
+   expCN:"过程模型（Inzlicht等）：自我控制失败是动机和注意力的主动转移——行使自我控制后被激励追求即时满足，注意力转向诱惑。关键区别：资源模型=被动的不可避免的耗竭；过程模型=受动机、信念、情境因素调节，可以通过改变动机克服。",
+   expEN:"Process Model (Inzlicht et al.): self-control failure is an active shift of motivation and attention — after exercising self-control, one is motivated to pursue immediate gratification, and attention shifts to temptation. Key difference: Resource Model = passive unavoidable depletion; Process Model = modulated by motivation, beliefs, and situational factors, can be overcome by changing motivation."},
+  {qCN:"[W3] 以下哪种自我控制策略属于'捷径策略（Shortcut Strategies）'？",
+   qEN:"[W3] Which of the following self-control strategies is a 'Shortcut Strategy'?",
+   optsCN:["面对诱惑时用更强的意志力抵制","把薪水自动转入储蓄账户（预承诺）、建立健康饮食习惯（习惯化）、把零食放在看不到的地方（环境设计）","每当想吃糖时数数到100","做更多力量训练来增强'意志力肌肉'"],
+   optsEN:["Resist temptation with stronger willpower when facing it","Automatically transfer salary to savings account (precommitment), build healthy eating habits (habit formation), put snacks out of sight (environmental design)","Count to 100 whenever you want to eat sugar","Do more strength training to strengthen the 'willpower muscle'"],
+   ans:1,
+   expCN:"捷径策略：让好行为自动发生，而非在诱惑面前努力抵制。包括：预承诺（提前限制选择）、习惯（反复练习自动化行为）、环境设计（改变默认行为环境）、执行意图（if-then触发器）。高自我控制的人更少遇到诱惑，而非更努力抵制。",
+   expEN:"Shortcut strategies: making good behaviors happen automatically rather than resisting temptation with willpower. Includes: precommitment (limiting choices in advance), habit formation (automating behavior through repetition), environmental design (changing default behavioral environment), implementation intentions (if-then triggers). High self-control people encounter fewer temptations rather than resist harder."},
 
   // ── WEEK 4 ──
-  {q:"[W4] Heider & Simmel（1944）的几何形状动画研究说明了什么？",
-   opts:["人类需要至少5秒才能推断他人的意图","人们自发地对移动形状归因意图和目标，即使知道它们只是几何形状","婴儿不能推断他人的意图","因果推断只在社会互动中发生，不适用于非社会刺激"],
-   ans:1, exp:"Heider & Simmel（1944）：人们观看移动的几何形状（三角形和圆形），自发地将意图、目标、情感归因于这些形状（'大三角形追着小三角形'）。说明：人类有非常强的自动化因果推断和意图归因倾向，即使对无生命物体也如此。"},
-  {q:"[W4] Woodward（1998）实验的关键发现是？",
-   opts:["6个月婴儿无法区分目标和运动路径","6个月婴儿对'旧位置新目标'看更久，说明婴儿编码的是目标（物体）而非运动模式","婴儿需要18个月才能理解他人的目标","婴儿只能理解简单的物体运动，无法推断意图"],
-   ans:1, exp:"Woodward（1998）：婴儿（6个月）习惯化于'手伸向物体A'后，测试时对'同位置新物体'（条件B）看更久（违反期望），但对'新位置旧物体'（条件A）不太惊讶。结论：婴儿编码的是目标（物体A）而非运动路径，早在6个月就理解行动的意向性。"},
-  {q:"[W4] Sally-Anne测试中，通过测试的关键能力是？",
-   opts:["能记住物体的位置","能理解错误信念（False Belief）——他人可以持有与现实不符的信念，其行为由他们的信念而非现实驱动","能快速找到隐藏的物体","能与陌生人合作"],
-   ans:1, exp:"Sally-Anne测试（Baron-Cohen等1985）：Sally把球放篮子里后离开→Anne移球到盒子→Sally回来。正确答案（篮子）要求理解Sally持有错误信念——她以为球还在篮子里。通过测试说明具备Theory of Mind（心理理论）的核心能力：理解错误信念。"},
-  {q:"[W4] 自闭症儿童在Sally-Anne测试上的表现，Baron-Cohen称之为什么？",
-   opts:["选择性注意障碍（Selective Attention Disorder）","读心盲（Mindblindness）——心理理论能力缺陷，导致无法理解他人信念、意图和欲望","镜像神经元缺失综合症","感知过载（Perceptual Overload）"],
-   ans:1, exp:"Baron-Cohen（1985）发现：大多数自闭症儿童（即使语言/智力正常）未能通过Sally-Anne测试，说'盒子'。他称之为'读心盲（Mindblindness）'——心理理论能力的缺陷。这解释了自闭症中社交困难的核心原因：难以理解他人的意图、信念和欲望。"},
-  {q:"[W4] 根据Todorov等研究，面孔判断的两个最主要维度是什么？",
-   opts:["年龄和性别","可信赖性/温暖（最重要，100ms内自动发生）和支配性/能力","智力和吸引力","种族和健康状况"],
-   ans:1, exp:"Todorov等研究：面孔判断的两个主要维度：① 可信赖性/温暖（Trustworthiness/Warmth）——最重要，解释判断变异的绝大部分，100毫秒内自动发生；② 支配性/能力（Dominance/Competence）——与面孔角度、下颌结构相关。仅据能力判断可预测约70%美国参议院选举结果。"},
-  {q:"[W4] '美即好'效应（Beautiful is Good）是什么？'吸引力启发'的现实影响？",
-   opts:["有吸引力的人实际上在各方面都更好，这是进化真实反映","外表吸引力被用作判断其他无关特征的捷径（光环效应）；影响：求职、法庭判决、政治选举、教师评分等都对吸引力者有利","吸引力只影响约会中的判断，不影响职业领域","'美即好'效应只在女性对男性的判断中存在"],
-   ans:1, exp:"'美即好'（Dion等1972）：有吸引力的人被假定拥有更好人格、更高智力。吸引力启发（Attractiveness Heuristic）：用外表作为判断其他属性的捷径（光环效应）。现实影响：吸引力更高的求职者获更多邀约和更高薪资；被告获更轻判决；政治候选人赢更多选票。"},
+  {qCN:"[W4] Heider & Simmel（1944）的几何形状动画研究说明了什么？",
+   qEN:"[W4] What does the Heider & Simmel (1944) geometric shape animation study demonstrate?",
+   optsCN:["人类需要至少5秒才能推断他人的意图","人们自发地对移动形状归因意图和目标，即使知道它们只是几何形状","婴儿不能推断他人的意图","因果推断只在社会互动中发生，不适用于非社会刺激"],
+   optsEN:["Humans need at least 5 seconds to infer others' intentions","People spontaneously attribute intentions and goals to moving shapes, even knowing they are just geometric forms","Infants cannot infer others' intentions","Causal inference only occurs in social interactions, not applicable to non-social stimuli"],
+   ans:1,
+   expCN:"Heider & Simmel（1944）：人们观看移动的几何形状（三角形和圆形），自发地将意图、目标、情感归因于这些形状（'大三角形追着小三角形'）。说明：人类有非常强的自动化因果推断和意图归因倾向，即使对无生命物体也如此。",
+   expEN:"Heider & Simmel (1944): people watching moving geometric shapes (triangles and circles) spontaneously attributed intentions, goals, and emotions to these shapes ('the big triangle is chasing the small triangle'). Demonstrates: humans have a very strong automatic tendency for causal inference and intention attribution, even toward inanimate objects."},
+  {qCN:"[W4] Woodward（1998）实验的关键发现是？",
+   qEN:"[W4] What is the key finding of Woodward (1998)?",
+   optsCN:["6个月婴儿无法区分目标和运动路径","6个月婴儿对'旧位置新目标'看更久，说明婴儿编码的是目标（物体）而非运动模式","婴儿需要18个月才能理解他人的目标","婴儿只能理解简单的物体运动，无法推断意图"],
+   optsEN:["6-month-old infants cannot distinguish between goals and movement paths","6-month-old infants looked longer at 'new object at old position,' indicating infants encode the goal (object) not the movement pattern","Infants need 18 months to understand others' goals","Infants can only understand simple object movement and cannot infer intentions"],
+   ans:1,
+   expCN:"Woodward（1998）：婴儿（6个月）习惯化于'手伸向物体A'后，测试时对'同位置新物体'（条件B）看更久（违反期望），但对'新位置旧物体'（条件A）不太惊讶。结论：婴儿编码的是目标（物体A）而非运动路径，早在6个月就理解行动的意向性。",
+   expEN:"Woodward (1998): infants (6 months) habituated to 'hand reaching toward object A'; after position swap, infants looked longer at 'same position, new object' (Condition B, violation of expectation), but not 'new position, old object' (Condition A). Conclusion: infants encode the goal (object A) not the movement path; action is understood as intentional as early as 6 months."},
+  {qCN:"[W4] Sally-Anne测试中，通过测试的关键能力是？",
+   qEN:"[W4] In the Sally-Anne Test, what is the key ability demonstrated by passing?",
+   optsCN:["能记住物体的位置","能理解错误信念（False Belief）——他人可以持有与现实不符的信念，其行为由他们的信念而非现实驱动","能快速找到隐藏的物体","能与陌生人合作"],
+   optsEN:["Ability to remember the location of objects","Ability to understand false belief — others can hold beliefs that don't match reality, and their behavior is driven by their beliefs not reality","Ability to quickly find hidden objects","Ability to cooperate with strangers"],
+   ans:1,
+   expCN:"Sally-Anne测试（Baron-Cohen等1985）：Sally把球放篮子里后离开→Anne移球到盒子→Sally回来。正确答案（篮子）要求理解Sally持有错误信念——她以为球还在篮子里。通过测试说明具备Theory of Mind（心理理论）的核心能力：理解错误信念。",
+   expEN:"Sally-Anne Test (Baron-Cohen et al. 1985): Sally puts ball in basket, leaves → Anne moves ball to box → Sally returns. Correct answer (basket) requires understanding that Sally has a false belief — she thinks the ball is still in the basket. Passing demonstrates the core ability of Theory of Mind: understanding false belief."},
+  {qCN:"[W4] 自闭症儿童在Sally-Anne测试上的表现，Baron-Cohen称之为什么？",
+   qEN:"[W4] What did Baron-Cohen call autistic children's performance on the Sally-Anne Test?",
+   optsCN:["选择性注意障碍（Selective Attention Disorder）","读心盲（Mindblindness）——心理理论能力缺陷，导致无法理解他人信念、意图和欲望","镜像神经元缺失综合症","感知过载（Perceptual Overload）"],
+   optsEN:["Selective Attention Disorder","Mindblindness — a deficit in Theory of Mind ability, leading to inability to understand others' beliefs, intentions, and desires","Mirror neuron deficiency syndrome","Perceptual Overload"],
+   ans:1,
+   expCN:"Baron-Cohen（1985）发现：大多数自闭症儿童（即使语言/智力正常）未能通过Sally-Anne测试，说'盒子'。他称之为'读心盲（Mindblindness）'——心理理论能力的缺陷。这解释了自闭症中社交困难的核心原因：难以理解他人的意图、信念和欲望。",
+   expEN:"Baron-Cohen (1985) found that most autistic children (even those with normal language/intelligence) failed the Sally-Anne test, saying 'box'. He called it 'Mindblindness' — a deficit in Theory of Mind ability. This explains the core reason for social difficulties in autism: difficulty understanding others' intentions, beliefs, and desires."},
+  {qCN:"[W4] 根据Todorov等研究，面孔判断的两个最主要维度是什么？",
+   qEN:"[W4] What are the two most important dimensions of face judgment according to Todorov et al.?",
+   optsCN:["年龄和性别","可信赖性/温暖（最重要，100ms内自动发生）和支配性/能力","智力和吸引力","种族和健康状况"],
+   optsEN:["Age and gender","Trustworthiness/warmth (most important, automatic within 100ms) and dominance/competence","Intelligence and attractiveness","Race and health status"],
+   ans:1,
+   expCN:"Todorov等研究：面孔判断的两个主要维度：① 可信赖性/温暖（Trustworthiness/Warmth）——最重要，解释判断变异的绝大部分，100毫秒内自动发生；② 支配性/能力（Dominance/Competence）——与面孔角度、下颌结构相关。仅据能力判断可预测约70%美国参议院选举结果。",
+   expEN:"Todorov et al. research: two main dimensions of face judgment: ① Trustworthiness/Warmth — most important, explains the vast majority of judgment variance, automatic within 100 milliseconds; ② Dominance/Competence — related to facial angle and jaw structure. Judgments based solely on competence can predict about 70% of U.S. Senate election results."},
+  {qCN:"[W4] '美即好'效应（Beautiful is Good）是什么？'吸引力启发'的现实影响？",
+   qEN:"[W4] What is the 'Beautiful is Good' effect? What are the real-world impacts of the Attractiveness Heuristic?",
+   optsCN:["有吸引力的人实际上在各方面都更好，这是进化真实反映","外表吸引力被用作判断其他无关特征的捷径（光环效应）；影响：求职、法庭判决、政治选举、教师评分等都对吸引力者有利","吸引力只影响约会中的判断，不影响职业领域","'美即好'效应只在女性对男性的判断中存在"],
+   optsEN:["Attractive people are actually better in all respects; this is an accurate evolutionary reflection","Physical attractiveness is used as a shortcut for judging other unrelated traits (halo effect); impacts: job applications, court verdicts, political elections, teacher evaluations all favor attractive people","Attractiveness only influences judgments in dating, not in professional domains","The 'Beautiful is Good' effect only exists in women's judgments of men"],
+   ans:1,
+   expCN:"'美即好'（Dion等1972）：有吸引力的人被假定拥有更好人格、更高智力。吸引力启发（Attractiveness Heuristic）：用外表作为判断其他属性的捷径（光环效应）。现实影响：吸引力更高的求职者获更多邀约和更高薪资；被告获更轻判决；政治候选人赢更多选票。",
+   expEN:"'Beautiful is Good' (Dion et al. 1972): attractive people are assumed to have better personality and higher intelligence. Attractiveness Heuristic: using appearance as a shortcut to judge other attributes (halo effect). Real-world impacts: more attractive job applicants get more callbacks and higher salaries; defendants receive lighter sentences; political candidates win more votes."},
 ];
 
 function initM1Quiz() {
@@ -1987,10 +2327,19 @@ function initM1Quiz() {
   m1QuizData.forEach((item, i) => {
     const div = document.createElement('div');
     div.className = 'quiz-q';
-    div.innerHTML = `<div class="q-num">期中一 · 题目 ${i+1} / ${m1QuizData.length}</div>
-      <div class="q-text">${item.q}</div>
-      <div class="options">${item.opts.map((o,j)=>`<button class="opt" data-i="${i}" data-j="${j}">${String.fromCharCode(65+j)}. ${o}</button>`).join('')}</div>
-      <div class="explanation" id="m1exp-${i}">💡 ${item.exp}</div>`;
+    const qText = m1Lang === 'en' ? item.qEN : m1Lang === 'cn' ? item.qCN : item.qCN + '<div class="en-note">' + item.qEN + '</div>';
+    const opts = m1Lang === 'en' ? item.optsEN : m1Lang === 'cn' ? item.optsCN : item.optsCN;
+    const optsEN = item.optsEN;
+    const label = m1Lang === 'en' ? 'Midterm 1 · Q' + (i+1) + ' / ' + m1QuizData.length : '期中一 · 题目 ' + (i+1) + ' / ' + m1QuizData.length;
+    const expText = m1Lang === 'en' ? item.expEN : item.expCN;
+    const expExtra = (m1Lang === 'bi') ? '<div class="m1-en-exp">' + item.expEN + '</div>' : '';
+    div.innerHTML = '<div class="q-num">' + label + '</div>' +
+      '<div class="q-text">' + qText + '</div>' +
+      '<div class="options">' + opts.map((o,j) => {
+        const enNote = (m1Lang === 'bi') ? ' <span style="font-size:11px;color:var(--muted);font-style:italic;">/ ' + optsEN[j] + '</span>' : '';
+        return '<button class="opt" data-i="' + i + '" data-j="' + j + '">' + String.fromCharCode(65+j) + '. ' + o + enNote + '</button>';
+      }).join('') + '</div>' +
+      '<div class="explanation" id="m1exp-' + i + '">💡 ' + expText + expExtra + '</div>';
     container.appendChild(div);
   });
   container.querySelectorAll('.opt').forEach(btn => {
@@ -2011,8 +2360,11 @@ function initM1Quiz() {
         const scoreEl = document.getElementById('m1quiz-score');
         scoreEl.style.display = 'block';
         const pct = Math.round(score / m1QuizData.length * 100);
-        const grade = pct >= 90 ? 'A 优秀！准备充分 🎉' : pct >= 75 ? 'B 良好，再复习薄弱点 💪' : pct >= 60 ? 'C 需要加强复习 📚' : '需要系统复习全部内容 🔄';
-        scoreEl.innerHTML = `🎯 期中一测验完成！<br>得分：${score} / ${m1QuizData.length}（${pct}%）<br><span style="font-size:14px;color:var(--muted)">${grade}</span>`;
+        const grade = pct >= 90 ? 'A — Excellent! Well prepared 🎉' : pct >= 75 ? 'B — Good, review weak points 💪' : pct >= 60 ? 'C — Needs more review 📚' : 'Needs systematic review of all content 🔄';
+        const gradeCN = pct >= 90 ? 'A 优秀！准备充分 🎉' : pct >= 75 ? 'B 良好，再复习薄弱点 💪' : pct >= 60 ? 'C 需要加强复习 📚' : '需要系统复习全部内容 🔄';
+        const gradeShow = m1Lang === 'en' ? grade : gradeCN;
+        const titleShow = m1Lang === 'en' ? 'Midterm 1 Quiz Complete!' : '期中一测验完成！';
+        scoreEl.innerHTML = '🎯 ' + titleShow + '<br>Score: ' + score + ' / ' + m1QuizData.length + ' (' + pct + '%)<br><span style="font-size:14px;color:var(--muted)">' + gradeShow + '</span>';
       }
     });
   });
